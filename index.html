@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLARA Dashboard - Comprehensive Sustainability Management</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="logo">
+                    <div class="logo__mark">
+                        <div class="logo__icon">☀</div>
+                        <div class="logo__text">
+                            <span class="logo__name">SOLARA</span>
+                            <span class="logo__tagline">Open Source</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="header__center">
+                    <div class="role-switcher">
+                        <label for="roleSelect" class="form-label role-label">View as:</label>
+                        <select id="roleSelect" class="form-control role-select">
+                            <option value="farmer">🌱 Farmer/Operator</option>
+                            <option value="researcher" selected>🔬 Research Coordinator</option>
+                            <option value="policy">📋 Policy/Regulatory</option>
+                            <option value="investor">💼 Investor/ESG</option>
+                        </select>
+                    </div>
+                    
+                    <div class="facility-info">
+                        <span class="facility-info__label">Facility:</span>
+                        <span class="facility-info__name">Netherlands CEA Research Site</span>
+                        <span class="status status--success">Online</span>
+                    </div>
+                </div>
+                
+                <div class="header__user">
+                    <div class="user-profile">
+                        <div class="user-profile__avatar">SC</div>
+                        <div class="user-profile__info">
+                            <span class="user-profile__name">Dr. Sarah Chen</span>
+                            <span class="user-profile__role">Research Coordinator</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="main">
+        <div class="container">
+            <!-- Role-based Welcome Section -->
+            <section class="welcome-section" id="welcomeSection">
+                <div class="welcome-content">
+                    <h1 class="welcome-title" id="welcomeTitle">Research Coordination Dashboard</h1>
+                    <p class="welcome-subtitle" id="welcomeSubtitle">Multi-site research coordination and experimental data analysis</p>
+                </div>
+            </section>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Environmental Monitoring -->
+                <section class="card environmental-card">
+                    <div class="card__header">
+                        <h2>🌡️ Environmental Monitoring</h2>
+                        <span class="status status--success">Real-time</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="environmental-grid">
+                            <div class="env-metric">
+                                <div class="env-metric__icon">🌡️</div>
+                                <div class="env-metric__label">Temperature</div>
+                                <div class="env-metric__value">24.5°C</div>
+                                <div class="env-metric__target">Target: 24.0°C</div>
+                                <div class="env-metric__status status--success">Optimal</div>
+                            </div>
+                            <div class="env-metric">
+                                <div class="env-metric__icon">💧</div>
+                                <div class="env-metric__label">Humidity</div>
+                                <div class="env-metric__value">65.2%</div>
+                                <div class="env-metric__target">Target: 65.0%</div>
+                                <div class="env-metric__status status--success">Optimal</div>
+                            </div>
+                            <div class="env-metric">
+                                <div class="env-metric__icon">🌬️</div>
+                                <div class="env-metric__label">CO₂</div>
+                                <div class="env-metric__value">800 ppm</div>
+                                <div class="env-metric__target">Target: 850 ppm</div>
+                                <div class="env-metric__status status--success">Good</div>
+                            </div>
+                            <div class="env-metric">
+                                <div class="env-metric__icon">💡</div>
+                                <div class="env-metric__label">Light Intensity</div>
+                                <div class="env-metric__value">180 μmol/m²/s</div>
+                                <div class="env-metric__target">Target: 200 μmol/m²/s</div>
+                                <div class="env-metric__status status--success">Good</div>
+                            </div>
+                            <div class="env-metric">
+                                <div class="env-metric__icon">⚗️</div>
+                                <div class="env-metric__label">pH Level</div>
+                                <div class="env-metric__value">6.2</div>
+                                <div class="env-metric__target">Target: 6.0</div>
+                                <div class="env-metric__status status--success">Optimal</div>
+                            </div>
+                            <div class="env-metric">
+                                <div class="env-metric__icon">⚡</div>
+                                <div class="env-metric__label">EC</div>
+                                <div class="env-metric__value">1.8 mS/cm</div>
+                                <div class="env-metric__target">Target: 1.9 mS/cm</div>
+                                <div class="env-metric__status status--success">Good</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sustainability KPIs -->
+                <section class="card metrics-card">
+                    <div class="card__header">
+                        <h2>📈 Sustainability KPIs</h2>
+                        <span class="status status--success">Updated</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="metrics-grid">
+                            <div class="metric">
+                                <div class="metric__icon">💧</div>
+                                <div class="metric__content">
+                                    <h4>Water Efficiency</h4>
+                                    <div class="metric__value">2.3 <span class="metric__unit">L/kg</span></div>
+                                    <div class="metric__comparison">
+                                        <span class="metric__benchmark">Benchmark: 2.8 L/kg</span>
+                                        <span class="metric__improvement">↓ 18% improvement</span>
+                                    </div>
+                                    <div class="metric__status status--success">Excellent</div>
+                                </div>
+                            </div>
+
+                            <div class="metric">
+                                <div class="metric__icon">⚡</div>
+                                <div class="metric__content">
+                                    <h4>Energy Intensity</h4>
+                                    <div class="metric__value">3.8 <span class="metric__unit">kWh/kg</span></div>
+                                    <div class="metric__comparison">
+                                        <span class="metric__benchmark">Benchmark: 4.2 kWh/kg</span>
+                                        <span class="metric__improvement">↓ 10% improvement</span>
+                                    </div>
+                                    <div class="metric__status status--success">Good</div>
+                                </div>
+                            </div>
+
+                            <div class="metric">
+                                <div class="metric__icon">🌱</div>
+                                <div class="metric__content">
+                                    <h4>Carbon Footprint</h4>
+                                    <div class="metric__value">1.2 <span class="metric__unit">kg CO₂eq/kg</span></div>
+                                    <div class="metric__comparison">
+                                        <span class="metric__benchmark">Benchmark: 1.6 kg CO₂eq/kg</span>
+                                        <span class="metric__improvement">↓ 25% improvement</span>
+                                    </div>
+                                    <div class="metric__status status--success">Excellent</div>
+                                </div>
+                            </div>
+
+                            <div class="metric">
+                                <div class="metric__icon">📊</div>
+                                <div class="metric__content">
+                                    <h4>Yield Optimization</h4>
+                                    <div class="metric__value">8.5 <span class="metric__unit">kg/m²</span></div>
+                                    <div class="metric__comparison">
+                                        <span class="metric__benchmark">Benchmark: 7.2 kg/m²</span>
+                                        <span class="metric__improvement">↑ 18% improvement</span>
+                                    </div>
+                                    <div class="metric__status status--success">Excellent</div>
+                                </div>
+                            </div>
+
+                            <div class="metric">
+                                <div class="metric__icon">🗑️</div>
+                                <div class="metric__content">
+                                    <h4>Waste Generation</h4>
+                                    <div class="metric__value">0.05 <span class="metric__unit">kg/kg</span></div>
+                                    <div class="metric__comparison">
+                                        <span class="metric__benchmark">Benchmark: 0.08 kg/kg</span>
+                                        <span class="metric__improvement">↓ 37% improvement</span>
+                                    </div>
+                                    <div class="metric__status status--success">Excellent</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Cross-site Benchmarking -->
+                <section class="card benchmarking-card">
+                    <div class="card__header">
+                        <h2>🌍 Cross-site Benchmarking</h2>
+                        <span class="status status--info">4 Sites</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="chart-container" style="position: relative; height: 300px;">
+                            <canvas id="benchmarkChart"></canvas>
+                        </div>
+                        <div class="benchmark-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #1FB8CD;"></div>
+                                <span>Netherlands (Current)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #FFC185;"></div>
+                                <span>UK Research Site</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #B4413C;"></div>
+                                <span>Italy Research Site</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #ECEBD5;"></div>
+                                <span>Morocco Living Lab</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Financial Metrics -->
+                <section class="card financial-card">
+                    <div class="card__header">
+                        <h2>💰 Financial Sustainability</h2>
+                        <span class="status status--success">Profitable</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="financial-grid">
+                            <div class="financial-metric">
+                                <div class="financial-metric__label">Cost per kg</div>
+                                <div class="financial-metric__value">€4.25</div>
+                                <div class="financial-metric__change trend--positive">↓ 8%</div>
+                            </div>
+                            <div class="financial-metric">
+                                <div class="financial-metric__label">Sustainability ROI</div>
+                                <div class="financial-metric__value">18.5%</div>
+                                <div class="financial-metric__change trend--positive">↑ 12%</div>
+                            </div>
+                            <div class="financial-metric">
+                                <div class="financial-metric__label">Monthly Op. Costs</div>
+                                <div class="financial-metric__value">€12,500</div>
+                                <div class="financial-metric__change trend--stable">Optimizing</div>
+                            </div>
+                            <div class="financial-metric">
+                                <div class="financial-metric__label">Revenue per m²</div>
+                                <div class="financial-metric__value">€85</div>
+                                <div class="financial-metric__change trend--positive">↑ 15%</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Compliance Status -->
+                <section class="card compliance-card">
+                    <div class="card__header">
+                        <h2>📋 Compliance Status</h2>
+                        <span class="status status--success">Validated</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="compliance-grid">
+                            <div class="compliance-item">
+                                <div class="compliance-item__header">
+                                    <div class="compliance-item__name">CSRD</div>
+                                    <div class="compliance-item__score">98%</div>
+                                </div>
+                                <div class="compliance-item__status status--success">Compliant</div>
+                                <div class="compliance-item__date">Last updated: Aug 1, 2025</div>
+                            </div>
+                            <div class="compliance-item">
+                                <div class="compliance-item__header">
+                                    <div class="compliance-item__name">ESRS</div>
+                                    <div class="compliance-item__score">96%</div>
+                                </div>
+                                <div class="compliance-item__status status--success">Compliant</div>
+                                <div class="compliance-item__date">Last updated: Aug 1, 2025</div>
+                            </div>
+                            <div class="compliance-item">
+                                <div class="compliance-item__header">
+                                    <div class="compliance-item__name">FSDN</div>
+                                    <div class="compliance-item__score">94%</div>
+                                </div>
+                                <div class="compliance-item__status status--success">Compliant</div>
+                                <div class="compliance-item__date">Last updated: Jul 31, 2025</div>
+                            </div>
+                            <div class="compliance-item">
+                                <div class="compliance-item__header">
+                                    <div class="compliance-item__name">Organic Certification</div>
+                                    <div class="compliance-item__score">100%</div>
+                                </div>
+                                <div class="compliance-item__status status--success">Certified</div>
+                                <div class="compliance-item__date">Last updated: Jul 30, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- System Integration -->
+                <section class="card system-card">
+                    <div class="card__header">
+                        <h2>🔌 System Integration</h2>
+                        <span class="status status--success">Active</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="system-grid">
+                            <div class="system-item">
+                                <div class="system-item__icon">📡</div>
+                                <div class="system-item__content">
+                                    <div class="system-item__label">IoT Sensors</div>
+                                    <div class="system-item__value">24 online, 1 offline</div>
+                                    <div class="system-item__status">96% uptime • Last check: 17:00</div>
+                                </div>
+                            </div>
+                            <div class="system-item">
+                                <div class="system-item__icon">🔄</div>
+                                <div class="system-item__content">
+                                    <div class="system-item__label">ERP Integration</div>
+                                    <div class="system-item__value">Synced</div>
+                                    <div class="system-item__status">Excellent quality • Last sync: 16:45</div>
+                                </div>
+                            </div>
+                            <div class="system-item">
+                                <div class="system-item__icon">📄</div>
+                                <div class="system-item__content">
+                                    <div class="system-item__label">Document Processing</div>
+                                    <div class="system-item__value">Active</div>
+                                    <div class="system-item__status">187 processed • 3 in queue • 98% efficiency</div>
+                                </div>
+                            </div>
+                            <div class="system-item">
+                                <div class="system-item__icon">✅</div>
+                                <div class="system-item__content">
+                                    <div class="system-item__label">Data Quality</div>
+                                    <div class="system-item__value">97% excellent</div>
+                                    <div class="system-item__status">2 minor issues • Stable trend</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- One-Press Report Generation Section -->
+            <section class="report-generation-section">
+                <div class="report-hero">
+                    <div class="report-hero__content">
+                        <h2 class="report-hero__title">One-Press Sustainability Reporting</h2>
+                        <p class="report-hero__subtitle">Transform 40+ Hours of Manual Work into 30 Seconds of Automation</p>
+                        <div class="report-hero__features">
+                            <div class="feature-item">✅ Automated CSRD/ESRS Compliance</div>
+                            <div class="feature-item">📊 Complete LCA Analysis</div>
+                            <div class="feature-item">🔍 Full Audit Trail</div>
+                            <div class="feature-item">📈 Cross-site Benchmarking</div>
+                        </div>
+                        <button class="btn btn--primary btn--hero" id="generateReportBtn">
+                            <span class="btn__icon">🚀</span>
+                            Generate Complete Sustainability Report
+                        </button>
+                        <p class="report-hero__time-saving">From 2,400 minutes to 30 seconds</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Modal -->
+            <div class="modal hidden" id="progressModal">
+                <div class="modal__backdrop"></div>
+                <div class="modal__content">
+                    <div class="modal__header">
+                        <h3>🚀 Generating Sustainability Report</h3>
+                        <div class="progress-info">
+                            <span id="currentStep">Preparing...</span>
+                            <span id="timeRemaining">30s remaining</span>
+                        </div>
+                    </div>
+                    <div class="modal__body">
+                        <div class="progress-bar">
+                            <div class="progress-bar__fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-steps" id="progressSteps">
+                            <!-- Steps will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Modal -->
+            <div class="modal hidden" id="resultsModal">
+                <div class="modal__backdrop"></div>
+                <div class="modal__content results-modal">
+                    <div class="modal__header">
+                        <h3>✅ Report Generation Complete</h3>
+                        <button class="modal__close" id="closeResultsModal">×</button>
+                    </div>
+                    <div class="modal__body">
+                        <div class="results-summary">
+                            <div class="results-summary__time">
+                                <h4>⚡ Generated in 30 seconds</h4>
+                                <p>vs. 40+ hours manual process</p>
+                            </div>
+                            <div class="results-summary__compliance">
+                                <h4>📋 All Compliance Requirements Validated</h4>
+                                <ul>
+                                    <li>CSRD reporting standards met</li>
+                                    <li>ESRS sustainability metrics included</li>
+                                    <li>FSDN data formatting validated</li>
+                                    <li>Complete audit trail generated</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="download-options">
+                            <h4>Download Reports:</h4>
+                            <div class="download-buttons">
+                                <button class="btn btn--outline download-btn">📄 PDF Report</button>
+                                <button class="btn btn--outline download-btn">📊 XML Data</button>
+                                <button class="btn btn--outline download-btn">🔗 XBRL Format</button>
+                                <button class="btn btn--outline download-btn">📋 Audit Trail</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
