@@ -3,16 +3,27 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>SOLARA — Sustainability intelligence for controlled-environment agriculture</title>
+<title>Environmental Impact · SOLARA Design</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/tokens.css" />
+<link rel="stylesheet" href="../../assets/tokens.css" />
+<style>
+  .lc-svg{width:100%;height:auto;display:block}
+  .lc-svg .stage rect{fill:#FFFFFD;stroke:#21808D;stroke-width:1.5}
+  .lc-svg .stage.scoped rect{stroke:#626C71;stroke-dasharray:4 3;fill:#F4F2EC}
+  .lc-svg .stage text{fill:#13343B;font-family:'DM Sans',sans-serif;font-size:12px;text-anchor:middle}
+  .lc-svg .stage .num{fill:#21808D;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em}
+  .lc-svg .stage.scoped .num{fill:#626C71}
+  .lc-svg .arrow{stroke:#3D4F50;stroke-width:1.2;fill:none;marker-end:url(#arr2)}
+  .lc-svg .boundary{stroke:#A33A2C;stroke-width:1.2;fill:none;stroke-dasharray:6 4}
+  .lc-svg .boundary-label{fill:#A33A2C;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em}
+</style>
 </head>
 <body>
 
 <header class="topbar">
-  <a class="brand" href="index.html">
+  <a class="brand" href="../../index.html">
     <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
       <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
       <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -22,85 +33,177 @@
         <line x1="8" y1="32" x2="12" y2="28"/><line x1="28" y1="12" x2="32" y2="8"/>
       </g>
     </svg>
-    <div>
-      <div class="brand-title">SOLARA</div>
-      <div class="brand-sub">Sustainability intelligence platform</div>
-    </div>
+    <div><div class="brand-title">SOLARA</div><div class="brand-sub">Sustainability intelligence platform</div></div>
   </a>
   <nav class="topnav">
-    <a data-nav="/design" href="./design/index.html">Design</a>
-    <a data-nav="/operate" href="./operate/index.html">Operate</a>
-    <a data-nav="/platform" href="./platform/index.html">Platform</a>
-    <a data-nav="/about" href="./about/index.html">About</a>
+    <a data-nav="/design" href="../../design/index.html">Design</a>
+    <a data-nav="/operate" href="../../operate/index.html">Operate</a>
+    <a data-nav="/platform" href="../../platform/index.html">Platform</a>
+    <a data-nav="/about" href="../../about/index.html">About</a>
   </nav>
 </header>
 
 <main class="container">
 
-<section class="home-hero">
-  <div>
-    <div class="kicker">Decision platform · Internal preview</div>
-    <h1>From feasibility to live operations — one model, one ledger.</h1>
-    <p class="lede">SOLARA pairs a pre-build decision tool with a digital twin for the live facility. The same physics model, weather profile, and impact accounting underwrite both — so the design that wins on paper is the one you can verify in operation.</p>
-  </div>
-  <div class="hero-meta">
-    <div class="row"><strong>Demo facility</strong><br>Farm32 · Agadir-Massira, Morocco</div>
-    <div class="row"><strong>System</strong><br>650 m² two-zone indoor basil · 480 kWp PV + 600 kWh battery</div>
-    <div class="row"><strong>Status</strong><br>Stage 1 — static internal preview</div>
-  </div>
+<div class="crumbs">
+  <a href="../../index.html">Home</a><span class="sep">›</span><a href="../../design/index.html">Design</a><span class="sep">›</span>Environmental Impact
+</div>
+
+<section class="page-hero">
+  <div class="kicker">Module 04 · Pre-build · <span class="tag-pill soon">Scoped — coming</span></div>
+  <h1>Environmental Impact (PEF)</h1>
+  <p class="lede">A single Product Environmental Footprint that travels from feasibility through CSRD/ESRS disclosure. The Module-04 engine pulls bill-of-materials, energy, and water flows directly from Modules 01–03 — no separate LCA project file required.</p>
 </section>
 
-<section class="product-grid">
-  <a class="product-card" href="./design/index.html">
-    <div class="product-kicker">Product 1 · Pre-build</div>
-    <h2>SOLARA Design</h2>
-    <div class="product-tag">Decide site, geometry, equipment, and sizing before construction.</div>
-    <div class="product-body">Five interoperable modules cover site &amp; climate, facility energy, solar &amp; storage, and environmental impact. Outputs are auditable — every KPI traces back to a physics simulation, a PEFCR life-cycle stage, or a measured tariff.</div>
-    <div class="product-foot">5 modules → Site · Energy · Solar · Impact</div>
-  </a>
-  <a class="product-card" href="./operate/index.html">
-    <div class="product-kicker">Product 2 · Post-build</div>
-    <h2>SOLARA Operate</h2>
-    <div class="product-tag">Digital twin with live data and automated reporting.</div>
-    <div class="product-body">Once the facility is built, SOLARA ingests meter, weather, and yield data — and produces investor-ready feasibility, performance, and compliance reports on a schedule. The first reference deployment is Farm32.</div>
-    <div class="product-foot">Live dashboard · Automated PDF reports</div>
-  </a>
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Life-cycle scope (PEFCR for Fresh &amp; Frozen Vegetables)</h2>
+    <div class="chart-sub">Cradle-to-grave, eight stages. The red dashed boundary marks the system boundary; "Use" and "End-of-life" are scoped but use defaults from PEF Annex II because consumer behaviour dominates.</div>
+  </div>
+
+  <svg class="lc-svg" viewBox="0 0 1180 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PEFCR life-cycle stages">
+    <defs>
+      <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#3D4F50"/>
+      </marker>
+    </defs>
+
+    <!-- System boundary -->
+    <rect class="boundary" x="20" y="60" width="1140" height="140" rx="6"/>
+    <text class="boundary-label" x="32" y="80">SYSTEM BOUNDARY · PEFCR FRESH &amp; FROZEN VEGETABLES</text>
+
+    <!-- Stages -->
+    <g class="stage">
+      <rect x="40" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="100" y="130">LCS 01</text>
+      <text x="100" y="150">Raw</text>
+      <text x="100" y="166">materials</text>
+    </g>
+    <g class="stage">
+      <rect x="180" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="240" y="130">LCS 02</text>
+      <text x="240" y="150">Cultivation</text>
+      <text x="240" y="166">(LED + HVAC)</text>
+    </g>
+    <g class="stage">
+      <rect x="320" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="380" y="130">LCS 03</text>
+      <text x="380" y="150">Post-harvest</text>
+      <text x="380" y="166">processing</text>
+    </g>
+    <g class="stage">
+      <rect x="460" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="520" y="130">LCS 04</text>
+      <text x="520" y="150">Packaging</text>
+    </g>
+    <g class="stage">
+      <rect x="600" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="660" y="130">LCS 05</text>
+      <text x="660" y="150">Distribution</text>
+      <text x="660" y="166">(transport)</text>
+    </g>
+    <g class="stage">
+      <rect x="740" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="800" y="130">LCS 06</text>
+      <text x="800" y="150">Retail</text>
+    </g>
+    <g class="stage scoped">
+      <rect x="880" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="940" y="130">LCS 07 · DEF</text>
+      <text x="940" y="150">Use</text>
+      <text x="940" y="166">(consumer)</text>
+    </g>
+    <g class="stage scoped">
+      <rect x="1020" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="1080" y="130">LCS 08 · DEF</text>
+      <text x="1080" y="150">End</text>
+      <text x="1080" y="166">of life</text>
+    </g>
+
+    <!-- Arrows between -->
+    <line class="arrow" x1="162" y1="145" x2="178" y2="145"/>
+    <line class="arrow" x1="302" y1="145" x2="318" y2="145"/>
+    <line class="arrow" x1="442" y1="145" x2="458" y2="145"/>
+    <line class="arrow" x1="582" y1="145" x2="598" y2="145"/>
+    <line class="arrow" x1="722" y1="145" x2="738" y2="145"/>
+    <line class="arrow" x1="862" y1="145" x2="878" y2="145"/>
+    <line class="arrow" x1="1002" y1="145" x2="1018" y2="145"/>
+
+    <!-- Title/footer -->
+    <text x="20" y="40" fill="#13343B" font-family="DM Sans, sans-serif" font-size="14" font-weight="500">Cradle-to-grave life-cycle stages</text>
+    <text x="20" y="245" fill="#626C71" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.08em">SOLID · PRIMARY DATA FROM SOLARA MODULES 01–03</text>
+    <rect x="226" y="237" width="12" height="10" fill="#F4F2EC" stroke="#626C71" stroke-dasharray="4 3"/>
+    <text x="244" y="245" fill="#626C71" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.08em">DASHED · PEF DEFAULT SCENARIO</text>
+  </svg>
 </section>
 
-<section>
-  <div class="kicker">Module map</div>
-  <h2 style="margin-bottom:18px">Five modules, one workflow</h2>
-  <div class="module-grid">
-    <a class="module-card" href="./design/site/index.html">
-      <div class="step">Step 1</div>
-      <h3>Site &amp; Climate</h3>
-      <p>Latitude, TMYx weather, solar resource, grid &amp; logistics. Map-first selection across candidate sites.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
-    <a class="module-card" href="./design/energy/index.html">
-      <div class="step">Step 2</div>
-      <h3>Facility Energy</h3>
-      <p>3D geometry, envelope, lighting, HVAC. EnergyPlus 8760-hour load profile per production schedule.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
-    <a class="module-card" href="./design/solar/index.html">
-      <div class="step">Step 3</div>
-      <h3>Solar &amp; Storage</h3>
-      <p>PV sizing, battery dispatch, shortfall accounting. Design-space sweep finds the zero-shortfall point.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
-    <a class="module-card coming" href="./design/impact/index.html">
-      <div class="step">Step 4</div>
-      <h3>Environmental Impact</h3>
-      <p>PEF-aligned LCA across all life-cycle stages, plus CSRD/ESRS-ready disclosure exports.</p>
-      <div class="status soon">Coming · scoped</div>
-    </a>
-    <a class="module-card" href="./operate/index.html">
-      <div class="step">Operate</div>
-      <h3>Live Facility Twin</h3>
-      <p>Yield, energy, water, and emissions tracked against the design baseline. Automated quarterly report.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>What Module 04 will deliver</h2>
+  </div>
+  <table class="data">
+    <thead><tr><th style="width:30%">Output</th><th>Detail</th><th>For whom</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>PEF result tables</strong></td>
+        <td>16 EF 3.1 impact indicators (climate change, acidification, water scarcity, particulate matter, ecotoxicity, eutrophication, etc.) per kg of consumable basil delivered to the EU consumer</td>
+        <td>Product team, sustainability lead</td>
+      </tr>
+      <tr>
+        <td><strong>Comparative scenarios</strong></td>
+        <td>Farm32 Morocco vs. baseline reference farms (Kenya open-field, NL greenhouse, UK greenhouse, IT field) — same functional unit, same EF method</td>
+        <td>Investment committee</td>
+      </tr>
+      <tr>
+        <td><strong>Hotspot analysis</strong></td>
+        <td>Stacked-bar attribution by life-cycle stage and by flow (electricity grid mix, packaging materials, refrigerants, transport)</td>
+        <td>Product development &amp; procurement</td>
+      </tr>
+      <tr>
+        <td><strong>CSRD / ESRS-ready disclosure pack</strong></td>
+        <td>ESRS E1 (climate) Scope 1/2/3, E3 (water), E4 (biodiversity), E5 (resource use &amp; circular economy) tables auto-populated from the same data layer</td>
+        <td>CFO, audit, regulator</td>
+      </tr>
+      <tr>
+        <td><strong>Sensitivity &amp; uncertainty</strong></td>
+        <td>Monte Carlo over the 12 most material parameters (grid EF, yield, FU mass, packaging gauge, transport km, refrigerant leakage)</td>
+        <td>LCA review &amp; verification</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Why one module for LCA <em style="font-style:normal;color:var(--ink-soft)">and</em> CSRD</h2>
+  </div>
+  <p>Most companies build two parallel data stacks — one for the LCA practitioner, one for the CSRD/ESRS report. SOLARA collapses them. A single inventory of every flow that crosses the system boundary is sufficient to populate both the PEF result tables and the ESRS disclosure tables; the engine just re-aggregates by indicator family. That means one source of truth, one set of audit evidence, and zero double-entry.</p>
+  <p style="margin-top:14px">A draft PEFCR-aligned LCA for the Farm32 Morocco vs. Kenya scenarios is already complete (see the methodology page); Module 04 productises that workflow into the same UI as the other design modules.</p>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Inputs already wired</h2>
+  </div>
+  <table class="data">
+    <thead><tr><th>From module</th><th>Flow</th><th>Used in PEFCR stage</th></tr></thead>
+    <tbody>
+      <tr><td><a href="../../design/site/index.html">01 — Site &amp; Climate</a></td><td>Transport distance &amp; mode to consumer market</td><td>LCS 05 Distribution</td></tr>
+      <tr><td><a href="../../design/energy/index.html">02 — Facility Energy</a></td><td>Annual electricity (MWh) + HVAC refrigerant inventory</td><td>LCS 02 Cultivation</td></tr>
+      <tr><td><a href="../../design/energy/index.html">02 — Facility Energy</a></td><td>LED, chiller, fan, partition bill of materials</td><td>LCS 01 Raw materials (capital goods)</td></tr>
+      <tr><td><a href="../../design/solar/index.html">03 — Solar &amp; Storage</a></td><td>PV array + battery bill of materials</td><td>LCS 01 Raw materials (capital goods)</td></tr>
+      <tr><td><a href="../../design/solar/index.html">03 — Solar &amp; Storage</a></td><td>Net grid electricity (MWh import / export)</td><td>LCS 02 Cultivation (electricity mix)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="card" style="margin-top:22px">
+  <div class="kicker">Status</div>
+  <h2>Engine in design · UI in scoping</h2>
+  <p style="color:var(--ink-soft);margin-top:8px">The methodology and reference dataset are complete (a PEFCR-aligned cradle-to-grave LCA covering Farm32 Morocco vs. four reference systems, characterised with EF 3.1). The next sprint wires the SOLARA inventory pipeline into a reproducible Brightway / SimaPro-compatible characterisation, with the CSRD/ESRS export layer alongside.</p>
+  <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+    <a class="btn" href="../../platform/index.html">Read the methodology</a>
+    <a class="btn btn-ghost" href="../../design/index.html">Back to module flow</a>
   </div>
 </section>
 
@@ -111,7 +214,7 @@
   <div class="right">Springtide Strategy</div>
 </footer>
 
-<script src="./assets/nav.js"></script>
+<script src="../../assets/nav.js"></script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;

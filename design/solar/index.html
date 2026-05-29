@@ -3,16 +3,19 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>SOLARA — Sustainability intelligence for controlled-environment agriculture</title>
+<title>Solar &amp; Storage · SOLARA Design</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/tokens.css" />
+<link rel="stylesheet" href="../../assets/tokens.css" />
+<style>
+  #chart-monthly,#chart-worst-week,#chart-daily,#chart-heatmap,#chart-sweep{min-height:320px}
+</style>
 </head>
 <body>
 
 <header class="topbar">
-  <a class="brand" href="index.html">
+  <a class="brand" href="../../index.html">
     <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
       <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
       <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -22,86 +25,129 @@
         <line x1="8" y1="32" x2="12" y2="28"/><line x1="28" y1="12" x2="32" y2="8"/>
       </g>
     </svg>
-    <div>
-      <div class="brand-title">SOLARA</div>
-      <div class="brand-sub">Sustainability intelligence platform</div>
-    </div>
+    <div><div class="brand-title">SOLARA</div><div class="brand-sub">Sustainability intelligence platform</div></div>
   </a>
   <nav class="topnav">
-    <a data-nav="/design" href="./design/index.html">Design</a>
-    <a data-nav="/operate" href="./operate/index.html">Operate</a>
-    <a data-nav="/platform" href="./platform/index.html">Platform</a>
-    <a data-nav="/about" href="./about/index.html">About</a>
+    <a data-nav="/design" href="../../design/index.html">Design</a>
+    <a data-nav="/operate" href="../../operate/index.html">Operate</a>
+    <a data-nav="/platform" href="../../platform/index.html">Platform</a>
+    <a data-nav="/about" href="../../about/index.html">About</a>
   </nav>
 </header>
 
 <main class="container">
 
-<section class="home-hero">
+<div class="crumbs">
+  <a href="../../index.html">Home</a><span class="sep">›</span><a href="../../design/index.html">Design</a><span class="sep">›</span>Solar &amp; Storage
+</div>
+
+<section class="page-hero" style="display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start;max-width:none">
   <div>
-    <div class="kicker">Decision platform · Internal preview</div>
-    <h1>From feasibility to live operations — one model, one ledger.</h1>
-    <p class="lede">SOLARA pairs a pre-build decision tool with a digital twin for the live facility. The same physics model, weather profile, and impact accounting underwrite both — so the design that wins on paper is the one you can verify in operation.</p>
+    <div class="kicker">Module 03 · Pre-build</div>
+    <h1>Can the facility run on solar — and when does it fail?</h1>
+    <p class="lede">An 8,760-hour dispatch of the Module-02 load against a candidate PV array and battery, using Module-01 weather. The same engine sweeps the full PV × storage design space to find the zero-shortfall point.</p>
   </div>
-  <div class="hero-meta">
-    <div class="row"><strong>Demo facility</strong><br>Farm32 · Agadir-Massira, Morocco</div>
-    <div class="row"><strong>System</strong><br>650 m² two-zone indoor basil · 480 kWp PV + 600 kWh battery</div>
-    <div class="row"><strong>Status</strong><br>Stage 1 — static internal preview</div>
+  <aside class="answer-card">
+    <div class="kicker negative">Answer · 480 kWp + 600 kWh</div>
+    <div class="answer-headline">No — not at the current sizing.</div>
+    <div class="answer-body">Even with 82% annual self-sufficiency, the system runs short for <strong id="hero-shortfall-h">—</strong> hours each year, deepest deficit <strong id="hero-deepest-kw">—</strong> kW. Zero-shortfall operation requires roughly <strong>900 kWp PV + 2,400 kWh battery</strong>.</div>
+  </aside>
+</section>
+
+<section class="controls">
+  <div class="control-group">
+    <label>Production layout</label>
+    <div class="toggle">
+      <button class="toggle-btn active" data-variant="staggered">Staggered (Zone A 02–20, Zone B 08–02)</button>
+      <button class="toggle-btn" data-variant="synchronized">Synchronized (both zones 06–24)</button>
+    </div>
   </div>
 </section>
 
-<section class="product-grid">
-  <a class="product-card" href="./design/index.html">
-    <div class="product-kicker">Product 1 · Pre-build</div>
-    <h2>SOLARA Design</h2>
-    <div class="product-tag">Decide site, geometry, equipment, and sizing before construction.</div>
-    <div class="product-body">Five interoperable modules cover site &amp; climate, facility energy, solar &amp; storage, and environmental impact. Outputs are auditable — every KPI traces back to a physics simulation, a PEFCR life-cycle stage, or a measured tariff.</div>
-    <div class="product-foot">5 modules → Site · Energy · Solar · Impact</div>
-  </a>
-  <a class="product-card" href="./operate/index.html">
-    <div class="product-kicker">Product 2 · Post-build</div>
-    <h2>SOLARA Operate</h2>
-    <div class="product-tag">Digital twin with live data and automated reporting.</div>
-    <div class="product-body">Once the facility is built, SOLARA ingests meter, weather, and yield data — and produces investor-ready feasibility, performance, and compliance reports on a schedule. The first reference deployment is Farm32.</div>
-    <div class="product-foot">Live dashboard · Automated PDF reports</div>
-  </a>
+<section class="kpi-grid">
+  <div class="kpi"><div class="kpi-label">Annual load</div><div class="kpi-value" id="kpi-load">—</div><div class="kpi-unit">MWh / yr</div></div>
+  <div class="kpi"><div class="kpi-label">PV generation</div><div class="kpi-value" id="kpi-pv">—</div><div class="kpi-unit">MWh / yr</div></div>
+  <div class="kpi"><div class="kpi-label">Self-sufficiency</div><div class="kpi-value" id="kpi-selfsuf">—</div><div class="kpi-unit">% of load met</div></div>
+  <div class="kpi warn"><div class="kpi-label">Shortfall hours</div><div class="kpi-value" id="kpi-shorth">—</div><div class="kpi-unit">hr / yr (<span id="kpi-shortpct">—</span>%)</div></div>
+  <div class="kpi warn"><div class="kpi-label">Deepest deficit</div><div class="kpi-value" id="kpi-deepest">—</div><div class="kpi-unit">kW (single hour)</div></div>
+  <div class="kpi warn"><div class="kpi-label">Longest dark streak</div><div class="kpi-value" id="kpi-streak">—</div><div class="kpi-unit">consecutive hours</div></div>
 </section>
 
-<section>
-  <div class="kicker">Module map</div>
-  <h2 style="margin-bottom:18px">Five modules, one workflow</h2>
-  <div class="module-grid">
-    <a class="module-card" href="./design/site/index.html">
-      <div class="step">Step 1</div>
-      <h3>Site &amp; Climate</h3>
-      <p>Latitude, TMYx weather, solar resource, grid &amp; logistics. Map-first selection across candidate sites.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
-    <a class="module-card" href="./design/energy/index.html">
-      <div class="step">Step 2</div>
-      <h3>Facility Energy</h3>
-      <p>3D geometry, envelope, lighting, HVAC. EnergyPlus 8760-hour load profile per production schedule.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
-    <a class="module-card" href="./design/solar/index.html">
-      <div class="step">Step 3</div>
-      <h3>Solar &amp; Storage</h3>
-      <p>PV sizing, battery dispatch, shortfall accounting. Design-space sweep finds the zero-shortfall point.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
-    <a class="module-card coming" href="./design/impact/index.html">
-      <div class="step">Step 4</div>
-      <h3>Environmental Impact</h3>
-      <p>PEF-aligned LCA across all life-cycle stages, plus CSRD/ESRS-ready disclosure exports.</p>
-      <div class="status soon">Coming · scoped</div>
-    </a>
-    <a class="module-card" href="./operate/index.html">
-      <div class="step">Operate</div>
-      <h3>Live Facility Twin</h3>
-      <p>Yield, energy, water, and emissions tracked against the design baseline. Automated quarterly report.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Monthly failure profile</h2>
+    <div class="chart-sub">When in the year does the system fail? Winter solar shortfall (December–February) dominates.</div>
   </div>
+  <div id="chart-monthly"></div>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Worst week — hourly energy flows</h2>
+    <div class="chart-sub">The 7-day window with the most unmet kWh. Battery state-of-charge (right axis, dotted) drains during long cloudy stretches and cannot recover.</div>
+  </div>
+  <div id="chart-worst-week"></div>
+</section>
+
+<section class="chart-block split">
+  <div>
+    <div class="chart-head">
+      <h2>Mean daily energy curve</h2>
+      <div class="chart-sub">Average kW across all 365 days. PV peak (midday) versus load peak (photoperiod) drives the storage requirement.</div>
+    </div>
+    <div id="chart-daily"></div>
+  </div>
+  <div>
+    <div class="chart-head">
+      <h2>Hourly shortfall heatmap</h2>
+      <div class="chart-sub">365 days × 24 hours. Dark red = the highest unmet kW.</div>
+    </div>
+    <div id="chart-heatmap"></div>
+  </div>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Design space — when does shortfall reach zero?</h2>
+    <div class="chart-sub">Each row is a battery size, each column a PV size. Annual shortfall hours decrease toward the upper-right. The current Farm32 design (480 kWp, 600 kWh) is marked.</div>
+  </div>
+  <div id="chart-sweep"></div>
+</section>
+
+<section class="methodology">
+  <h2>Methodology</h2>
+  <div class="meth-grid">
+    <div>
+      <div class="meth-label">PV model</div>
+      <p>pvlib PVWatts at 30° south-facing tilt, 14% system losses, hourly POA irradiance &amp; cell temperature from the Module-01 TMYx file. No tracking; mono-Si modules at 200 W/m².</p>
+    </div>
+    <div>
+      <div class="meth-label">Battery model</div>
+      <p>LFP chemistry, 92% round-trip efficiency, 90% depth-of-discharge, 150 kW power cap (independent of energy). Self-discharge negligible at hourly resolution.</p>
+    </div>
+    <div>
+      <div class="meth-label">Dispatch logic</div>
+      <p>Greedy hourly priority: PV serves load first; surplus charges the battery; deficit draws from the battery; residual is recorded as shortfall. No grid export, no curtailment penalty.</p>
+    </div>
+    <div>
+      <div class="meth-label">Design sweep</div>
+      <p>240–960 kWp × 300–3,600 kWh battery — 80 combinations, full 8,760 h re-run each. The zero-shortfall contour line is overlaid on the heatmap.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chart-block" style="margin-top:22px">
+  <div class="chart-head">
+    <h2>Outputs handed downstream</h2>
+  </div>
+  <table class="data">
+    <thead><tr><th>Output</th><th>Goes to</th><th>How it is used</th></tr></thead>
+    <tbody>
+      <tr><td>Sized PV (kWp) + battery (kWh)</td><td><a href="../../design/impact/index.html">Module 04 — Environmental Impact</a></td><td>Capital-goods stage: PV module + inverter + battery bill of materials</td></tr>
+      <tr><td>Grid import / export (MWh/yr)</td><td><a href="../../design/impact/index.html">Module 04 — Environmental Impact</a></td><td>Operational energy stage (PEFCR §5.3) — grid mix EF</td></tr>
+      <tr><td>Hourly dispatch baseline</td><td>Operate</td><td>Real-time deviation against measured PV + battery output</td></tr>
+    </tbody>
+  </table>
 </section>
 
 </main>
@@ -111,7 +157,33 @@
   <div class="right">Springtide Strategy</div>
 </footer>
 
-<script src="./assets/nav.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/js/solara_charts.js"></script>
+<script>
+(async function(){
+  await SOLARA.loadData();
+  function refresh(v){
+    var d = SOLARA.getData()[v || SOLARA.getVariant()];
+    document.getElementById('kpi-load').textContent = SOLARA.fmt(d.annual_load_mwh, 0);
+    document.getElementById('kpi-pv').textContent = SOLARA.fmt(d.annual_pv_mwh, 0);
+    document.getElementById('kpi-selfsuf').textContent = SOLARA.fmt(d.self_sufficiency_pct, 1);
+    document.getElementById('kpi-shorth').textContent = SOLARA.fmt(d.shortfall_hours, 0);
+    document.getElementById('kpi-shortpct').textContent = SOLARA.fmt(d.shortfall_pct_year, 1);
+    document.getElementById('kpi-deepest').textContent = SOLARA.fmt(d.deepest_deficit_kw, 1);
+    document.getElementById('kpi-streak').textContent = SOLARA.fmt(d.longest_streak_h, 0);
+    document.getElementById('hero-shortfall-h').textContent = SOLARA.fmt(d.shortfall_hours, 0);
+    document.getElementById('hero-deepest-kw').textContent = SOLARA.fmt(d.deepest_deficit_kw, 1);
+    SOLARA.renderMonthly('chart-monthly', d);
+    SOLARA.renderWorstWeek('chart-worst-week', d);
+    SOLARA.renderDaily('chart-daily', d);
+    SOLARA.renderHeatmap('chart-heatmap', d);
+    SOLARA.renderSweep('chart-sweep', d);
+  }
+  refresh();
+  SOLARA.bindVariantToggle(refresh);
+})();
+</script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;

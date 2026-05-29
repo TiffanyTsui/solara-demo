@@ -3,16 +3,33 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>SOLARA — Sustainability intelligence for controlled-environment agriculture</title>
+<title>Platform &amp; methodology · SOLARA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/tokens.css" />
+<link rel="stylesheet" href="../assets/tokens.css" />
+<style>
+  .lc-svg{width:100%;height:auto;display:block}
+  .lc-svg .stage rect{fill:#FFFFFD;stroke:#21808D;stroke-width:1.5}
+  .lc-svg .stage.scoped rect{stroke:#626C71;stroke-dasharray:4 3;fill:#F4F2EC}
+  .lc-svg .stage text{fill:#13343B;font-family:'DM Sans',sans-serif;font-size:12px;text-anchor:middle}
+  .lc-svg .stage .num{fill:#21808D;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em}
+  .lc-svg .stage.scoped .num{fill:#626C71}
+  .lc-svg .arrow{stroke:#3D4F50;stroke-width:1.2;fill:none;marker-end:url(#parr)}
+  .lc-svg .boundary{stroke:#A33A2C;stroke-width:1.2;fill:none;stroke-dasharray:6 4}
+  .lc-svg .boundary-label{fill:#A33A2C;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em}
+
+  .chain-svg{width:100%;height:auto;display:block;max-width:900px;margin:0 auto}
+  .chain-svg .step rect{fill:#FFFFFD;stroke:#21808D;stroke-width:1.5}
+  .chain-svg .step text.title{fill:#13343B;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;text-anchor:middle}
+  .chain-svg .step text.sub{fill:#3D4F50;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.05em;text-anchor:middle}
+  .chain-svg .arrow{stroke:#21808D;stroke-width:1.5;fill:none;marker-end:url(#carr)}
+</style>
 </head>
 <body>
 
 <header class="topbar">
-  <a class="brand" href="index.html">
+  <a class="brand" href="../index.html">
     <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
       <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
       <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -22,86 +39,142 @@
         <line x1="8" y1="32" x2="12" y2="28"/><line x1="28" y1="12" x2="32" y2="8"/>
       </g>
     </svg>
-    <div>
-      <div class="brand-title">SOLARA</div>
-      <div class="brand-sub">Sustainability intelligence platform</div>
-    </div>
+    <div><div class="brand-title">SOLARA</div><div class="brand-sub">Sustainability intelligence platform</div></div>
   </a>
   <nav class="topnav">
-    <a data-nav="/design" href="./design/index.html">Design</a>
-    <a data-nav="/operate" href="./operate/index.html">Operate</a>
-    <a data-nav="/platform" href="./platform/index.html">Platform</a>
-    <a data-nav="/about" href="./about/index.html">About</a>
+    <a data-nav="/design" href="../design/index.html">Design</a>
+    <a data-nav="/operate" href="../operate/index.html">Operate</a>
+    <a data-nav="/platform" href="../platform/index.html">Platform</a>
+    <a data-nav="/about" href="../about/index.html">About</a>
   </nav>
 </header>
 
 <main class="container">
 
-<section class="home-hero">
-  <div>
-    <div class="kicker">Decision platform · Internal preview</div>
-    <h1>From feasibility to live operations — one model, one ledger.</h1>
-    <p class="lede">SOLARA pairs a pre-build decision tool with a digital twin for the live facility. The same physics model, weather profile, and impact accounting underwrite both — so the design that wins on paper is the one you can verify in operation.</p>
+<div class="crumbs"><a href="../index.html">Home</a><span class="sep">›</span>Platform</div>
+
+<section class="page-hero">
+  <div class="kicker">Platform · methodology</div>
+  <h1>One data layer · three modelling chains · two regulatory frameworks.</h1>
+  <p class="lede">SOLARA's modules sit on a common inventory. Whatever a module computes — a kilowatt-hour, a kilogram of refrigerant, a litre of irrigation water — becomes a flow in the life-cycle ledger, and a row in the CSRD/ESRS disclosure tables. No re-keying. No duplicate spreadsheets.</p>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Life-cycle scope · PEFCR for Fresh &amp; Frozen Vegetables</h2>
+    <div class="chart-sub">SOLARA follows the European Commission's Product Environmental Footprint Category Rules (PEFCR) for fresh and frozen vegetables. Eight cradle-to-grave stages; solid borders are stages where SOLARA captures primary data, dashed borders use PEF default scenarios for downstream consumer behaviour.</div>
   </div>
-  <div class="hero-meta">
-    <div class="row"><strong>Demo facility</strong><br>Farm32 · Agadir-Massira, Morocco</div>
-    <div class="row"><strong>System</strong><br>650 m² two-zone indoor basil · 480 kWp PV + 600 kWh battery</div>
-    <div class="row"><strong>Status</strong><br>Stage 1 — static internal preview</div>
+
+  <svg class="lc-svg" viewBox="0 0 1180 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PEFCR life-cycle stages">
+    <defs>
+      <marker id="parr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#3D4F50"/>
+      </marker>
+    </defs>
+    <rect class="boundary" x="20" y="60" width="1140" height="140" rx="6"/>
+    <text class="boundary-label" x="32" y="80">SYSTEM BOUNDARY · PEFCR FRESH &amp; FROZEN VEGETABLES</text>
+
+    <g class="stage"><rect x="40" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="100" y="130">LCS 01</text><text x="100" y="150">Raw</text><text x="100" y="166">materials</text></g>
+    <g class="stage"><rect x="180" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="240" y="130">LCS 02</text><text x="240" y="150">Cultivation</text><text x="240" y="166">(LED + HVAC)</text></g>
+    <g class="stage"><rect x="320" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="380" y="130">LCS 03</text><text x="380" y="150">Post-harvest</text><text x="380" y="166">processing</text></g>
+    <g class="stage"><rect x="460" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="520" y="130">LCS 04</text><text x="520" y="150">Packaging</text></g>
+    <g class="stage"><rect x="600" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="660" y="130">LCS 05</text><text x="660" y="150">Distribution</text><text x="660" y="166">(transport)</text></g>
+    <g class="stage"><rect x="740" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="800" y="130">LCS 06</text><text x="800" y="150">Retail</text></g>
+    <g class="stage scoped"><rect x="880" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="940" y="130">LCS 07 · DEF</text><text x="940" y="150">Use</text><text x="940" y="166">(consumer)</text></g>
+    <g class="stage scoped"><rect x="1020" y="110" width="120" height="70" rx="4"/>
+      <text class="num" x="1080" y="130">LCS 08 · DEF</text><text x="1080" y="150">End</text><text x="1080" y="166">of life</text></g>
+
+    <line class="arrow" x1="162" y1="145" x2="178" y2="145"/>
+    <line class="arrow" x1="302" y1="145" x2="318" y2="145"/>
+    <line class="arrow" x1="442" y1="145" x2="458" y2="145"/>
+    <line class="arrow" x1="582" y1="145" x2="598" y2="145"/>
+    <line class="arrow" x1="722" y1="145" x2="738" y2="145"/>
+    <line class="arrow" x1="862" y1="145" x2="878" y2="145"/>
+    <line class="arrow" x1="1002" y1="145" x2="1018" y2="145"/>
+
+    <text x="20" y="40" fill="#13343B" font-family="DM Sans, sans-serif" font-size="14" font-weight="500">Cradle-to-grave life-cycle stages</text>
+    <text x="20" y="245" fill="#626C71" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.08em">SOLID · PRIMARY DATA FROM SOLARA MODULES 01–03</text>
+    <rect x="226" y="237" width="12" height="10" fill="#F4F2EC" stroke="#626C71" stroke-dasharray="4 3"/>
+    <text x="244" y="245" fill="#626C71" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.08em">DASHED · PEF DEFAULT SCENARIO</text>
+  </svg>
+
+  <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;font-size:0.84rem;color:var(--ink-soft)">
+    <span class="tag-pill">EF 3.1</span>
+    <span class="tag-pill">PEFCR v1.3</span>
+    <span class="tag-pill">ISO 14040 / 14044</span>
+    <span class="tag-pill">CSRD-ESRS-aligned</span>
   </div>
 </section>
 
-<section class="product-grid">
-  <a class="product-card" href="./design/index.html">
-    <div class="product-kicker">Product 1 · Pre-build</div>
-    <h2>SOLARA Design</h2>
-    <div class="product-tag">Decide site, geometry, equipment, and sizing before construction.</div>
-    <div class="product-body">Five interoperable modules cover site &amp; climate, facility energy, solar &amp; storage, and environmental impact. Outputs are auditable — every KPI traces back to a physics simulation, a PEFCR life-cycle stage, or a measured tariff.</div>
-    <div class="product-foot">5 modules → Site · Energy · Solar · Impact</div>
-  </a>
-  <a class="product-card" href="./operate/index.html">
-    <div class="product-kicker">Product 2 · Post-build</div>
-    <h2>SOLARA Operate</h2>
-    <div class="product-tag">Digital twin with live data and automated reporting.</div>
-    <div class="product-body">Once the facility is built, SOLARA ingests meter, weather, and yield data — and produces investor-ready feasibility, performance, and compliance reports on a schedule. The first reference deployment is Farm32.</div>
-    <div class="product-foot">Live dashboard · Automated PDF reports</div>
-  </a>
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Modelling chain — solar &amp; energy module</h2>
+    <div class="chart-sub">Three physics engines chained at hourly resolution. Each module owns one engine; outputs hand off as well-defined data products.</div>
+  </div>
+  <svg class="chain-svg" viewBox="0 0 900 220">
+    <defs>
+      <marker id="carr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#21808D"/>
+      </marker>
+    </defs>
+    <g class="step"><rect x="20" y="60" width="240" height="90" rx="4"/>
+      <text class="title" x="140" y="92">EnergyPlus 23.2</text>
+      <text class="sub" x="140" y="112">Building + zone heat balance</text>
+      <text class="sub" x="140" y="128">LED + transpiration</text>
+      <text class="sub" x="140" y="144">→ hourly load (kW)</text></g>
+    <g class="step"><rect x="330" y="60" width="240" height="90" rx="4"/>
+      <text class="title" x="450" y="92">pvlib PVWatts</text>
+      <text class="sub" x="450" y="112">POA irradiance + cell temp</text>
+      <text class="sub" x="450" y="128">14% system losses</text>
+      <text class="sub" x="450" y="144">→ hourly PV output (kW)</text></g>
+    <g class="step"><rect x="640" y="60" width="240" height="90" rx="4"/>
+      <text class="title" x="760" y="92">Greedy dispatch</text>
+      <text class="sub" x="760" y="112">PV → load → battery</text>
+      <text class="sub" x="760" y="128">LFP 92% RTE · 90% DoD</text>
+      <text class="sub" x="760" y="144">→ shortfall, SoC</text></g>
+    <line class="arrow" x1="262" y1="105" x2="328" y2="105"/>
+    <line class="arrow" x1="572" y1="105" x2="638" y2="105"/>
+    <text x="450" y="200" fill="#626C71" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.08em" text-anchor="middle">8,760 HOURS · ONE WEATHER FILE · ONE LOAD PROFILE</text>
+  </svg>
 </section>
 
-<section>
-  <div class="kicker">Module map</div>
-  <h2 style="margin-bottom:18px">Five modules, one workflow</h2>
-  <div class="module-grid">
-    <a class="module-card" href="./design/site/index.html">
-      <div class="step">Step 1</div>
-      <h3>Site &amp; Climate</h3>
-      <p>Latitude, TMYx weather, solar resource, grid &amp; logistics. Map-first selection across candidate sites.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
-    <a class="module-card" href="./design/energy/index.html">
-      <div class="step">Step 2</div>
-      <h3>Facility Energy</h3>
-      <p>3D geometry, envelope, lighting, HVAC. EnergyPlus 8760-hour load profile per production schedule.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
-    <a class="module-card" href="./design/solar/index.html">
-      <div class="step">Step 3</div>
-      <h3>Solar &amp; Storage</h3>
-      <p>PV sizing, battery dispatch, shortfall accounting. Design-space sweep finds the zero-shortfall point.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
-    <a class="module-card coming" href="./design/impact/index.html">
-      <div class="step">Step 4</div>
-      <h3>Environmental Impact</h3>
-      <p>PEF-aligned LCA across all life-cycle stages, plus CSRD/ESRS-ready disclosure exports.</p>
-      <div class="status soon">Coming · scoped</div>
-    </a>
-    <a class="module-card" href="./operate/index.html">
-      <div class="step">Operate</div>
-      <h3>Live Facility Twin</h3>
-      <p>Yield, energy, water, and emissions tracked against the design baseline. Automated quarterly report.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Engines &amp; data sources</h2>
   </div>
+  <table class="data">
+    <thead><tr><th>Layer</th><th>Engine / framework</th><th>Validation reference</th></tr></thead>
+    <tbody>
+      <tr><td>Weather</td><td>TMYx hourly file from climate.onebuilding.org</td><td>NCEI ISD-derived, 12-year typical</td></tr>
+      <tr><td>Building physics</td><td>EnergyPlus 23.2 with two-zone IDF generator</td><td>Graamans 2018 — replicates 247 kWh/kg-DW within 5%</td></tr>
+      <tr><td>PV resource</td><td>pvlib python 0.10 (PVWatts model, PVsyst cell temp)</td><td>Holmgren, Hansen, Mikofski 2018 (JOSS)</td></tr>
+      <tr><td>Battery dispatch</td><td>SOLARA greedy dispatcher, LFP parameters</td><td>NREL ReOpt cross-check on Farm32 reference design</td></tr>
+      <tr><td>Life-cycle inventory</td><td>Ecoinvent 3.10 + custom CEA processes</td><td>PEFCR Fresh &amp; Frozen Vegetables v1.3</td></tr>
+      <tr><td>Characterisation</td><td>EF 3.1 method (16 indicators)</td><td>JRC EF reference package</td></tr>
+      <tr><td>Disclosure mapping</td><td>SOLARA CSRD/ESRS schema</td><td>EFRAG ESRS v1.0 (E1–E5)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Key references</h2>
+  </div>
+  <p>
+    <a href="https://doi.org/10.1016/j.agsy.2017.11.003">Graamans et al. 2018 — Plant factories versus greenhouses (Agricultural Systems)</a><br>
+    <a href="https://doi.org/10.1016/j.biosystemseng.2017.05.001">Graamans et al. 2017 — Plant factory model (Biosystems Engineering)</a><br>
+    <a href="https://doi.org/10.21105/joss.00884">Holmgren, Hansen, Mikofski 2018 — pvlib python (Journal of Open Source Software)</a><br>
+    <a href="https://climate.onebuilding.org">climate.onebuilding.org — TMYx weather files</a><br>
+    <a href="https://eplca.jrc.ec.europa.eu/PEF.html">European Commission JRC — Product Environmental Footprint method &amp; PEFCRs</a><br>
+    <a href="https://www.efrag.org/lab6">EFRAG — European Sustainability Reporting Standards (ESRS)</a>
+  </p>
 </section>
 
 </main>
@@ -111,7 +184,7 @@
   <div class="right">Springtide Strategy</div>
 </footer>
 
-<script src="./assets/nav.js"></script>
+<script src="../assets/nav.js"></script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;
