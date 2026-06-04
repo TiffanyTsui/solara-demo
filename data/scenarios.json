@@ -1,0 +1,1075 @@
+{
+ "meta": {
+  "baseline_layout": "synchronized",
+  "baseline_pv_kwp": 480,
+  "baseline_battery_kwh": 600,
+  "current_intensity_kwh_per_kg": 16.46,
+  "lca_intensity_kwh_per_kg": 26.0,
+  "lca_load_factor": 1.5795868772782502,
+  "engine": "Greedy dispatch \u00b7 pvlib PVWatts \u00b7 LFP battery \u00b7 synchronized photoperiod"
+ },
+ "scenarios": [
+  {
+   "annual_load_mwh": 695.2229167812474,
+   "annual_pv_mwh": 829.6159128335373,
+   "annual_pv_used_mwh": 384.2384196591942,
+   "annual_unmet_mwh": 124.35764458504569,
+   "self_sufficiency_pct": 82.11255101301919,
+   "shortfall_hours": 2735,
+   "shortfall_pct_year": 31.22146118721461,
+   "deepest_deficit_kw": 106.16046875002677,
+   "longest_streak_h": 19,
+   "monthly": [
+    {
+     "month": "Jan",
+     "load_mwh": 57.908705642350704,
+     "pv_mwh": 58.75297726515168,
+     "pv_used_mwh": 28.582845714876136,
+     "unmet_mwh": 14.192514232956079,
+     "shortfall_hours": 204
+    },
+    {
+     "month": "Feb",
+     "load_mwh": 52.4481572632421,
+     "pv_mwh": 60.78061795659942,
+     "pv_used_mwh": 27.135681527522053,
+     "unmet_mwh": 11.03765085826079,
+     "shortfall_hours": 173
+    },
+    {
+     "month": "Mar",
+     "load_mwh": 58.35346874184872,
+     "pv_mwh": 75.53976757934794,
+     "pv_used_mwh": 32.36160043379113,
+     "unmet_mwh": 9.950150276895911,
+     "shortfall_hours": 177
+    },
+    {
+     "month": "Apr",
+     "load_mwh": 56.947062325792906,
+     "pv_mwh": 76.15002729905262,
+     "pv_used_mwh": 33.827652212833925,
+     "unmet_mwh": 7.580915977425765,
+     "shortfall_hours": 199
+    },
+    {
+     "month": "May",
+     "load_mwh": 59.293044966519105,
+     "pv_mwh": 78.12615791798083,
+     "pv_used_mwh": 36.016293542706016,
+     "unmet_mwh": 7.061221537820963,
+     "shortfall_hours": 188
+    },
+    {
+     "month": "Jun",
+     "load_mwh": 57.77341543262147,
+     "pv_mwh": 75.74721691962782,
+     "pv_used_mwh": 35.56786072818158,
+     "unmet_mwh": 6.383527488124409,
+     "shortfall_hours": 216
+    },
+    {
+     "month": "Jul",
+     "load_mwh": 60.0436254204229,
+     "pv_mwh": 76.66356396127732,
+     "pv_used_mwh": 36.258676795358866,
+     "unmet_mwh": 7.609696988786116,
+     "shortfall_hours": 279
+    },
+    {
+     "month": "Aug",
+     "load_mwh": 60.17594755276105,
+     "pv_mwh": 76.32929890192798,
+     "pv_used_mwh": 35.66178127442536,
+     "unmet_mwh": 8.457722338284736,
+     "shortfall_hours": 305
+    },
+    {
+     "month": "Sep",
+     "load_mwh": 57.90482718248219,
+     "pv_mwh": 70.99523458395842,
+     "pv_used_mwh": 32.560292811033506,
+     "unmet_mwh": 9.892951468074282,
+     "shortfall_hours": 266
+    },
+    {
+     "month": "Oct",
+     "load_mwh": 59.39842593340303,
+     "pv_mwh": 67.84938902855029,
+     "pv_used_mwh": 31.699986689857045,
+     "unmet_mwh": 11.785941782017698,
+     "shortfall_hours": 240
+    },
+    {
+     "month": "Nov",
+     "load_mwh": 56.82463390177834,
+     "pv_mwh": 58.134758631024695,
+     "pv_used_mwh": 27.66798283229572,
+     "unmet_mwh": 14.128937947809213,
+     "shortfall_hours": 248
+    },
+    {
+     "month": "Dec",
+     "load_mwh": 58.1516024180242,
+     "pv_mwh": 54.54690278904044,
+     "pv_used_mwh": 26.897765096313677,
+     "unmet_mwh": 16.276413688589688,
+     "shortfall_hours": 240
+    }
+   ],
+   "name": "baseline",
+   "label": "Current design",
+   "story": "480 kWp PV + 600 kWh battery, synchronized photoperiod. The reference point.",
+   "track": "design",
+   "levers": {
+    "pv_kwp": 480,
+    "battery_kwh": 600,
+    "load_factor": 1.0
+   }
+  },
+  {
+   "annual_load_mwh": 695.2229167812474,
+   "annual_pv_mwh": 829.6159128335373,
+   "annual_pv_used_mwh": 384.2384196591942,
+   "annual_unmet_mwh": 25.263010892592444,
+   "self_sufficiency_pct": 96.36619992195374,
+   "shortfall_hours": 442,
+   "shortfall_pct_year": 5.045662100456621,
+   "deepest_deficit_kw": 105.12468291493649,
+   "longest_streak_h": 19,
+   "monthly": [
+    {
+     "month": "Jan",
+     "load_mwh": 57.908705642350704,
+     "pv_mwh": 58.75297726515168,
+     "pv_used_mwh": 28.582845714876136,
+     "unmet_mwh": 6.19128101424014,
+     "shortfall_hours": 98
+    },
+    {
+     "month": "Feb",
+     "load_mwh": 52.4481572632421,
+     "pv_mwh": 60.78061795659942,
+     "pv_used_mwh": 27.135681527522053,
+     "unmet_mwh": 1.557774822052928,
+     "shortfall_hours": 29
+    },
+    {
+     "month": "Mar",
+     "load_mwh": 58.35346874184872,
+     "pv_mwh": 75.53976757934794,
+     "pv_used_mwh": 32.36160043379113,
+     "unmet_mwh": 0.5901002023440258,
+     "shortfall_hours": 12
+    },
+    {
+     "month": "Apr",
+     "load_mwh": 56.947062325792906,
+     "pv_mwh": 76.15002729905262,
+     "pv_used_mwh": 33.827652212833925,
+     "unmet_mwh": 0.0024569864459246878,
+     "shortfall_hours": 1
+    },
+    {
+     "month": "May",
+     "load_mwh": 59.293044966519105,
+     "pv_mwh": 78.12615791798083,
+     "pv_used_mwh": 36.016293542706016,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "Jun",
+     "load_mwh": 57.77341543262147,
+     "pv_mwh": 75.74721691962782,
+     "pv_used_mwh": 35.56786072818158,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "Jul",
+     "load_mwh": 60.0436254204229,
+     "pv_mwh": 76.66356396127732,
+     "pv_used_mwh": 36.258676795358866,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "Aug",
+     "load_mwh": 60.17594755276105,
+     "pv_mwh": 76.32929890192798,
+     "pv_used_mwh": 35.66178127442536,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "Sep",
+     "load_mwh": 57.90482718248219,
+     "pv_mwh": 70.99523458395842,
+     "pv_used_mwh": 32.560292811033506,
+     "unmet_mwh": 0.2455422766499638,
+     "shortfall_hours": 9
+    },
+    {
+     "month": "Oct",
+     "load_mwh": 59.39842593340303,
+     "pv_mwh": 67.84938902855029,
+     "pv_used_mwh": 31.699986689857045,
+     "unmet_mwh": 1.0916337834832357,
+     "shortfall_hours": 29
+    },
+    {
+     "month": "Nov",
+     "load_mwh": 56.82463390177834,
+     "pv_mwh": 58.134758631024695,
+     "pv_used_mwh": 27.66798283229572,
+     "unmet_mwh": 5.9732392094359055,
+     "shortfall_hours": 115
+    },
+    {
+     "month": "Dec",
+     "load_mwh": 58.1516024180242,
+     "pv_mwh": 54.54690278904044,
+     "pv_used_mwh": 26.897765096313677,
+     "unmet_mwh": 9.610982597940334,
+     "shortfall_hours": 149
+    }
+   ],
+   "name": "battery_2x",
+   "label": "Double the battery",
+   "story": "Same PV. Battery doubles to 1,200 kWh \u2014 enough to ride through one cloudy night.",
+   "track": "design",
+   "levers": {
+    "pv_kwp": 480,
+    "battery_kwh": 1200,
+    "load_factor": 1.0
+   }
+  },
+  {
+   "annual_load_mwh": 695.2229167812474,
+   "annual_pv_mwh": 1244.4238692503031,
+   "annual_pv_used_mwh": 410.52655731037225,
+   "annual_unmet_mwh": 95.138780237753,
+   "self_sufficiency_pct": 86.3153561337955,
+   "shortfall_hours": 2422,
+   "shortfall_pct_year": 27.64840182648402,
+   "deepest_deficit_kw": 106.080090621664,
+   "longest_streak_h": 12,
+   "monthly": [
+    {
+     "month": "Jan",
+     "load_mwh": 57.908705642350704,
+     "pv_mwh": 88.12946589772753,
+     "pv_used_mwh": 30.393813959664094,
+     "unmet_mwh": 11.28773704965428,
+     "shortfall_hours": 185
+    },
+    {
+     "month": "Feb",
+     "load_mwh": 52.4481572632421,
+     "pv_mwh": 91.17092693489911,
+     "pv_used_mwh": 28.86040651312402,
+     "unmet_mwh": 9.085156223620451,
+     "shortfall_hours": 151
+    },
+    {
+     "month": "Mar",
+     "load_mwh": 58.35346874184872,
+     "pv_mwh": 113.30965136902203,
+     "pv_used_mwh": 34.379321568202634,
+     "unmet_mwh": 7.917703233595182,
+     "shortfall_hours": 156
+    },
+    {
+     "month": "Apr",
+     "load_mwh": 56.947062325792906,
+     "pv_mwh": 114.22504094857888,
+     "pv_used_mwh": 36.09978202118688,
+     "unmet_mwh": 5.308786169072817,
+     "shortfall_hours": 169
+    },
+    {
+     "month": "May",
+     "load_mwh": 59.293044966519105,
+     "pv_mwh": 117.18923687697121,
+     "pv_used_mwh": 38.44735700784554,
+     "unmet_mwh": 4.550615099710911,
+     "shortfall_hours": 158
+    },
+    {
+     "month": "Jun",
+     "load_mwh": 57.77341543262147,
+     "pv_mwh": 113.62082537944141,
+     "pv_used_mwh": 38.19592666474126,
+     "unmet_mwh": 3.6136950111736006,
+     "shortfall_hours": 184
+    },
+    {
+     "month": "Jul",
+     "load_mwh": 60.0436254204229,
+     "pv_mwh": 114.99534594191601,
+     "pv_used_mwh": 39.132972548578266,
+     "unmet_mwh": 4.675997387453239,
+     "shortfall_hours": 259
+    },
+    {
+     "month": "Aug",
+     "load_mwh": 60.17594755276105,
+     "pv_mwh": 114.49394835289202,
+     "pv_used_mwh": 38.218004627126255,
+     "unmet_mwh": 5.901498985583827,
+     "shortfall_hours": 287
+    },
+    {
+     "month": "Sep",
+     "load_mwh": 57.90482718248219,
+     "pv_mwh": 106.49285187593759,
+     "pv_used_mwh": 34.985005820896404,
+     "unmet_mwh": 7.3813272260525675,
+     "shortfall_hours": 236
+    },
+    {
+     "month": "Oct",
+     "load_mwh": 59.39842593340303,
+     "pv_mwh": 101.77408354282527,
+     "pv_used_mwh": 33.863900392679135,
+     "unmet_mwh": 9.478081600672958,
+     "shortfall_hours": 210
+    },
+    {
+     "month": "Nov",
+     "load_mwh": 56.82463390177834,
+     "pv_mwh": 87.20213794653696,
+     "pv_used_mwh": 29.358787404340728,
+     "unmet_mwh": 11.927352361904436,
+     "shortfall_hours": 222
+    },
+    {
+     "month": "Dec",
+     "load_mwh": 58.1516024180242,
+     "pv_mwh": 81.82035418356061,
+     "pv_used_mwh": 28.591278781987654,
+     "unmet_mwh": 14.010829889258874,
+     "shortfall_hours": 205
+    }
+   ],
+   "name": "pv_oversized",
+   "label": "Oversize the PV",
+   "story": "720 kWp PV (\u00d71.5) with the same 600 kWh battery. More daytime headroom; nighttime still relies on storage.",
+   "track": "design",
+   "levers": {
+    "pv_kwp": 720,
+    "battery_kwh": 600,
+    "load_factor": 1.0
+   }
+  },
+  {
+   "annual_load_mwh": 695.2229167812474,
+   "annual_pv_mwh": 1244.4238692503031,
+   "annual_pv_used_mwh": 410.52655731037225,
+   "annual_unmet_mwh": 2.4924326159338586,
+   "self_sufficiency_pct": 99.64149159129084,
+   "shortfall_hours": 50,
+   "shortfall_pct_year": 0.5707762557077626,
+   "deepest_deficit_kw": 104.46106240943529,
+   "longest_streak_h": 12,
+   "monthly": [
+    {
+     "month": "Jan",
+     "load_mwh": 57.908705642350704,
+     "pv_mwh": 88.12946589772753,
+     "pv_used_mwh": 30.393813959664094,
+     "unmet_mwh": 0.1997875530066406,
+     "shortfall_hours": 5
+    },
+    {
+     "month": "Feb",
+     "load_mwh": 52.4481572632421,
+     "pv_mwh": 91.17092693489911,
+     "pv_used_mwh": 28.86040651312402,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "Mar",
+     "load_mwh": 58.35346874184872,
+     "pv_mwh": 113.30965136902203,
+     "pv_used_mwh": 34.379321568202634,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "Apr",
+     "load_mwh": 56.947062325792906,
+     "pv_mwh": 114.22504094857888,
+     "pv_used_mwh": 36.09978202118688,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "May",
+     "load_mwh": 59.293044966519105,
+     "pv_mwh": 117.18923687697121,
+     "pv_used_mwh": 38.44735700784554,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "Jun",
+     "load_mwh": 57.77341543262147,
+     "pv_mwh": 113.62082537944141,
+     "pv_used_mwh": 38.19592666474126,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "Jul",
+     "load_mwh": 60.0436254204229,
+     "pv_mwh": 114.99534594191601,
+     "pv_used_mwh": 39.132972548578266,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "Aug",
+     "load_mwh": 60.17594755276105,
+     "pv_mwh": 114.49394835289202,
+     "pv_used_mwh": 38.218004627126255,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "Sep",
+     "load_mwh": 57.90482718248219,
+     "pv_mwh": 106.49285187593759,
+     "pv_used_mwh": 34.985005820896404,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "Oct",
+     "load_mwh": 59.39842593340303,
+     "pv_mwh": 101.77408354282527,
+     "pv_used_mwh": 33.863900392679135,
+     "unmet_mwh": 0.0,
+     "shortfall_hours": 0
+    },
+    {
+     "month": "Nov",
+     "load_mwh": 56.82463390177834,
+     "pv_mwh": 87.20213794653696,
+     "pv_used_mwh": 29.358787404340728,
+     "unmet_mwh": 0.04330272536161469,
+     "shortfall_hours": 3
+    },
+    {
+     "month": "Dec",
+     "load_mwh": 58.1516024180242,
+     "pv_mwh": 81.82035418356061,
+     "pv_used_mwh": 28.591278781987654,
+     "unmet_mwh": 2.249342337565603,
+     "shortfall_hours": 42
+    }
+   ],
+   "name": "pv_and_battery",
+   "label": "PV + battery balanced",
+   "story": "720 kWp PV + 1,800 kWh battery \u2014 moves self-sufficiency toward the 95% band without going to extremes.",
+   "track": "design",
+   "levers": {
+    "pv_kwp": 720,
+    "battery_kwh": 1800,
+    "load_factor": 1.0
+   }
+  },
+  {
+   "annual_load_mwh": 665.4774616475015,
+   "annual_pv_mwh": 829.6159128335373,
+   "annual_pv_used_mwh": 384.2384196591942,
+   "annual_unmet_mwh": 94.63198673264328,
+   "self_sufficiency_pct": 85.77983595441897,
+   "shortfall_hours": 2320,
+   "shortfall_pct_year": 26.484018264840184,
+   "deepest_deficit_kw": 106.16046875002677,
+   "longest_streak_h": 19,
+   "monthly": [
+    {
+     "month": "Jan",
+     "load_mwh": 50.26036777714472,
+     "pv_mwh": 58.75297726515168,
+     "pv_used_mwh": 28.582845714876136,
+     "unmet_mwh": 6.6068384406300575,
+     "shortfall_hours": 115
+    },
+    {
+     "month": "Feb",
+     "load_mwh": 45.52376807764002,
+     "pv_mwh": 60.78061795659942,
+     "pv_used_mwh": 27.135681527522053,
+     "unmet_mwh": 4.185805929979413,
+     "shortfall_hours": 71
+    },
+    {
+     "month": "Mar",
+     "load_mwh": 58.35346874184872,
+     "pv_mwh": 75.53976757934794,
+     "pv_used_mwh": 32.36160043379113,
+     "unmet_mwh": 9.814943946695198,
+     "shortfall_hours": 175
+    },
+    {
+     "month": "Apr",
+     "load_mwh": 56.947062325792906,
+     "pv_mwh": 76.15002729905262,
+     "pv_used_mwh": 33.827652212833925,
+     "unmet_mwh": 7.580915977425765,
+     "shortfall_hours": 199
+    },
+    {
+     "month": "May",
+     "load_mwh": 59.293044966519105,
+     "pv_mwh": 78.12615791798083,
+     "pv_used_mwh": 36.016293542706016,
+     "unmet_mwh": 7.061221537820963,
+     "shortfall_hours": 188
+    },
+    {
+     "month": "Jun",
+     "load_mwh": 57.77341543262147,
+     "pv_mwh": 75.74721691962782,
+     "pv_used_mwh": 35.56786072818158,
+     "unmet_mwh": 6.383527488124409,
+     "shortfall_hours": 216
+    },
+    {
+     "month": "Jul",
+     "load_mwh": 60.0436254204229,
+     "pv_mwh": 76.66356396127732,
+     "pv_used_mwh": 36.258676795358866,
+     "unmet_mwh": 7.609696988786116,
+     "shortfall_hours": 279
+    },
+    {
+     "month": "Aug",
+     "load_mwh": 60.17594755276105,
+     "pv_mwh": 76.32929890192798,
+     "pv_used_mwh": 35.66178127442536,
+     "unmet_mwh": 8.457722338284736,
+     "shortfall_hours": 305
+    },
+    {
+     "month": "Sep",
+     "load_mwh": 57.90482718248219,
+     "pv_mwh": 70.99523458395842,
+     "pv_used_mwh": 32.560292811033506,
+     "unmet_mwh": 9.892951468074282,
+     "shortfall_hours": 266
+    },
+    {
+     "month": "Oct",
+     "load_mwh": 59.39842593340303,
+     "pv_mwh": 67.84938902855029,
+     "pv_used_mwh": 31.699986689857045,
+     "unmet_mwh": 11.785941782017698,
+     "shortfall_hours": 240
+    },
+    {
+     "month": "Nov",
+     "load_mwh": 49.32905195887379,
+     "pv_mwh": 58.134758631024695,
+     "pv_used_mwh": 27.66798283229572,
+     "unmet_mwh": 6.633356004904696,
+     "shortfall_hours": 125
+    },
+    {
+     "month": "Dec",
+     "load_mwh": 50.47445627799114,
+     "pv_mwh": 54.54690278904044,
+     "pv_used_mwh": 26.897765096313677,
+     "unmet_mwh": 8.619064829900127,
+     "shortfall_hours": 141
+    }
+   ],
+   "name": "winter_photoperiod_trim",
+   "label": "Trim winter photoperiod",
+   "story": "Shorten the lit window from 18 h to ~14 h during Nov\u2013Feb. Targets the four months that carry 45% of unmet energy.",
+   "track": "design",
+   "levers": {
+    "pv_kwp": 480,
+    "battery_kwh": 600,
+    "load_factor": 1.0
+   }
+  },
+  {
+   "annual_load_mwh": 647.3913026664144,
+   "annual_pv_mwh": 829.6159128335373,
+   "annual_pv_used_mwh": 362.9445576319491,
+   "annual_unmet_mwh": 108.55058796084735,
+   "self_sufficiency_pct": 83.23261565088079,
+   "shortfall_hours": 2506,
+   "shortfall_pct_year": 28.60730593607306,
+   "deepest_deficit_kw": 106.16046875002677,
+   "longest_streak_h": 10,
+   "monthly": [
+    {
+     "month": "Jan",
+     "load_mwh": 57.908705642350704,
+     "pv_mwh": 58.75297726515168,
+     "pv_used_mwh": 28.582845714876136,
+     "unmet_mwh": 14.192514232956079,
+     "shortfall_hours": 204
+    },
+    {
+     "month": "Feb",
+     "load_mwh": 52.4481572632421,
+     "pv_mwh": 60.78061795659942,
+     "pv_used_mwh": 27.135681527522053,
+     "unmet_mwh": 11.03765085826079,
+     "shortfall_hours": 173
+    },
+    {
+     "month": "Mar",
+     "load_mwh": 58.35346874184872,
+     "pv_mwh": 75.53976757934794,
+     "pv_used_mwh": 32.36160043379113,
+     "unmet_mwh": 9.950150276895911,
+     "shortfall_hours": 177
+    },
+    {
+     "month": "Apr",
+     "load_mwh": 56.947062325792906,
+     "pv_mwh": 76.15002729905262,
+     "pv_used_mwh": 33.827652212833925,
+     "unmet_mwh": 7.580915977425765,
+     "shortfall_hours": 199
+    },
+    {
+     "month": "May",
+     "load_mwh": 59.293044966519105,
+     "pv_mwh": 78.12615791798083,
+     "pv_used_mwh": 36.016293542706016,
+     "unmet_mwh": 7.061221537820963,
+     "shortfall_hours": 188
+    },
+    {
+     "month": "Jun",
+     "load_mwh": 57.77341543262147,
+     "pv_mwh": 75.74721691962782,
+     "pv_used_mwh": 35.56786072818158,
+     "unmet_mwh": 6.383527488124409,
+     "shortfall_hours": 216
+    },
+    {
+     "month": "Jul",
+     "load_mwh": 60.0436254204229,
+     "pv_mwh": 76.66356396127732,
+     "pv_used_mwh": 36.258676795358866,
+     "unmet_mwh": 7.609696988786116,
+     "shortfall_hours": 279
+    },
+    {
+     "month": "Aug",
+     "load_mwh": 60.17594755276105,
+     "pv_mwh": 76.32929890192798,
+     "pv_used_mwh": 35.66178127442536,
+     "unmet_mwh": 8.457722338284736,
+     "shortfall_hours": 305
+    },
+    {
+     "month": "Sep",
+     "load_mwh": 57.90482718248219,
+     "pv_mwh": 70.99523458395842,
+     "pv_used_mwh": 32.560292811033506,
+     "unmet_mwh": 9.892951468074282,
+     "shortfall_hours": 266
+    },
+    {
+     "month": "Oct",
+     "load_mwh": 59.39842593340303,
+     "pv_mwh": 67.84938902855029,
+     "pv_used_mwh": 31.699986689857045,
+     "unmet_mwh": 11.785941782017698,
+     "shortfall_hours": 240
+    },
+    {
+     "month": "Nov",
+     "load_mwh": 56.82463390177834,
+     "pv_mwh": 58.134758631024695,
+     "pv_used_mwh": 27.66798283229572,
+     "unmet_mwh": 14.128937947809213,
+     "shortfall_hours": 248
+    },
+    {
+     "month": "Dec",
+     "load_mwh": 10.319988303191975,
+     "pv_mwh": 54.54690278904044,
+     "pv_used_mwh": 5.603903069068869,
+     "unmet_mwh": 0.46935706439130137,
+     "shortfall_hours": 11
+    }
+   ],
+   "name": "december_pause",
+   "label": "Pause production in December",
+   "story": "Cultivation halts December 1\u201331. Facility runs at 15% baseline load for that month.",
+   "track": "design",
+   "levers": {
+    "pv_kwp": 480,
+    "battery_kwh": 600,
+    "load_factor": 1.0
+   }
+  },
+  {
+   "annual_load_mwh": 1098.164996130768,
+   "annual_pv_mwh": 829.6159128335373,
+   "annual_pv_used_mwh": 555.1712553481066,
+   "annual_unmet_mwh": 365.1214942051183,
+   "self_sufficiency_pct": 66.75167251810309,
+   "shortfall_hours": 4537,
+   "shortfall_pct_year": 51.79223744292238,
+   "deepest_deficit_kw": 168.35944587695295,
+   "longest_streak_h": 19,
+   "monthly": [
+    {
+     "month": "Jan",
+     "load_mwh": 91.47183151282621,
+     "pv_mwh": 58.75297726515168,
+     "pv_used_mwh": 40.91904848959907,
+     "unmet_mwh": 37.235805198000655,
+     "shortfall_hours": 368
+    },
+    {
+     "month": "Feb",
+     "load_mwh": 82.84642095044326,
+     "pv_mwh": 60.78061795659942,
+     "pv_used_mwh": 39.5192372003445,
+     "unmet_mwh": 29.642938368609006,
+     "shortfall_hours": 313
+    },
+    {
+     "month": "Mar",
+     "load_mwh": 92.17437346829094,
+     "pv_mwh": 75.53976757934794,
+     "pv_used_mwh": 47.1220288453039,
+     "unmet_mwh": 29.60312107361926,
+     "shortfall_hours": 330
+    },
+    {
+     "month": "Apr",
+     "load_mwh": 89.95283234936915,
+     "pv_mwh": 76.15002729905262,
+     "pv_used_mwh": 49.12163298523597,
+     "unmet_mwh": 25.62981552609465,
+     "shortfall_hours": 343
+    },
+    {
+     "month": "May",
+     "load_mwh": 93.65851574298279,
+     "pv_mwh": 78.12615791798083,
+     "pv_used_mwh": 52.0505648359851,
+     "unmet_mwh": 25.518432044922157,
+     "shortfall_hours": 338
+    },
+    {
+     "month": "Jun",
+     "load_mwh": 91.25812887291357,
+     "pv_mwh": 75.74721691962782,
+     "pv_used_mwh": 51.25322164718032,
+     "unmet_mwh": 24.329737360225305,
+     "shortfall_hours": 364
+    },
+    {
+     "month": "Jul",
+     "load_mwh": 94.8441227783109,
+     "pv_mwh": 76.66356396127732,
+     "pv_used_mwh": 52.38133348114241,
+     "unmet_mwh": 26.507683713038546,
+     "shortfall_hours": 433
+    },
+    {
+     "month": "Aug",
+     "load_mwh": 95.05313708212559,
+     "pv_mwh": 76.32929890192798,
+     "pv_used_mwh": 51.4753747984023,
+     "unmet_mwh": 27.55632696310154,
+     "shortfall_hours": 460
+    },
+    {
+     "month": "Sep",
+     "load_mwh": 91.46570514851368,
+     "pv_mwh": 70.99523458395842,
+     "pv_used_mwh": 47.049327708174246,
+     "unmet_mwh": 29.475552746867344,
+     "shortfall_hours": 415
+    },
+    {
+     "month": "Oct",
+     "load_mwh": 93.82497413538762,
+     "pv_mwh": 67.84938902855029,
+     "pv_used_mwh": 46.266796234496525,
+     "unmet_mwh": 32.41776949163771,
+     "shortfall_hours": 385
+    },
+    {
+     "month": "Nov",
+     "load_mwh": 89.75944601738978,
+     "pv_mwh": 58.134758631024695,
+     "pv_used_mwh": 39.75309468198966,
+     "unmet_mwh": 36.69944184466607,
+     "shortfall_hours": 398
+    },
+    {
+     "month": "Dec",
+     "load_mwh": 91.85550807221318,
+     "pv_mwh": 54.54690278904044,
+     "pv_used_mwh": 38.25959444025386,
+     "unmet_mwh": 40.50486987433528,
+     "shortfall_hours": 390
+    }
+   ],
+   "name": "lca_baseline",
+   "label": "LCA load \u00b7 current design",
+   "story": "Load scaled to 26.0 kWh/kg (\u00d71.58) \u2014 the higher intensity reported in the Farm32 LCA. Same 480 kWp + 600 kWh design.",
+   "track": "lca",
+   "levers": {
+    "pv_kwp": 480,
+    "battery_kwh": 600,
+    "load_factor": 1.5795868772782502
+   }
+  },
+  {
+   "annual_load_mwh": 1098.164996130768,
+   "annual_pv_mwh": 1555.529836562886,
+   "annual_pv_used_mwh": 625.1239128056786,
+   "annual_unmet_mwh": 98.1624385670941,
+   "self_sufficiency_pct": 91.06123042412061,
+   "shortfall_hours": 2737,
+   "shortfall_pct_year": 31.244292237442924,
+   "deepest_deficit_kw": 166.05356961047073,
+   "longest_streak_h": 19,
+   "monthly": [
+    {
+     "month": "Jan",
+     "load_mwh": 91.47183151282621,
+     "pv_mwh": 110.16183237215938,
+     "pv_used_mwh": 46.33123847105492,
+     "unmet_mwh": 15.376075458729224,
+     "shortfall_hours": 288
+    },
+    {
+     "month": "Feb",
+     "load_mwh": 82.84642095044326,
+     "pv_mwh": 113.9636586686239,
+     "pv_used_mwh": 43.997536915507546,
+     "unmet_mwh": 10.566353282818763,
+     "shortfall_hours": 256
+    },
+    {
+     "month": "Mar",
+     "load_mwh": 92.17437346829094,
+     "pv_mwh": 141.63706421127742,
+     "pv_used_mwh": 52.48262509886547,
+     "unmet_mwh": 6.27248155426174,
+     "shortfall_hours": 221
+    },
+    {
+     "month": "Apr",
+     "load_mwh": 89.95283234936915,
+     "pv_mwh": 142.78130118572378,
+     "pv_used_mwh": 55.0051249259401,
+     "unmet_mwh": 2.5370846526766146,
+     "shortfall_hours": 157
+    },
+    {
+     "month": "May",
+     "load_mwh": 93.65851574298279,
+     "pv_mwh": 146.4865460962139,
+     "pv_used_mwh": 58.68057386412328,
+     "unmet_mwh": 2.40157700564405,
+     "shortfall_hours": 155
+    },
+    {
+     "month": "Jun",
+     "load_mwh": 91.25812887291357,
+     "pv_mwh": 142.02603172430193,
+     "pv_used_mwh": 58.12456040204633,
+     "unmet_mwh": 2.4016622378708354,
+     "shortfall_hours": 150
+    },
+    {
+     "month": "Jul",
+     "load_mwh": 94.8441227783109,
+     "pv_mwh": 143.74418242739495,
+     "pv_used_mwh": 59.07431070852208,
+     "unmet_mwh": 2.6055577478769134,
+     "shortfall_hours": 155
+    },
+    {
+     "month": "Aug",
+     "load_mwh": 95.05313708212559,
+     "pv_mwh": 143.11743544111505,
+     "pv_used_mwh": 57.903030972086896,
+     "unmet_mwh": 2.731897952116469,
+     "shortfall_hours": 155
+    },
+    {
+     "month": "Sep",
+     "load_mwh": 91.46570514851368,
+     "pv_mwh": 133.11606484492205,
+     "pv_used_mwh": 53.173824515525766,
+     "unmet_mwh": 4.9050130124280615,
+     "shortfall_hours": 209
+    },
+    {
+     "month": "Oct",
+     "load_mwh": 93.82497413538762,
+     "pv_mwh": 127.21760442853167,
+     "pv_used_mwh": 51.66056855624463,
+     "unmet_mwh": 9.627532968241065,
+     "shortfall_hours": 286
+    },
+    {
+     "month": "Nov",
+     "load_mwh": 89.75944601738978,
+     "pv_mwh": 109.00267243317118,
+     "pv_used_mwh": 44.9528273015062,
+     "unmet_mwh": 17.013036204625568,
+     "shortfall_hours": 354
+    },
+    {
+     "month": "Dec",
+     "load_mwh": 91.85550807221318,
+     "pv_mwh": 102.27544272945082,
+     "pv_used_mwh": 43.737691074256325,
+     "unmet_mwh": 21.724166489804656,
+     "shortfall_hours": 351
+    }
+   ],
+   "name": "lca_pv_battery",
+   "label": "LCA load \u00b7 900 kWp + 2,400 kWh",
+   "story": "Scale PV and storage to absorb the higher load. Tests whether on-site infrastructure can still carry the facility at 26 kWh/kg.",
+   "track": "lca",
+   "levers": {
+    "pv_kwp": 900,
+    "battery_kwh": 2400,
+    "load_factor": 1.5795868772782502
+   }
+  },
+  {
+   "annual_load_mwh": 1051.179465542833,
+   "annual_pv_mwh": 829.6159128335373,
+   "annual_pv_used_mwh": 555.1712553481066,
+   "annual_unmet_mwh": 318.13596361718476,
+   "self_sufficiency_pct": 69.73533311432237,
+   "shortfall_hours": 4490,
+   "shortfall_pct_year": 51.25570776255708,
+   "deepest_deficit_kw": 168.35944587695295,
+   "longest_streak_h": 19,
+   "monthly": [
+    {
+     "month": "Jan",
+     "load_mwh": 79.39061738795648,
+     "pv_mwh": 58.75297726515168,
+     "pv_used_mwh": 40.91904848959907,
+     "unmet_mwh": 25.154591073130945,
+     "shortfall_hours": 350
+    },
+    {
+     "month": "Feb",
+     "load_mwh": 71.90874665969872,
+     "pv_mwh": 60.78061795659942,
+     "pv_used_mwh": 39.5192372003445,
+     "unmet_mwh": 18.70526407786443,
+     "shortfall_hours": 286
+    },
+    {
+     "month": "Mar",
+     "load_mwh": 92.17437346829094,
+     "pv_mwh": 75.53976757934794,
+     "pv_used_mwh": 47.1220288453039,
+     "unmet_mwh": 29.60312107361926,
+     "shortfall_hours": 330
+    },
+    {
+     "month": "Apr",
+     "load_mwh": 89.95283234936915,
+     "pv_mwh": 76.15002729905262,
+     "pv_used_mwh": 49.12163298523597,
+     "unmet_mwh": 25.62981552609465,
+     "shortfall_hours": 343
+    },
+    {
+     "month": "May",
+     "load_mwh": 93.65851574298279,
+     "pv_mwh": 78.12615791798083,
+     "pv_used_mwh": 52.0505648359851,
+     "unmet_mwh": 25.518432044922157,
+     "shortfall_hours": 338
+    },
+    {
+     "month": "Jun",
+     "load_mwh": 91.25812887291357,
+     "pv_mwh": 75.74721691962782,
+     "pv_used_mwh": 51.25322164718032,
+     "unmet_mwh": 24.329737360225305,
+     "shortfall_hours": 364
+    },
+    {
+     "month": "Jul",
+     "load_mwh": 94.8441227783109,
+     "pv_mwh": 76.66356396127732,
+     "pv_used_mwh": 52.38133348114241,
+     "unmet_mwh": 26.507683713038546,
+     "shortfall_hours": 433
+    },
+    {
+     "month": "Aug",
+     "load_mwh": 95.05313708212559,
+     "pv_mwh": 76.32929890192798,
+     "pv_used_mwh": 51.4753747984023,
+     "unmet_mwh": 27.55632696310154,
+     "shortfall_hours": 460
+    },
+    {
+     "month": "Sep",
+     "load_mwh": 91.46570514851368,
+     "pv_mwh": 70.99523458395842,
+     "pv_used_mwh": 47.049327708174246,
+     "unmet_mwh": 29.475552746867344,
+     "shortfall_hours": 415
+    },
+    {
+     "month": "Oct",
+     "load_mwh": 93.82497413538762,
+     "pv_mwh": 67.84938902855029,
+     "pv_used_mwh": 46.266796234496525,
+     "unmet_mwh": 32.41776949163771,
+     "shortfall_hours": 385
+    },
+    {
+     "month": "Nov",
+     "load_mwh": 77.91952314281401,
+     "pv_mwh": 58.134758631024695,
+     "pv_used_mwh": 39.75309468198966,
+     "unmet_mwh": 24.859518970090303,
+     "shortfall_hours": 396
+    },
+    {
+     "month": "Dec",
+     "load_mwh": 79.72878877446962,
+     "pv_mwh": 54.54690278904044,
+     "pv_used_mwh": 38.25959444025386,
+     "unmet_mwh": 28.378150576591736,
+     "shortfall_hours": 390
+    }
+   ],
+   "name": "lca_winter_trim",
+   "label": "LCA load \u00b7 winter photoperiod trim",
+   "story": "Higher load + the Nov\u2013Feb photoperiod trim. Shows how much the operational lever recovers under the LCA intensity.",
+   "track": "lca",
+   "levers": {
+    "pv_kwp": 480,
+    "battery_kwh": 600,
+    "load_factor": 1.5795868772782502
+   }
+  }
+ ]
+}

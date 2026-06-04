@@ -1,0 +1,46 @@
+{
+  "lit_threshold_kw": 60.0,
+  "note": "lit hour = hour with load > threshold (lights on in at least one zone). design = total lit hours / 365. supported = lit hours with zero shortfall / 365.",
+  "scenarios": [
+    {
+      "name": "Current design",
+      "lit_per_day_design": 12.0,
+      "lit_per_day_supported": 10.88,
+      "lit_per_day_unsupp": 1.12,
+      "lit_hours_unsupp_year": 408,
+      "dark_hours_unsupp_year": 2613
+    },
+    {
+      "name": "Double the battery",
+      "lit_per_day_design": 12.0,
+      "lit_per_day_supported": 11.56,
+      "lit_per_day_unsupp": 0.44,
+      "lit_hours_unsupp_year": 159,
+      "dark_hours_unsupp_year": 435
+    },
+    {
+      "name": "Battery to 2,400 kWh",
+      "lit_per_day_design": 12.0,
+      "lit_per_day_supported": 11.63,
+      "lit_per_day_unsupp": 0.37,
+      "lit_hours_unsupp_year": 134,
+      "dark_hours_unsupp_year": 380
+    },
+    {
+      "name": "Oversize the PV",
+      "lit_per_day_design": 12.0,
+      "lit_per_day_supported": 11.62,
+      "lit_per_day_unsupp": 0.38,
+      "lit_hours_unsupp_year": 140,
+      "dark_hours_unsupp_year": 2288
+    },
+    {
+      "name": "PV + battery balanced",
+      "lit_per_day_design": 12.0,
+      "lit_per_day_supported": 12.0,
+      "lit_per_day_unsupp": 0.0,
+      "lit_hours_unsupp_year": 0,
+      "dark_hours_unsupp_year": 0
+    }
+  ]
+}
