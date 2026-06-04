@@ -1,0 +1,204 @@
+/* ============================================================================
+   SOLARA — shared design tokens & components
+   ----------------------------------------------------------------------------
+   ONE stylesheet for the whole SOLARA family: solara.farm, internal tools
+   (e.g. Solara EF Internal), dashboards and HTML reports.
+
+   HOW TO USE
+     <link rel="stylesheet" href="solara-tokens.css" />
+   and build the page out of the documented components below (.card, .kpi,
+   table.data, .answer-card, .toggle, .btn, .tag-pill, .topbar, footer.site …).
+
+   HOW TO CHANGE THE LOOK YOURSELF
+     Every visual decision is a CSS variable in :root. To switch the entire
+     family to a different style, set ONE attribute on <html>:
+         <html data-theme="cream">   ← default (solara.farm canonical)
+         <html data-theme="slate">   ← cool dark dashboard
+         <html data-theme="paper">   ← high-contrast, print/report friendly
+     Or invert any theme for dark mode with  <html data-mode="dark">.
+     To make a brand-new theme, copy a [data-theme="…"] block, rename it, and
+     edit the ~12 surface/ink/accent variables. Nothing else needs to change.
+
+   Canonical source of truth: github.com/TiffanyTsui/solara-demo → assets/tokens.css
+   ========================================================================== */
+
+/* ---- 1. DEFAULT THEME: "cream" (the solara.farm canonical look) ---------- */
+:root,
+:root[data-theme="cream"]{
+  /* Surfaces */
+  --bg:#FCFCF9; --paper:#FFFFFD; --soft:#F4F2EC; --rule:#D5D2C8;
+  /* Ink */
+  --ink:#13343B; --ink-soft:#3D4F50; --muted:#626C71;
+  /* Brand teal family */
+  --teal-deep:#1B474D; --teal:#21808D; --teal-hover:#1D7480; --teal-light:#3FA9B5;
+  /* Semantic */
+  --positive:var(--teal); --warn:#C8821C; --short:#A33A2C;
+  /* Dataviz accents */
+  --pv:#E0A52A; --load:#2D6066; --batt:#7A4B9C; --amber:#C8821C;
+  --c-nl:#1FB8CD; --c-uk:#FFC185; --c-it:#B4413C; --c-ma:#ECEBD5;
+  /* Type */
+  --font-body:'DM Sans','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --font-display:'DM Sans','Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  /* Spacing scale */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px;
+  --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px; --sp-16:64px;
+  /* Shape */
+  --radius:4px; --maxw:1240px;
+  --shadow-hover:0 6px 18px -8px rgba(27,71,77,0.25);
+}
+
+/* ---- ALTERNATIVE THEME: "slate" (cool dark dashboard) -------------------- */
+:root[data-theme="slate"]{
+  --bg:#0E1620; --paper:#16202C; --soft:#1C2733; --rule:#2A3744;
+  --ink:#EAF1F7; --ink-soft:#C2CEDA; --muted:#8595A4;
+  --teal-deep:#7CCfd8; --teal:#3FA9B5; --teal-hover:#56C1CC; --teal-light:#8AD4DD;
+  --positive:var(--teal); --warn:#E0A52A; --short:#E06B5C;
+  --pv:#E0A52A; --load:#3FA9B5; --batt:#A479D6; --amber:#E0A52A;
+  --shadow-hover:0 8px 22px -8px rgba(0,0,0,0.55);
+}
+
+/* ---- ALTERNATIVE THEME: "paper" (high-contrast, print / report) ---------- */
+:root[data-theme="paper"]{
+  --bg:#FFFFFF; --paper:#FFFFFF; --soft:#F2F4F4; --rule:#C7CDCD;
+  --ink:#0C2226; --ink-soft:#2B3A3C; --muted:#56625F;
+  --teal-deep:#11383E; --teal:#1B6E78; --teal-hover:#155860; --teal-light:#3C97A2;
+  --positive:var(--teal); --warn:#A8650F; --short:#94281C;
+  --shadow-hover:none;
+}
+
+/* ---- OPTIONAL DARK MODE (works on any light theme) ----------------------- */
+:root[data-mode="dark"]:not([data-theme="slate"]){
+  --bg:#0F1B1C; --paper:#152526; --soft:#1B2E2F; --rule:#2C4143;
+  --ink:#E7F0EF; --ink-soft:#BCccca; --muted:#7F908E;
+  --teal-deep:#7FD0CF; --teal:#3FA9B5; --teal-hover:#56C1CC; --teal-light:#8AD4DD;
+}
+
+/* ============================================================================
+   BASE
+   ========================================================================== */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font-body);font-size:15px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  transition:background .2s,color .2s;}
+a{color:var(--teal);text-decoration:underline;text-decoration-thickness:1px;
+  text-underline-offset:2px;text-decoration-color:rgba(33,128,141,.4)}
+a:hover{color:var(--teal-hover);text-decoration-color:var(--teal-hover)}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;letter-spacing:-.01em;
+  margin:0;color:var(--teal-deep)}
+h1{font-size:2.15rem;line-height:1.12}
+h2{font-size:1.32rem;line-height:1.25;margin-bottom:6px}
+h3{font-size:1.08rem;line-height:1.3;color:var(--teal)}
+h4{font-size:.92rem;line-height:1.3;color:var(--ink)}
+strong{font-weight:700}
+p{margin:0 0 12px 0} p:last-child{margin-bottom:0}
+.container{max-width:var(--maxw);margin:0 auto;padding:var(--sp-8)}
+
+/* Eyebrows / kickers / labels — mono, uppercase, tracked */
+.kicker,.eyebrow{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.kicker.positive{color:var(--teal)} .kicker.negative{color:var(--short)}
+.lede{font-size:1.05rem;color:var(--ink-soft);max-width:62ch}
+.muted{color:var(--muted)}
+
+/* ============================================================================
+   TOP NAV + FOOTER
+   ========================================================================== */
+.topbar{display:flex;align-items:center;justify-content:space-between;
+  padding:16px var(--sp-8);background:var(--paper);border-bottom:1px solid var(--rule);
+  position:sticky;top:0;z-index:50}
+.brand{display:flex;align-items:center;gap:12px;color:var(--teal-deep);text-decoration:none}
+.brand-mark,.logo{color:var(--teal)}
+.brand-title,.brand strong{font-family:var(--font-display);font-weight:700;
+  font-size:1.05rem;letter-spacing:.06em;line-height:1}
+.brand-sub,.brand span{font-size:.72rem;color:var(--muted);margin-top:3px}
+footer.site{margin-top:48px;padding:24px var(--sp-8);border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:center;color:var(--muted);
+  font-size:.78rem;font-family:var(--font-mono);letter-spacing:.02em;background:var(--paper)}
+
+/* ============================================================================
+   CARDS / KPI TILES
+   ========================================================================== */
+.card{background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);
+  padding:22px 24px}
+.card-sub{color:var(--ink-soft);font-size:.88rem;margin-top:2px;max-width:80ch}
+.kpi{background:var(--paper);border:1px solid var(--rule);border-top:3px solid var(--teal);
+  padding:14px 16px;border-radius:var(--radius)}
+.kpi.warn{border-top-color:var(--short)}
+.kpi-label{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;
+  color:var(--muted);text-transform:uppercase;margin-bottom:8px}
+.kpi-value{font-family:var(--font-display);font-weight:700;font-size:1.6rem;
+  color:var(--teal-deep);line-height:1}
+.kpi.warn .kpi-value{color:var(--short)}
+.kpi-unit{font-size:.76rem;color:var(--muted);margin-top:4px}
+.module-card{display:block;text-decoration:none;color:inherit;background:var(--paper);
+  border:1px solid var(--rule);border-top:3px solid var(--teal);padding:20px 22px;
+  border-radius:var(--radius);transition:transform .15s,box-shadow .15s,border-color .15s}
+.module-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);
+  border-color:var(--teal);text-decoration:none;color:inherit}
+
+/* ============================================================================
+   ANSWER CARD (the "verdict" block)
+   ========================================================================== */
+.answer-card{background:var(--paper);border:1px solid var(--rule);
+  border-left:4px solid var(--short);padding:22px 24px;border-radius:var(--radius)}
+.answer-card.positive{border-left-color:var(--teal)}
+.answer-headline{font-family:var(--font-display);font-weight:700;font-size:1.2rem;
+  color:var(--short);margin-bottom:10px}
+.answer-card.positive .answer-headline{color:var(--teal-deep)}
+.answer-body{color:var(--ink-soft);font-size:.93rem}
+
+/* ============================================================================
+   TOGGLE / BUTTONS / PILLS
+   ========================================================================== */
+.toggle{display:inline-flex;border:1px solid var(--rule);border-radius:var(--radius);
+  overflow:hidden;background:var(--paper)}
+.toggle-btn{background:transparent;border:0;padding:8px 14px;font-family:var(--font-body);
+  font-size:.85rem;color:var(--ink-soft);cursor:pointer;border-right:1px solid var(--rule)}
+.toggle-btn:last-child{border-right:0}
+.toggle-btn.active{background:var(--teal-deep);color:#fff}
+.toggle-btn:not(.active):hover{background:var(--soft)}
+.btn{display:inline-block;padding:10px 18px;border-radius:var(--radius);background:var(--teal);
+  color:#fff;text-decoration:none;border:0;font-family:var(--font-body);font-size:.9rem;
+  font-weight:500;cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--teal-hover);color:#fff}
+.btn-ghost{background:transparent;color:var(--teal);border:1px solid var(--rule)}
+.btn-ghost:hover{background:var(--soft);color:var(--teal-deep)}
+.tag-pill{display:inline-block;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--teal);background:rgba(33,128,141,.08);
+  padding:3px 9px;border-radius:2px}
+.tag-pill.warn{color:var(--short);background:rgba(163,58,44,.08)}
+.tag-pill.soon{color:var(--muted);background:rgba(98,108,113,.1)}
+
+/* ============================================================================
+   TABLES  (use class="data")
+   ========================================================================== */
+table.data{width:100%;border-collapse:collapse;font-size:.88rem}
+table.data th,table.data td{padding:9px 12px;text-align:left;
+  border-bottom:1px solid var(--rule);vertical-align:top}
+table.data th{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--soft)}
+table.data tr:last-child td{border-bottom:0}
+table.data td.win{background:rgba(33,128,141,.08);color:var(--teal-deep);font-weight:700}
+
+/* ============================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width:1080px){.container{padding:var(--sp-6)}}
+@media (max-width:720px){
+  .topbar{flex-direction:column;align-items:flex-start;gap:10px;padding:14px 20px}
+  .container{padding:20px}
+  h1{font-size:1.7rem}
+  footer.site{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+/* ============================================================================
+   PRINT  (HTML reports → PDF)
+   ========================================================================== */
+@media print{
+  html{--bg:#fff;--paper:#fff}
+  .topbar{position:static;border-bottom:1px solid var(--rule)}
+  .card,.kpi,.module-card{break-inside:avoid;box-shadow:none}
+  a{color:var(--ink);text-decoration:none}
+}
