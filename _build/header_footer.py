@@ -34,6 +34,7 @@ HEADER = lambda title, extra_head="": f"""<!doctype html>
   </a>
   <nav class="topnav">
     <a data-nav="/design" href="/design/">Design</a>
+    <a data-nav="/plan" href="/plan/">Plan</a>
     <a data-nav="/operate" href="/operate/">Operate</a>
     <a data-nav="/platform" href="/platform/">Platform</a>
     <a data-nav="/about" href="/about/">About</a>

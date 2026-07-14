@@ -29,6 +29,7 @@
   </a>
   <nav class="topnav">
     <a data-nav="/design" href="./design/index.html">Design</a>
+    <a data-nav="/plan" href="./plan/index.html">Plan</a>
     <a data-nav="/operate" href="./operate/index.html">Operate</a>
     <a data-nav="/platform" href="./platform/index.html">Platform</a>
     <a data-nav="/about" href="./about/index.html">About</a>
@@ -41,7 +42,7 @@
   <div>
     <div class="kicker">Decision platform · Internal preview</div>
     <h1>From feasibility to live operations — one model, one ledger.</h1>
-    <p class="lede">SOLARA pairs a pre-build decision tool with a digital twin for the live facility. The same physics model, weather profile, and impact accounting underwrite both — so the design that wins on paper is the one you can verify in operation.</p>
+    <p class="lede">SOLARA pairs a pre-build decision tool, a season planner, and a digital twin for the live facility. The same physics model, cost ledger, and impact accounting underwrite all three — so the design that wins on paper is the one you plan against and verify in operation.</p>
   </div>
   <div class="hero-meta">
     <div class="row"><strong>Demo facility</strong><br>Farm32 · Agadir-Massira, Morocco</div>
@@ -50,26 +51,33 @@
   </div>
 </section>
 
-<section class="product-grid">
+<section class="product-grid three">
   <a class="product-card" href="./design/index.html">
     <div class="product-kicker">Product 1 · Pre-build</div>
     <h2>SOLARA Design</h2>
     <div class="product-tag">Decide site, geometry, equipment, and sizing before construction.</div>
-    <div class="product-body">Five interoperable modules cover site &amp; climate, facility energy, solar &amp; storage, and environmental impact. Outputs are auditable — every KPI traces back to a physics simulation, a PEFCR life-cycle stage, or a measured tariff.</div>
-    <div class="product-foot">5 modules → Site · Energy · Solar · Impact</div>
+    <div class="product-body">Interoperable modules cover site &amp; climate, facility energy, solar &amp; storage, and environmental impact. Outputs are auditable — every KPI traces back to a physics simulation, a PEFCR life-cycle stage, or a measured tariff.</div>
+    <div class="product-foot">Site · Energy · Solar · Impact</div>
+  </a>
+  <a class="product-card" href="./plan/index.html">
+    <div class="product-kicker">Product 2 · Pre-season</div>
+    <h2>SOLARA Plan</h2>
+    <div class="product-tag">Decide what to grow, when, and how much — before the season commits.</div>
+    <div class="product-body">A crop ledger plus the energy costs from Design become a profit-maximal planting calendar, solved as an LP/MILP in milliseconds. Facility-agnostic: indoor farm or greenhouse is a property of the data, not the model.</div>
+    <div class="product-foot">Weekly MILP · Scenario overrides · Shadow prices</div>
   </a>
   <a class="product-card" href="./operate/index.html">
-    <div class="product-kicker">Product 2 · Post-build</div>
+    <div class="product-kicker">Product 3 · Post-build</div>
     <h2>SOLARA Operate</h2>
     <div class="product-tag">Digital twin with live data and automated reporting.</div>
-    <div class="product-body">Once the facility is built, SOLARA ingests meter, weather, and yield data — and produces investor-ready feasibility, performance, and compliance reports on a schedule. The first reference deployment is Farm32.</div>
+    <div class="product-body">Once the facility is built, SOLARA ingests meter, weather, and yield data — benchmarks it against the design and the plan — and produces investor-ready reports on a schedule. The first reference deployment is Farm32.</div>
     <div class="product-foot">Live dashboard · Automated PDF reports</div>
   </a>
 </section>
 
 <section>
   <div class="kicker">Module map</div>
-  <h2 style="margin-bottom:18px">Five modules, one workflow</h2>
+  <h2 style="margin-bottom:18px">One workflow — design, plan, operate</h2>
   <div class="module-grid">
     <a class="module-card" href="./design/site/index.html">
       <div class="step">Step 1</div>
@@ -94,6 +102,12 @@
       <h3>Environmental Impact</h3>
       <p>PEF-aligned LCA across all life-cycle stages, plus CSRD/ESRS-ready disclosure exports.</p>
       <div class="status soon">Coming · scoped</div>
+    </a>
+    <a class="module-card" href="./plan/index.html">
+      <div class="step">Plan</div>
+      <h3>Cultivation Planning</h3>
+      <p>Ledger-driven LP/MILP planting calendar with scenario stress-tests and shadow prices. Indoor or greenhouse — same engine.</p>
+      <div class="status live">Live · demo data</div>
     </a>
     <a class="module-card" href="./operate/index.html">
       <div class="step">Operate</div>

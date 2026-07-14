@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SOLARA Plan — Cultivation planning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css" />
+<style>
+  .flow-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:36px}
+  .flow-step{background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);
+    padding:18px 20px;position:relative}
+  .flow-step.current{border-color:var(--teal);border-top:3px solid var(--teal)}
+  .flow-step .flow-kicker{font-family:var(--font-mono);font-size:0.66rem;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .flow-step.current .flow-kicker{color:var(--teal)}
+  .flow-step h3{margin-bottom:6px}
+  .flow-step p{font-size:0.85rem;color:var(--ink-soft);margin:0}
+  .flow-step:not(:last-child)::after{
+    content:"→";position:absolute;right:-14px;top:50%;transform:translateY(-50%);
+    color:var(--muted);font-size:1rem;z-index:1}
+  @media (max-width:1080px){.flow-strip{grid-template-columns:1fr}.flow-step:not(:last-child)::after{content:"↓";right:auto;left:24px;top:auto;bottom:-15px;transform:none}}
+
+  .case-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    flex-wrap:wrap;margin:40px 0 16px 0}
+  .case-head h2{margin:0}
+
+  .valid-band{background:var(--paper);border:1px solid var(--rule);border-left:4px solid var(--teal);
+    border-radius:var(--radius);padding:18px 22px;margin:22px 0;
+    display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .valid-band .v-title{font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+  .valid-band p{font-size:0.86rem;color:var(--ink-soft);margin:0}
+  @media (max-width:1080px){.valid-band{grid-template-columns:1fr}}
+
+  .delta-pill{display:inline-block;font-family:var(--font-mono);font-size:0.68rem;
+    letter-spacing:0.08em;padding:2px 8px;border-radius:2px;
+    background:rgba(33,128,141,0.1);color:var(--teal)}
+  .num{font-family:var(--font-mono);font-size:0.82rem;text-align:right;white-space:nowrap}
+  table.data td.num,table.data th.num{text-align:right}
+
+  #chart-plan,#chart-margin{height:360px}
+  #chart-crops,#chart-shadow{height:340px}
+
+  .cta-band{
+    background:linear-gradient(135deg,#1B474D 0%,#21808D 100%);color:#fff;
+    border-radius:var(--radius);padding:32px 36px;margin-top:36px;
+    display:grid;grid-template-columns:1.5fr auto;gap:24px;align-items:center;
+  }
+  .cta-band h2{color:#fff;font-size:1.4rem;margin-bottom:10px}
+  .cta-band p{color:rgba(255,255,255,0.85);font-size:0.95rem;margin:0}
+  .cta-band .cta-meta{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.14em;
+    text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:10px}
+  .cta-band .btn{background:#FCFCF9;color:var(--teal-deep);font-weight:600;padding:12px 22px;font-size:0.95rem}
+  .cta-band .btn:hover{background:#fff;color:var(--teal-deep)}
+  @media (max-width:1080px){.cta-band{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="../index.html">
+    <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
+      <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="20" y1="3" x2="20" y2="9"/><line x1="20" y1="31" x2="20" y2="37"/>
+        <line x1="3" y1="20" x2="9" y2="20"/><line x1="31" y1="20" x2="37" y2="20"/>
+        <line x1="8" y1="8" x2="12" y2="12"/><line x1="28" y1="28" x2="32" y2="32"/>
+        <line x1="8" y1="32" x2="12" y2="28"/><line x1="28" y1="12" x2="32" y2="8"/>
+      </g>
+    </svg>
+    <div><div class="brand-title">SOLARA</div><div class="brand-sub">Sustainability intelligence platform</div></div>
+  </a>
+  <nav class="topnav">
+    <a data-nav="/design" href="../design/index.html">Design</a>
+    <a data-nav="/plan" href="../plan/index.html">Plan</a>
+    <a data-nav="/operate" href="../operate/index.html">Operate</a>
+    <a data-nav="/platform" href="../platform/index.html">Platform</a>
+    <a data-nav="/about" href="../about/index.html">About</a>
+  </nav>
+</header>
+
+<main class="container">
+
+<div class="crumbs"><a href="../index.html">Home</a><span class="sep">›</span>Plan</div>
+
+<section class="page-hero">
+  <div class="kicker">Product 2 · Pre-season</div>
+  <h1>Cultivation planning — what to grow, when, and how much</h1>
+  <p class="lede">SOLARA Plan turns a crop ledger — cycle lengths, yields, prices, labor, and the energy costs coming out of SOLARA Design — into a profit-maximal planting schedule, solved as a linear / mixed-integer program in milliseconds. Every scenario is a data override; every constraint reports its shadow price. The engine is facility-agnostic: indoor farm or greenhouse is a property of the ledger, not the model.</p>
+</section>
+
+<section class="flow-strip">
+  <div class="flow-step">
+    <div class="flow-kicker">Product 1 · Design</div>
+    <h3>Decide what to build</h3>
+    <p>Site, geometry, equipment, PV + storage sizing. Outputs the energy cost profile per season that Plan prices cultivation against.</p>
+  </div>
+  <div class="flow-step current">
+    <div class="flow-kicker">Product 2 · Plan</div>
+    <h3>Decide what to grow</h3>
+    <p>Ledger-driven optimization of the planting calendar under space, labor, and rate constraints — with scenario stress-tests before the season commits.</p>
+  </div>
+  <div class="flow-step">
+    <div class="flow-kicker">Product 3 · Operate</div>
+    <h3>Verify and re-plan</h3>
+    <p>The plan becomes the baseline the live twin tracks. Actual yields, cycle times, and prices flow back into the ledger for the next re-solve.</p>
+  </div>
+</section>
+
+<!-- ============ Case 1: Farm32 indoor ============ -->
+<div class="case-head">
+  <div>
+    <div class="kicker">Case 1 · Indoor — reference facility</div>
+    <h2>Farm32 weekly planting plan, Agadir</h2>
+  </div>
+  <span class="tag-pill">Weekly MILP · demo data</span>
+</div>
+<p class="lede" style="font-size:0.95rem;margin-bottom:18px">The 650 m² two-zone basil facility from <a href="../design/index.html">SOLARA Design</a>, planned as 20 beds with a 28-day cycle. Indoors the cycle length never changes — winter only changes the <em>energy price</em>, because the battery covers less of the night block. The decision each week: how many beds to plant, up to the transplanting crew's limit of 5.</p>
+
+<div class="controls">
+  <div class="control-group">
+    <label>Scenario</label>
+    <div class="toggle" id="scenario-toggle"></div>
+  </div>
+  <div class="control-group" style="margin-left:auto">
+    <span class="muted" id="scenario-desc" style="font-size:0.8rem"></span>
+  </div>
+</div>
+
+<div class="kpi-grid" style="margin-bottom:22px">
+  <div class="kpi"><div class="kpi-label">Optimized profit</div><div class="kpi-value" id="kpi-opt">—</div><div class="kpi-unit">EUR / year</div></div>
+  <div class="kpi"><div class="kpi-label">Always-full plan</div><div class="kpi-value" id="kpi-base">—</div><div class="kpi-unit">EUR / year · naive rhythm</div></div>
+  <div class="kpi" id="kpi-delta-box"><div class="kpi-label">Plan advantage</div><div class="kpi-value" id="kpi-delta">—</div><div class="kpi-unit" id="kpi-delta-sub">vs always-full</div></div>
+  <div class="kpi"><div class="kpi-label">Idle weeks</div><div class="kpi-value" id="kpi-idle">—</div><div class="kpi-unit">of 52 planting weeks</div></div>
+  <div class="kpi"><div class="kpi-label">Bed utilization</div><div class="kpi-value" id="kpi-util">—</div><div class="kpi-unit">bed-weeks used / available</div></div>
+  <div class="kpi"><div class="kpi-label">Beds planted</div><div class="kpi-value" id="kpi-beds">—</div><div class="kpi-unit">batches / year</div></div>
+</div>
+
+<div class="chart-block split">
+  <div>
+    <div class="chart-head">
+      <h3>The plan — beds planted &amp; occupancy</h3>
+      <div class="chart-sub">Bars: beds planted per week (optimizer). Line: beds in use against the 20-bed cap. Shaded: low-solar window.</div>
+    </div>
+    <div id="chart-plan"></div>
+  </div>
+  <div>
+    <div class="chart-head">
+      <h3>Why — margin per planted m²</h3>
+      <div class="chart-sub">Contribution of one m² planted in each week, at its harvest-week price. Red = planting loses money; the optimizer plants nothing there.</div>
+    </div>
+    <div id="chart-margin"></div>
+  </div>
+</div>
+
+<div class="answer-card positive" id="answer-card">
+  <div class="kicker positive" id="answer-kicker">Planning answer</div>
+  <div class="answer-headline" id="answer-headline">—</div>
+  <div class="answer-body" id="answer-body">—</div>
+</div>
+
+<!-- ============ Case 2: Greenhouse ============ -->
+<div class="case-head">
+  <div>
+    <div class="kicker">Case 2 · Greenhouse — same engine, different ledger</div>
+    <h2>Six-crop cut-flower greenhouse, 10,000 m²</h2>
+  </div>
+  <span class="tag-pill">13-period LP · validated vs published thesis</span>
+</div>
+<p class="lede" style="font-size:0.95rem;margin-bottom:18px">To show the engine generalizes beyond indoor farms, the same ledger-driven builder reproduces a published cultivation-planning model: Kromhout (2007), a Dutch cut-flower greenhouse with six crops, thirteen 4-week periods, and ground + labor constraints. Five of six published experiments reproduce <strong>to the euro</strong>; the sixth differs −0.03% due to rounding in the thesis' hand-edited coefficients.</p>
+
+<div class="chart-block split">
+  <div>
+    <div class="chart-head">
+      <h3>Base plan — planting by crop and period</h3>
+      <div class="chart-sub">m² planted per 4-week period. The LP fills all 10,000 m² year-round while the labor roster allows.</div>
+    </div>
+    <div id="chart-crops"></div>
+  </div>
+  <div>
+    <div class="chart-head">
+      <h3>Shadow prices — what another m² is worth</h3>
+      <div class="chart-sub">Dual value of the ground constraint per period (EUR/m²). Where it is high, expansion or faster turnover pays; where zero, ground is not the bottleneck.</div>
+    </div>
+    <div id="chart-shadow"></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:22px">
+  <div class="card-head">
+    <h3>Scenario experiments — every one a data override</h3>
+    <div class="card-sub">No model edits: each experiment overrides ledger rows (labor limits, crop set, energy surcharge, labor minutes, contract floors) and re-solves in milliseconds.</div>
+  </div>
+  <table class="data">
+    <thead><tr><th>Scenario</th><th>What changes</th><th class="num">Plan profit</th><th class="num">Published result</th><th>Match</th></tr></thead>
+    <tbody id="kromhout-rows"></tbody>
+  </table>
+</div>
+
+<div class="valid-band">
+  <div>
+    <div class="v-title">Validation 1 · Published thesis</div>
+    <p id="valid-thesis">The 13-period greenhouse LP reproduces Kromhout (2007) tables 6a–c: profits, plan matrices, and ground shadow prices.</p>
+  </div>
+  <div>
+    <div class="v-title">Validation 2 · Independent simulator</div>
+    <p id="valid-gemini">The weekly evaluator replicates an independently written basil planner (fixed 2-sections/week greenhouse schedule) to the cent.</p>
+  </div>
+</div>
+
+<!-- ============ Methodology ============ -->
+<section class="methodology">
+  <div class="kicker">Methodology</div>
+  <h2>One ledger, one solver, any facility</h2>
+  <div class="meth-grid">
+    <div>
+      <div class="meth-label">Model</div>
+      <p>Decision variables are planted area (or beds) per crop and period/week. Constraints: space occupancy over the cycle, labor per period, planting-rate caps, contract floors. Objective: net margin at harvest-time prices minus inputs, energy, and labor.</p>
+    </div>
+    <div>
+      <div class="meth-label">Facility-agnostic by data</div>
+      <p>Indoor vs greenhouse is a ledger property: a greenhouse ledger stretches the winter cycle (light-limited); an indoor ledger keeps the cycle constant and moves the seasonal energy price instead — priced from SOLARA Design's PV + battery dispatch.</p>
+    </div>
+    <div>
+      <div class="meth-label">Solver</div>
+      <p>HiGHS via SciPy — LP for area plans, MILP for integer bed/bay decisions. The 2007 six-crop problem and the 52-week Farm32 problem each solve in milliseconds, so rolling re-solves every week are trivial.</p>
+    </div>
+    <div>
+      <div class="meth-label">Learning loop</div>
+      <p>SOLARA Operate feeds actual cycle times, yields, and realized prices back into the ledger. The plan is never a one-off study: it is re-solved on a rolling horizon as the season reveals itself.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div>
+    <div class="cta-meta">From plan to live baseline</div>
+    <h2>The plan is what Operate holds you to</h2>
+    <p>Every planting decision above becomes a target in the live facility twin — yield per batch, energy per cycle, margin per bed. Drift between plan and actuals is the re-planning trigger.</p>
+  </div>
+  <div><a class="btn" href="../operate/index.html">Open SOLARA Operate →</a></div>
+</div>
+
+</main>
+
+<footer class="site">
+  <div>SOLARA · Internal preview · July 2026</div>
+  <div class="right">Springtide Strategy</div>
+</footer>
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script src="./data.js"></script>
+<script src="../assets/nav.js"></script>
+<script>
+(function(){
+  const D = window.SOLARA_PLAN;
+  const FONT = { family: "Inter, system-ui, sans-serif", size: 12, color: "#3D4F50" };
+  const TEAL = "#1B474D", TEAL2 = "#21808D", TEAL3 = "#3FA9B5",
+        PV = "#E0A52A", SHORT = "#A33A2C", RULE = "#D5D2C8", PAPER = "#FFFFFD",
+        BATT = "#7A4B9C", LOAD = "#2D6066";
+  const BASE = {
+    paper_bgcolor: PAPER, plot_bgcolor: PAPER, font: FONT,
+    margin: { l: 54, r: 54, t: 16, b: 42 },
+    hoverlabel: { font: { family: "Inter, sans-serif", size: 12 }, bgcolor: "#fff", bordercolor: RULE },
+    xaxis: { gridcolor: RULE, zerolinecolor: RULE, linecolor: RULE },
+    yaxis: { gridcolor: RULE, zerolinecolor: RULE, linecolor: RULE },
+    legend: { orientation: "h", x: 0, y: 1.14, font: { size: 11 } },
+  };
+  const CONFIG = { displaylogo: false, modeBarButtonsToRemove: ["lasso2d","select2d","autoScale2d"], responsive: true };
+  const fmt = (n, d=0) => (n===null||n===undefined||Number.isNaN(n)) ? "—"
+    : Number(n).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+
+  const F = D.farm32;
+  const weeks = Array.from({length:52},(_,i)=>i+1);
+
+  // Contiguous winter-week bands (handles the wrap over new year).
+  function winterShapes(){
+    const shapes = [];
+    let start = null;
+    for (let i=0;i<52;i++){
+      if (F.winter[i] && start===null) start = i+1;
+      if ((!F.winter[i] || i===51) && start!==null){
+        const end = F.winter[i] ? 52 : i;
+        shapes.push({ type:"rect", xref:"x", yref:"paper",
+          x0:start-0.5, x1:end+0.5, y0:0, y1:1,
+          fillcolor:"rgba(45,96,102,0.07)", line:{width:0}, layer:"below" });
+        start = null;
+      }
+    }
+    return shapes;
+  }
+
+  function renderFarm32(s){
+    document.getElementById("scenario-desc").textContent = s.desc;
+    const base = s.baseline, opt = s.optimized;
+    const delta = opt.profit - base.profit;
+
+    document.getElementById("kpi-opt").textContent = "€" + fmt(opt.profit);
+    document.getElementById("kpi-base").textContent = "€" + fmt(base.profit);
+    document.getElementById("kpi-delta").textContent = (delta>=0?"+€":"−€") + fmt(Math.abs(delta));
+    document.getElementById("kpi-delta-sub").textContent = delta > 0
+      ? "+" + fmt(delta/base.profit*100,0) + "% vs always-full" : "vs always-full";
+    document.getElementById("kpi-idle").textContent = opt.idle_weeks;
+    document.getElementById("kpi-util").textContent = fmt(opt.utilization*100,0) + "%";
+    document.getElementById("kpi-beds").textContent = opt.beds_planted;
+
+    const card = document.getElementById("answer-card");
+    const kick = document.getElementById("answer-kicker");
+    if (s.key === "normal"){
+      card.className = "answer-card positive"; kick.className = "kicker positive";
+      document.getElementById("answer-headline").textContent =
+        "A steady 5-beds-a-week rhythm is already optimal — the optimizer confirms it.";
+      document.getElementById("answer-body").textContent =
+        "Under design-baseline energy prices every week clears its costs, so the profit-maximal plan is simply to keep the facility full: " +
+        "€" + fmt(opt.profit) + "/year at 100% bed utilization. The value of Plan in a normal year is the proof, not a reshuffle — and the scenario toggle above shows what happens when the year is not normal.";
+    } else {
+      card.className = "answer-card"; kick.className = "kicker negative";
+      document.getElementById("answer-headline").textContent =
+        "In a winter energy spike, the cheapest basil is the basil you don't grow: idle " +
+        opt.idle_weeks + " weeks, save €" + fmt(delta) + ".";
+      document.getElementById("answer-body").textContent =
+        "At 3× winter energy cost, every batch planted into the low-solar window loses money — the always-full rhythm gives up €" + fmt(delta) +
+        " (" + fmt(delta/base.profit*100,0) + "% of its profit) versus pausing planting from week 45 to week 8 and restarting at full rate. " +
+        "The occupancy chart shows the facility deliberately emptying through late winter.";
+    }
+
+    // Chart 1: plan bars + occupancy line
+    Plotly.react("chart-plan", [
+      { name:"Beds planted (optimized)", type:"bar", x:weeks, y:opt.plan,
+        marker:{color:TEAL2}, hovertemplate:"W%{x}: %{y} beds planted<extra></extra>" },
+      { name:"Beds in use", type:"scatter", mode:"lines", x:weeks, y:opt.occupancy,
+        yaxis:"y2", line:{color:TEAL, width:2},
+        hovertemplate:"W%{x}: %{y} of " + F.meta.beds + " beds in use<extra></extra>" },
+    ], { ...BASE, height:360,
+      shapes:[ ...winterShapes(),
+        { type:"line", xref:"paper", yref:"y2", x0:0, x1:1, y0:F.meta.beds, y1:F.meta.beds,
+          line:{color:SHORT, width:1.4, dash:"dash"} } ],
+      xaxis:{ ...BASE.xaxis, title:"Planting week", dtick:4 },
+      yaxis:{ ...BASE.yaxis, title:"Beds planted / week", range:[0, F.meta.max_plant_per_week*1.25] },
+      yaxis2:{ title:"Beds in use", overlaying:"y", side:"right", range:[0, F.meta.beds*1.25],
+        gridcolor:"transparent", linecolor:RULE },
+      annotations:[{ xref:"paper", yref:"y2", x:0.99, y:F.meta.beds, text:"cap " + F.meta.beds,
+        showarrow:false, yshift:9, font:{size:10, color:SHORT} }],
+    }, CONFIG);
+
+    // Chart 2: margin per m2 bars + harvest price line
+    const durW = Math.floor(F.cycle.base_days / 7);
+    const harvestPrice = weeks.map(w => F.price_by_harvest_week[(w-1+durW) % 52]);
+    Plotly.react("chart-margin", [
+      { name:"Margin per planted m²", type:"bar", x:weeks, y:s.margin_per_m2,
+        marker:{ color:s.margin_per_m2.map(v => v>=0 ? TEAL2 : SHORT) },
+        hovertemplate:"W%{x}: €%{y:.2f}/m²<extra></extra>" },
+      { name:"Price at harvest (€/kg)", type:"scatter", mode:"lines", x:weeks, y:harvestPrice,
+        yaxis:"y2", line:{color:PV, width:2, shape:"hv"},
+        hovertemplate:"W%{x} batch sells at €%{y:.2f}/kg<extra></extra>" },
+    ], { ...BASE, height:360,
+      shapes: winterShapes(),
+      xaxis:{ ...BASE.xaxis, title:"Planting week", dtick:4 },
+      yaxis:{ ...BASE.yaxis, title:"Margin (€/m² planted)", zerolinecolor:"#626C71", zerolinewidth:1.5 },
+      yaxis2:{ title:"€/kg at harvest", overlaying:"y", side:"right",
+        gridcolor:"transparent", linecolor:RULE, rangemode:"tozero" },
+    }, CONFIG);
+  }
+
+  // Scenario toggle
+  const toggle = document.getElementById("scenario-toggle");
+  F.scenarios.forEach((s,i)=>{
+    const b = document.createElement("button");
+    b.className = "toggle-btn" + (i===0?" active":"");
+    b.textContent = s.label;
+    b.addEventListener("click", ()=>{
+      toggle.querySelectorAll(".toggle-btn").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      renderFarm32(s);
+    });
+    toggle.appendChild(b);
+  });
+  renderFarm32(F.scenarios[0]);
+
+  // ===== Kromhout =====
+  const K = D.kromhout;
+  const periods = Array.from({length:K.meta.periods},(_,i)=>i+1);
+  const CROP_COLORS = { tulips:PV, freesia:TEAL2, celosia:SHORT, lilium:BATT, lysianthus:TEAL3, panicum:LOAD };
+
+  Plotly.react("chart-crops",
+    Object.entries(K.base.planting).map(([crop, byP]) => ({
+      name: K.crops[crop], type:"bar", x:periods,
+      y: periods.map(p => (byP[p] || 0)),
+      marker:{ color: CROP_COLORS[crop] || TEAL },
+      hovertemplate: K.crops[crop] + " · P%{x}: %{y:.0f} m²<extra></extra>",
+    })),
+    { ...BASE, height:340, barmode:"stack",
+      xaxis:{ ...BASE.xaxis, title:"Period (13 × 4 weeks)", dtick:1 },
+      yaxis:{ ...BASE.yaxis, title:"m² planted" } }, CONFIG);
+
+  const areaRows = K.base.resources.filter(r => r.resource === "area");
+  Plotly.react("chart-shadow", [
+    { name:"Ground shadow price", type:"bar", x:areaRows.map(r=>r.period),
+      y:areaRows.map(r=>r.shadow_price), marker:{color:TEAL},
+      hovertemplate:"P%{x}: €%{y:.2f} per extra m²<extra></extra>" },
+  ], { ...BASE, height:340,
+    xaxis:{ ...BASE.xaxis, title:"Period", dtick:1 },
+    yaxis:{ ...BASE.yaxis, title:"€ / m² / period" } }, CONFIG);
+
+  const tbody = document.getElementById("kromhout-rows");
+  K.scenarios.forEach(s=>{
+    const exact = Math.abs(s.profit - s.thesis) < 1;
+    const tr = document.createElement("tr");
+    tr.innerHTML =
+      "<td><strong>" + s.label + "</strong></td>" +
+      "<td style='color:var(--ink-soft)'>" + s.description + "</td>" +
+      "<td class='num'>€" + fmt(s.profit) + "</td>" +
+      "<td class='num'>€" + fmt(s.thesis) + "</td>" +
+      "<td><span class='delta-pill'>" + (exact ? "exact" :
+        ((s.profit-s.thesis)/s.thesis*100).toFixed(2) + "%") + "</span></td>";
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById("valid-gemini").textContent =
+    D.gemini_validation.desc + " Annual profit €" + fmt(D.gemini_validation.profit) +
+    (D.gemini_validation.match ? " — matched exactly." : " — MISMATCH.");
+})();
+</script>
+</body>
+</html>
