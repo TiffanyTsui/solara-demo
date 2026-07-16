@@ -1,0 +1,106 @@
+<!doctype html>
+<!-- Farm32 · Operate — Sardinia live twin (feed-driven) + Agadir pending +
+     cross-site benchmark.
+     Data: data/feeds/sardinia.json (feed snapshot — overwrite it and reload to
+     simulate the live connection) + assets/cases/farm32.js (benchmark rows).
+     Blocks rendered by assets/js/solara_case.js; style: assets/tokens.css only. -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Farm32 · Operate — SOLARA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/tokens.css?v=4" />
+</head>
+<body data-root="../.." data-case="farm32" data-module="operate">
+<script src="../../assets/cases/registry.js?v=4"></script>
+<script src="../../assets/lock.js?v=4"></script>
+
+<header class="topbar">
+  <a class="brand" href="../../index.html">
+    <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
+      <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="20" y1="3" x2="20" y2="9"/><line x1="20" y1="31" x2="20" y2="37"/>
+        <line x1="3" y1="20" x2="9" y2="20"/><line x1="31" y1="20" x2="37" y2="20"/>
+        <line x1="8" y1="8" x2="12" y2="12"/><line x1="28" y1="28" x2="32" y2="32"/>
+        <line x1="8" y1="32" x2="12" y2="28"/><line x1="28" y1="12" x2="32" y2="8"/>
+      </g>
+    </svg>
+    <div><div class="brand-title">SOLARA</div><div class="brand-sub">Sustainability Operations &amp; Lifecycle Analysis Report Automation</div></div>
+  </a>
+  <nav class="topnav"></nav>
+</header>
+
+<main class="container">
+
+<!-- CONTENT -->
+<div class="crumbs"><a href="../../index.html">Workspaces</a><span class="sep">›</span><a href="../index.html">Farm32</a><span class="sep">›</span>Operate</div>
+
+<div class="case-head" style="margin-top:0">
+  <div>
+    <div class="kicker">Operate · live facility twin</div>
+    <h1 style="font-size:1.7rem">Sardinia against its baseline — Agadir waiting for handover</h1>
+  </div>
+  <span class="tag-pill">live-ready · static snapshot</span>
+</div>
+<p class="lede" style="font-size:0.98rem;margin-bottom:24px">Operate reads a per-site feed file in a fixed schema — today a snapshot, live once the Sardinia sensors connect. Every metric is benchmarked against the calibrated baseline from <a href="../calibrate/index.html">Calibrate</a>.</p>
+
+<div class="op-grid" style="grid-template-columns:1.2fr 1fr">
+  <div class="op-card">
+    <h3>Sardinia — current conditions <span class="badge" id="feed-badge">feed</span></h3>
+    <div class="feed-meta" id="feed-meta"></div>
+    <div id="feed-tiles"></div>
+  </div>
+  <div class="op-card">
+    <h3>Agadir — not built yet <span class="badge muted">pending</span></h3>
+    <p style="font-size:0.88rem;color:var(--ink-soft)">Operate activates at commissioning. Until then the site's targets live in its <a href="../design/index.html">Design chain</a>, and its planting economics in <a href="../plan/index.html">Plan</a>. On handover day, the design ledger becomes the baseline this page tracks — the same mechanism running for Sardinia on the left.</p>
+    <div class="lc-strip" style="margin-top:auto">
+      <div class="lc-step done">Design</div>
+      <div class="lc-step active">Plan</div>
+      <div class="lc-step">Build</div>
+      <div class="lc-step">Operate</div>
+    </div>
+  </div>
+</div>
+
+<div class="chart-block">
+  <div class="chart-head">
+    <h3>Cross-site benchmark</h3>
+    <div class="chart-sub">One table per organization — sites become columns as their data arrives (Sardinia: measured snapshot, demo data; Agadir: design targets until commissioning). Adding a site is one entry in the case file.</div>
+  </div>
+  <table class="data">
+    <thead><tr id="bench-head"></tr></thead>
+    <tbody id="bench-body"></tbody>
+  </table>
+</div>
+
+<div class="cta-band">
+  <div>
+    <div class="cta-meta">Close the loop</div>
+    <h2>Measured weeks tighten both twins</h2>
+    <p>Sardinia's sensor data calibrates the shared physics assumptions — including the ones Agadir's business case is built on. Operate is where Design stops being a promise.</p>
+  </div>
+  <div><a class="btn" href="../calibrate/index.html">See what gets calibrated →</a></div>
+</div>
+<!-- /CONTENT -->
+
+</main>
+
+<footer class="site">
+  <div>SOLARA demo — figures labeled validated · demo data · illustrative · pending</div>
+  <div class="right">Powered by Springtide Strategy · July 2026</div>
+</footer>
+
+<script src="../../assets/cases/farm32.js?v=4"></script>
+<script src="../../assets/nav.js?v=4"></script>
+<script src="../../assets/js/solara_case.js?v=4"></script>
+<script>
+SOLARA_UI.renderFeed("feed-meta", "feed-tiles", "../../data/feeds/sardinia.json");
+SOLARA_UI.renderBenchmarkHead("bench-head");
+SOLARA_UI.renderBenchmark("bench-body");
+</script>
+</body>
+</html>

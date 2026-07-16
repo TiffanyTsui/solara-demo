@@ -3,16 +3,33 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>About — SOLARA</title>
+<title>SOLARA Design — Pre-build decision modules</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/tokens.css?v=4" />
+<link rel="stylesheet" href="../../assets/tokens.css?v=4" />
+<style>
+  .flow-svg .node{cursor:pointer;transition:filter 0.15s}
+  .flow-svg a:hover .node{filter:drop-shadow(0 6px 12px rgba(27,71,77,0.25))}
+  .flow-svg a:hover .node-body{fill:#1D7480}
+  .flow-svg .node-body{fill:#21808D;transition:fill 0.15s}
+  .flow-svg .node-body.coming{fill:#626C71;opacity:0.65}
+  .flow-svg .node-body.operate{fill:#1B474D}
+  .flow-svg .node-text{fill:#fff;font-family:'DM Sans',sans-serif;font-weight:500;pointer-events:none}
+  .flow-svg .node-sub{fill:rgba(255,255,255,0.78);font-family:'JetBrains Mono',monospace;
+    font-size:9px;letter-spacing:0.06em;text-transform:uppercase;pointer-events:none}
+  .flow-svg .arrow{stroke:#3D4F50;stroke-width:1.5;fill:none;marker-end:url(#arrowhead)}
+  .flow-svg .arrow-dashed{stroke-dasharray:4 4}
+  .flow-svg .stage-label{fill:#626C71;font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:0.1em;text-transform:uppercase}
+</style>
 </head>
-<body data-root=".." data-page="about">
+<body data-root="../.." data-case="farm32" data-module="design">
+<script src="../../assets/cases/registry.js?v=4"></script>
+<script src="../../assets/lock.js?v=4"></script>
 
 <header class="topbar">
-  <a class="brand" href="../index.html">
+  <a class="brand" href="../../index.html">
     <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
       <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
       <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -31,15 +48,131 @@
 </header>
 
 <main class="container">
-  <section class="page-hero">
-    <div class="kicker">About</div>
-    <h1>Springtide Strategy · SOLARA</h1>
-    <p class="lede">Reserved for internal review. About copy, team, and contact details will be added before external release.</p>
-  </section>
 
-  <section class="coming-band">
-    <p>Internal demo — May 2026. Return to <a href="../index.html">overview</a> or browse <a href="../design/index.html">Design modules</a>.</p>
-  </section>
+<div class="crumbs"><a href="../../index.html">Home</a><span class="sep">›</span>Design</div>
+
+<section class="page-hero">
+  <div class="kicker">Design · Agadir (indoor · new build)</div>
+  <h1>Pre-build design chain</h1>
+  <p class="lede">Site selection, facility energy, energy management, and environmental impact, all on one physics model. The flow below shows how outputs hand off downstream.</p>
+</section>
+
+<section class="flow-stage">
+  <div class="chart-head">
+    <h2>Module flow — click a step to open</h2>
+    <div class="chart-sub">Site &amp; climate sets the boundary conditions. Facility energy converts geometry &amp; production schedule into an 8760-hour load. Energy management dispatches PV and battery against that load. Environmental impact carries the bill of materials, energy, and water into PEF-aligned indicators. Every module also feeds <strong>Operate</strong> once the facility is live.</div>
+  </div>
+  <svg class="flow-svg" viewBox="0 0 1180 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SOLARA module flow diagram">
+    <defs>
+      <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#3D4F50"/>
+      </marker>
+    </defs>
+
+    <!-- Stage labels -->
+    <text x="120" y="40" class="stage-label" text-anchor="middle">Step 1</text>
+    <text x="340" y="40" class="stage-label" text-anchor="middle">Step 2</text>
+    <text x="560" y="40" class="stage-label" text-anchor="middle">Step 3</text>
+    <text x="780" y="40" class="stage-label" text-anchor="middle">Step 4</text>
+    <text x="1030" y="40" class="stage-label" text-anchor="middle">Live facility</text>
+
+    <!-- SITE -->
+    <a xlink:href="../../design/site/index.html" href="../../design/site/index.html" target="_self">
+      <g class="node">
+        <rect class="node-body" x="40" y="60" width="160" height="110" rx="6"/>
+        <text class="node-sub" x="120" y="85" text-anchor="middle">MODULE 01</text>
+        <text class="node-text" x="120" y="115" text-anchor="middle" font-size="18">Site &amp;</text>
+        <text class="node-text" x="120" y="138" text-anchor="middle" font-size="18">Climate</text>
+        <text class="node-sub" x="120" y="158" text-anchor="middle">TMYx · Solar · Grid</text>
+      </g>
+    </a>
+
+    <!-- ENERGY -->
+    <a xlink:href="../../design/energy/index.html" href="../../design/energy/index.html" target="_self">
+      <g class="node">
+        <rect class="node-body" x="260" y="60" width="160" height="110" rx="6"/>
+        <text class="node-sub" x="340" y="85" text-anchor="middle">MODULE 02</text>
+        <text class="node-text" x="340" y="115" text-anchor="middle" font-size="18">Facility</text>
+        <text class="node-text" x="340" y="138" text-anchor="middle" font-size="18">Energy</text>
+        <text class="node-sub" x="340" y="158" text-anchor="middle">EnergyPlus 8760 h</text>
+      </g>
+    </a>
+
+    <!-- SOLAR -->
+    <a xlink:href="../../design/solar/index.html" href="../../design/solar/index.html" target="_self">
+      <g class="node">
+        <rect class="node-body" x="480" y="60" width="160" height="110" rx="6"/>
+        <text class="node-sub" x="560" y="85" text-anchor="middle">MODULE 03</text>
+        <text class="node-text" x="560" y="115" text-anchor="middle" font-size="17">Energy</text>
+        <text class="node-text" x="560" y="138" text-anchor="middle" font-size="17">Management</text>
+        <text class="node-sub" x="560" y="158" text-anchor="middle">PV + battery dispatch</text>
+      </g>
+    </a>
+
+    <!-- IMPACT -->
+    <a xlink:href="../../design/impact/index.html" href="../../design/impact/index.html" target="_self">
+      <g class="node">
+        <rect class="node-body" x="700" y="60" width="160" height="110" rx="6"/>
+        <text class="node-sub" x="780" y="85" text-anchor="middle">MODULE 04</text>
+        <text class="node-text" x="780" y="115" text-anchor="middle" font-size="17">Environmental</text>
+        <text class="node-text" x="780" y="138" text-anchor="middle" font-size="17">Impact (PEF)</text>
+        <text class="node-sub" x="780" y="158" text-anchor="middle">LCA · CSRD · ESRS</text>
+      </g>
+    </a>
+
+    <!-- OPERATE -->
+    <a xlink:href="../../operate/index.html" href="../../operate/index.html" target="_self">
+      <g class="node">
+        <rect class="node-body operate" x="940" y="60" width="180" height="110" rx="6"/>
+        <text class="node-sub" x="1030" y="85" text-anchor="middle">DIGITAL TWIN</text>
+        <text class="node-text" x="1030" y="115" text-anchor="middle" font-size="18">SOLARA</text>
+        <text class="node-text" x="1030" y="138" text-anchor="middle" font-size="18">Operate</text>
+        <text class="node-sub" x="1030" y="158" text-anchor="middle">Live data · reports</text>
+      </g>
+    </a>
+
+    <!-- Linear arrows between modules -->
+    <line class="arrow" x1="202" y1="115" x2="258" y2="115"/>
+    <line class="arrow" x1="422" y1="115" x2="478" y2="115"/>
+    <line class="arrow" x1="642" y1="115" x2="698" y2="115"/>
+    <line class="arrow arrow-dashed" x1="862" y1="115" x2="938" y2="115"/>
+
+    <!-- Curved feedback arrows: all modules feed Operate -->
+    <path class="arrow arrow-dashed" d="M 120,170 Q 120,230 540,230 Q 1030,230 1030,172" />
+    <text x="540" y="252" class="stage-label" text-anchor="middle">All module outputs become the baseline for the live digital twin</text>
+  </svg>
+</section>
+
+<section>
+  <div class="kicker" style="margin-bottom:14px">Modules</div>
+  <div class="module-grid">
+    <a class="module-card" href="../../design/site/index.html">
+      <div class="step">Module 01</div>
+      <h3>Site &amp; Climate</h3>
+      <p>Lat/long, TMYx weather, GHI/DNI, grid voltage, logistics distance to consumer market. Compares candidate sites on a map.</p>
+      <div class="status live">Open module →</div>
+    </a>
+    <a class="module-card" href="../../design/energy/index.html">
+      <div class="step">Module 02</div>
+      <h3>Facility Energy</h3>
+      <p>3D geometry editor, envelope U-values, LED &amp; HVAC specs, production schedule. Output: hourly load profile (8760 h).</p>
+      <div class="status live">Open module →</div>
+    </a>
+    <a class="module-card" href="../../design/solar/index.html">
+      <div class="step">Module 03</div>
+      <h3>Energy Management</h3>
+      <p>PV array sizing, battery configuration, greedy dispatch. Output: self-sufficiency, shortfall hours, deepest deficit, zero-shortfall design point.</p>
+      <div class="status live">Open module →</div>
+    </a>
+    <a class="module-card" href="../../design/impact/index.html">
+      <div class="step">Module 04</div>
+      <h3>Environmental Impact (PEF)</h3>
+      <p>Eight PEFCR life-cycle stages, EF 3.1 indicators, plus a CSRD/ESRS disclosure pack. Pulls bill-of-materials &amp; energy from Modules 01–03.</p>
+      <div class="status live">Open module →</div>
+    </a>
+  </div>
+</section>
+
 </main>
 
 <footer class="site">
@@ -47,8 +180,7 @@
   <div class="right">Powered by Springtide Strategy · July 2026</div>
 </footer>
 
-<script src="../assets/cases/registry.js?v=4"></script>
-<script src="../assets/nav.js?v=4"></script>
+<script src="../../assets/nav.js?v=4"></script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;

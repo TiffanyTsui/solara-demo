@@ -3,16 +3,25 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>About — SOLARA</title>
+<title>Environmental Impact · SOLARA Design</title>
+<meta name="description" content="Module 04 of SOLARA: a PEF-aligned environmental-impact assessment of the Farm32 basil scenarios — what the footprint is, where it comes from across eight life-cycle stages, and how solar-powered indoor farming in Morocco compares with air-freighted basil from Kenya." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/tokens.css?v=4" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<!-- REPO PATH: change to ../../../assets/tokens.css when committing to design/impact/ -->
+<link rel="stylesheet" href="../../../assets/tokens.css?v=4" />
+<link rel="stylesheet" href="tokens.css?v=4" />
+<!-- REPO PATH: page-local stylesheet ships alongside index.html in design/impact/ — keep ./style.css -->
+<link rel="stylesheet" href="style.css?v=4" />
 </head>
-<body data-root=".." data-page="about">
+<body data-root="../../.." data-case="farm32" data-module="design">
+<script src="../../../assets/cases/registry.js?v=4"></script>
+<script src="../../../assets/lock.js?v=4"></script>
+<a class="skip-link" href="#stages">Skip to the life-cycle stages</a>
 
 <header class="topbar">
-  <a class="brand" href="../index.html">
+  <a class="brand" href="../../../index.html">
     <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
       <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
       <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -22,24 +31,273 @@
         <line x1="8" y1="32" x2="12" y2="28"/><line x1="28" y1="12" x2="32" y2="8"/>
       </g>
     </svg>
-    <div>
-      <div class="brand-title">SOLARA</div>
-      <div class="brand-sub">Sustainability Operations &amp; Lifecycle Analysis Report Automation</div>
-    </div>
+    <div><div class="brand-title">SOLARA</div><div class="brand-sub">Sustainability Operations &amp; Lifecycle Analysis Report Automation</div></div>
   </a>
   <nav class="topnav"></nav>
 </header>
 
 <main class="container">
-  <section class="page-hero">
-    <div class="kicker">About</div>
-    <h1>Springtide Strategy · SOLARA</h1>
-    <p class="lede">Reserved for internal review. About copy, team, and contact details will be added before external release.</p>
+
+<div class="crumbs">
+  <a href="../../../index.html">Home</a><span class="sep">›</span><a href="../../../design/index.html">Design</a><span class="sep">›</span>Environmental Impact
+</div>
+
+<!-- ===================== HERO: the business question + verdict ===================== -->
+<section class="page-hero impact-hero">
+  <div class="impact-hero-text">
+    <div class="kicker">Module 04 · Pre-build</div>
+    <h1 id="heroHead"></h1>
+    <p class="lede" id="heroQuestion"></p>
+  </div>
+  <aside class="answer-card positive">
+    <div class="kicker positive">Answer · climate footprint per kg eaten</div>
+    <div class="verdict-cards">
+      <div class="verdict-card win">
+        <span class="vc-label">Morocco · solar indoor</span>
+        <span class="vc-val" id="vMa">—</span>
+        <span class="vc-unit">kg CO₂e per kg eaten</span>
+      </div>
+      <div class="verdict-vs">vs</div>
+      <div class="verdict-card lose">
+        <span class="vc-label">Kenya · air-freighted</span>
+        <span class="vc-val" id="vKe">—</span>
+        <span class="vc-unit">kg CO₂e per kg eaten</span>
+      </div>
+      <div class="verdict-delta">
+        <span class="vd-big" id="vDelta">—</span>
+        <span class="vd-cap">lower carbon footprint, Morocco vs Kenya</span>
+      </div>
+    </div>
+    <p class="answer-body" id="heroAnswer"></p>
+  </aside>
+</section>
+
+<!-- ===================== THE EIGHT LIFE-CYCLE STAGES (priority section) ===================== -->
+<section class="chart-block" id="stages">
+  <div class="chart-head">
+    <div class="kicker">Where the carbon comes from</div>
+    <h2>The eight life-cycle stages</h2>
+    <div class="chart-sub">Every product is assessed across the same eight PEFCR life-cycle stages, from raw materials to end of life. The bars show how much carbon each stage adds per kilo of basil eaten — switch the system to see how the hotspots move.</div>
+  </div>
+
+  <div class="archbar" role="tablist" aria-label="Select a farming system">
+    <button class="arch-tab is-active" role="tab" aria-selected="true" data-arch="indoor">
+      <span class="arch-dot"></span>
+      <span class="arch-label">Morocco · solar indoor</span>
+      <span class="arch-sub">Farm32 sealed CEA</span>
+    </button>
+    <button class="arch-tab" role="tab" aria-selected="false" data-arch="openfield">
+      <span class="arch-dot"></span>
+      <span class="arch-label">Kenya · open field</span>
+      <span class="arch-sub">Air-freight reference</span>
+    </button>
+  </div>
+  <p class="arch-desc" id="archDesc"></p>
+
+  <div class="journey">
+    <div class="journey-chart-wrap">
+      <div class="chart-box tall"><canvas id="stageChart"></canvas></div>
+      <p class="contrib-cap" id="stageCap"></p>
+    </div>
+    <ol class="stage-list" id="stageList"></ol>
+  </div>
+</section>
+
+<!-- ===================== WHAT IS A FOOTPRINT ===================== -->
+<section class="chart-block">
+  <div class="chart-head">
+    <div class="kicker">Primer</div>
+    <h2>What an environmental footprint is — and why it pays to know yours</h2>
+  </div>
+  <div class="primer-grid">
+    <article>
+      <span class="primer-num">01</span>
+      <h3>A footprint is a full tally</h3>
+      <p>A life-cycle assessment (LCA) adds up every environmental cost of getting a product to you —
+        the energy to grow it, the fertiliser, the water, the fuel to move it, the packaging, the
+        waste. Not just at the farm: <em>cradle to grave</em>.</p>
+    </article>
+    <article>
+      <span class="primer-num">02</span>
+      <h3>It's measured per kilo eaten</h3>
+      <p>To compare two farms fairly, everything is divided by the same yardstick: 1 kg of basil a
+        shopper actually eats. That's the <em>functional unit</em>. Same basis, honest comparison.</p>
+    </article>
+    <article>
+      <span class="primer-num">03</span>
+      <h3>It's now a business asset</h3>
+      <p>EU buyers must soon report their supply-chain emissions (CSRD/ESRS). A credible, low footprint
+        is becoming a ticket onto the supermarket shelf — and a number you can defend a premium price with.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== FUNCTIONAL UNIT EXPLAINED ===================== -->
+<section class="chart-block">
+  <div class="chart-head">
+    <div class="kicker">The yardstick · "per kg eaten"</div>
+    <h2>Why Farm32 grows 1.33 kg to sell you 1 kg</h2>
+  </div>
+  <div class="fu-layout">
+    <div class="fu-text">
+      <p id="fuPlain" class="muted-lead"></p>
+    </div>
+    <div class="fu-cascade" id="fuCascade" aria-label="Loss cascade from harvested to eaten"></div>
+  </div>
+</section>
+
+<!-- ===================== DECISION LEVERS ===================== -->
+<section class="chart-block">
+  <div class="chart-head">
+    <div class="kicker">So what should a business do?</div>
+    <h2>Turning the footprint into decisions</h2>
+  </div>
+  <div class="levers-grid" id="leversGrid"></div>
+</section>
+
+<!-- ===================== FULL PICTURE: 16 indicators ===================== -->
+<section class="chart-block">
+  <div class="chart-head">
+    <div class="kicker">The full picture · beyond carbon</div>
+    <h2>Carbon is only one of sixteen measures</h2>
+    <div class="chart-sub">A footprint isn't just CO₂. Farm32's indoor model wins on carbon, water and
+      fossil energy, but loses on land-equivalent and scarce metals — because the solar field, building and
+      batteries have to be built. A serious buyer looks at the whole board. Green = the system with the
+      lower (better) value for that measure.</div>
+  </div>
+  <div class="table-scroll">
+    <table id="compareTable" class="data">
+      <thead>
+        <tr>
+          <th scope="col">Environmental measure</th>
+          <th scope="col">What it means in plain terms</th>
+          <th scope="col" class="num">Morocco</th>
+          <th scope="col" class="num">Kenya</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Winner</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot>
+        <tr>
+          <th scope="row">Overall single score</th>
+          <td class="muted">One blended number across all 16 (lower is better)</td>
+          <td class="num" id="ssMa">—</td>
+          <td class="num" id="ssKe">—</td>
+          <td>Pt</td>
+          <td id="ssWin"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <p class="note-line">Note: a lower single score means a lower overall footprint. Here Kenya's blended
+    score is lower because land-equivalent and metals are weighted heavily and Morocco's solar-plus-building
+    infrastructure scores poorly there — a reminder that "which is greener" depends on what your buyers and
+    regulators weight most. For carbon-focused reporting (the CSRD headline), Morocco wins clearly.</p>
+</section>
+
+<!-- ===================== THE LIVE ENGINE ===================== -->
+<section class="chart-block" id="engine">
+  <div class="chart-head">
+    <div class="kicker">The live engine</div>
+    <h2>Try it yourself: change the farm, watch the footprint move</h2>
+    <div class="chart-sub">This is the working calculator behind the numbers above. Each line is a real
+      quantity from the farm's bill of materials; every footprint is that quantity multiplied by its impact
+      factor, then summed across the inventory. Edit any value and all sixteen measures recompute instantly.</div>
+  </div>
+
+  <div class="equation" role="img" aria-label="Impact for category i equals the sum over flows j of Q sub j times CF sub i j">
+    <span class="eq-out">Footprint<sub>i</sub></span>
+    <span class="eq-op">=</span>
+    <span class="eq-sum">&Sigma;<sub>j</sub></span>
+    <span class="eq-term">( <span class="eq-q">Quantity<sub>j</sub></span> <span class="eq-op">&times;</span> <span class="eq-cf">Factor<sub>ij</sub></span> )</span>
+  </div>
+  <p class="eq-caption">
+    <span class="chip chip-q">Quantity</span> what the farm uses (editable) &nbsp;·&nbsp;
+    <span class="chip chip-cf">Factor</span> impact per unit (EF 3.1) &nbsp;·&nbsp;
+    <span class="chip chip-out">Footprint</span> the result for each measure
+  </p>
+
+  <div class="archbar second" role="tablist" aria-label="Select a system for the calculator">
+    <button class="arch-tab2 is-active" role="tab" aria-selected="true" data-arch2="indoor">
+      <span class="arch-label">Morocco · solar indoor</span>
+    </button>
+    <button class="arch-tab2" role="tab" aria-selected="false" data-arch2="openfield">
+      <span class="arch-label">Kenya · open field</span>
+    </button>
+    <button id="resetBtn" class="reset-btn" type="button" title="Restore study quantities">↺ Reset to study values</button>
+  </div>
+
+  <div class="grid">
+    <section class="panel" aria-labelledby="bomHead">
+      <div class="panel-head">
+        <h3 id="bomHead">What the farm uses <span class="muted">Quantity</span></h3>
+        <p class="panel-note">The bill of materials, per <span id="fuLabel"></span>. Edit any value.</p>
+      </div>
+      <div id="bomList" class="bom-list"></div>
+      <p class="recompute-flag" id="recomputeFlag" hidden>● Quantities edited — recomputed from your inputs.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="resHead">
+      <div class="panel-head">
+        <h3 id="resHead">The resulting footprint <span class="muted">Result</span></h3>
+        <p class="panel-note" id="methodNote"></p>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="contrib-block">
+        <div class="contrib-head">
+          <h4>Which input drives this measure?</h4>
+          <label class="select-wrap">
+            <span class="sr-only">Measure to break down</span>
+            <select id="catSelect"></select>
+          </label>
+        </div>
+        <div class="chart-box"><canvas id="contribChart"></canvas></div>
+        <p class="contrib-cap" id="contribCap"></p>
+      </div>
+    </section>
+  </div>
+
+  <section class="panel table-panel" aria-labelledby="tblHead">
+    <div class="panel-head row-between">
+      <div>
+        <h3 id="tblHead">All 16 measures · live result vs the validated study</h3>
+        <p class="panel-note">A green check means the calculator reproduces the published study value exactly.</p>
+      </div>
+      <span class="validate-pill" id="validatePill"></span>
+    </div>
+    <div class="table-scroll">
+      <table id="resultsTable" class="data">
+        <thead>
+          <tr>
+            <th scope="col">Measure</th>
+            <th scope="col">Unit</th>
+            <th scope="col" class="num">Calculator</th>
+            <th scope="col" class="num">Study value</th>
+            <th scope="col" class="match">Match</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+            <th scope="row">Overall single score</th>
+            <td>Pt</td>
+            <td class="num" id="ssEngine">—</td>
+            <td class="num" id="ssGolden">—</td>
+            <td class="match" id="ssMatch"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   </section>
 
-  <section class="coming-band">
-    <p>Internal demo — May 2026. Return to <a href="../index.html">overview</a> or browse <a href="../design/index.html">Design modules</a>.</p>
-  </section>
+  <p class="src">
+    Method: SOLARA LCA engine (Impact = Σ quantity × factor). Data: Farm32 EF study (Springtide / SOLARA);
+    Fresh Produce PEFCR (2026); EF 3.1 (adapted) V1.04; SimaPro 10.3; ecoinvent 3.11 cut-off. Per-input
+    factors are <strong>screening-grade and not a PEFCR compliance substitute</strong>.
+  </p>
+</section>
+
 </main>
 
 <footer class="site">
@@ -47,8 +305,10 @@
   <div class="right">Powered by Springtide Strategy · July 2026</div>
 </footer>
 
-<script src="../assets/cases/registry.js?v=4"></script>
-<script src="../assets/nav.js?v=4"></script>
+<script src="data.js?v=4"></script>
+<script src="app.js?v=4"></script>
+<!-- REPO PATH: change to ../../../assets/nav.js when committing to design/impact/ -->
+<script src="../../../assets/nav.js?v=4"></script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;
@@ -377,5 +637,6 @@
 })();
 
 
-</script></body>
+</script>
+</body>
 </html>

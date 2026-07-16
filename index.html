@@ -1,18 +1,21 @@
 <!doctype html>
+<!-- SOLARA v2 landing — six demo cases by facility type × lifecycle stage.
+     Data: assets/cases/registry.js (workspace list; cards below are hand-written copy).
+     Style: assets/tokens.css only. Nav: filled by assets/nav.js. -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>SOLARA — Sustainability intelligence for controlled-environment agriculture</title>
+<title>SOLARA — demo cases</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/tokens.css" />
+<link rel="stylesheet" href="./assets/tokens.css?v=4" />
 </head>
-<body>
+<body data-root="." data-page="workspaces">
 
 <header class="topbar">
-  <a class="brand" href="index.html">
+  <a class="brand" href="./index.html">
     <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
       <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
       <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -24,435 +27,90 @@
     </svg>
     <div>
       <div class="brand-title">SOLARA</div>
-      <div class="brand-sub">Sustainability intelligence platform</div>
+      <div class="brand-sub">Sustainability Operations &amp; Lifecycle Analysis Report Automation</div>
     </div>
   </a>
-  <nav class="topnav">
-    <a data-nav="/design" href="./design/index.html">Design</a>
-    <a data-nav="/plan" href="./plan/index.html">Plan</a>
-    <a data-nav="/operate" href="./operate/index.html">Operate</a>
-    <a data-nav="/platform" href="./platform/index.html">Platform</a>
-    <a data-nav="/about" href="./about/index.html">About</a>
-  </nav>
+  <nav class="topnav"></nav>
 </header>
 
 <main class="container">
 
-<section class="home-hero">
-  <div>
-    <div class="kicker">Decision platform · Internal preview</div>
-    <h1>From feasibility to live operations — one model, one ledger.</h1>
-    <p class="lede">SOLARA pairs a pre-build decision tool, a season planner, and a digital twin for the live facility. The same physics model, cost ledger, and impact accounting underwrite all three — so the design that wins on paper is the one you plan against and verify in operation.</p>
-  </div>
-  <div class="hero-meta">
-    <div class="row"><strong>Demo facility</strong><br>Farm32 · Agadir-Massira, Morocco</div>
-    <div class="row"><strong>System</strong><br>650 m² two-zone indoor basil · 480 kWp PV + 600 kWh battery</div>
-    <div class="row"><strong>Status</strong><br>Stage 1 — static internal preview</div>
-  </div>
+<!-- CONTENT -->
+<section class="page-hero" style="margin-top:16px">
+  <h1>Demo cases</h1>
+  <p class="lede">One data model for designing, planning and operating growing facilities. Each card is one facility type at one lifecycle stage; each case opens with an access code.</p>
 </section>
 
-<section class="product-grid three">
-  <a class="product-card" href="./design/index.html">
-    <div class="product-kicker">Product 1 · Pre-build</div>
-    <h2>SOLARA Design</h2>
-    <div class="product-tag">Decide site, geometry, equipment, and sizing before construction.</div>
-    <div class="product-body">Interoperable modules cover site &amp; climate, facility energy, solar &amp; storage, and environmental impact. Outputs are auditable — every KPI traces back to a physics simulation, a PEFCR life-cycle stage, or a measured tariff.</div>
-    <div class="product-foot">Site · Energy · Solar · Impact</div>
+<section class="case-grid">
+  <a class="case-card" href="./farm32/index.html">
+    <div class="case-kicker">Indoor · New build</div>
+    <h2>Basil — Morocco</h2>
+    <div class="case-body">650 m² two-zone facility in Agadir, pre-construction. Design chain (site, energy, solar &amp; storage, impact) and a weekly planting plan priced on the design's energy coefficients.</div>
+    <div class="case-foot">Design · Plan · 🔒</div>
   </a>
-  <a class="product-card" href="./plan/index.html">
-    <div class="product-kicker">Product 2 · Pre-season</div>
-    <h2>SOLARA Plan</h2>
-    <div class="product-tag">Decide what to grow, when, and how much — before the season commits.</div>
-    <div class="product-body">A crop ledger plus the energy costs from Design become a profit-maximal planting calendar, solved as an LP/MILP in milliseconds. Facility-agnostic: indoor farm or greenhouse is a property of the data, not the model.</div>
-    <div class="product-foot">Weekly MILP · Scenario overrides · Shadow prices</div>
+  <a class="case-card" href="./farm32/operate/index.html">
+    <div class="case-kicker">Indoor · Operational</div>
+    <h2>Basil — Italy</h2>
+    <div class="case-body">Mid-tech site on Sardinia, newly operational. Interactive weekly planner from day one; the edge-computing data stream is being set up, so estimates are replaced by measurements as they land.</div>
+    <div class="case-foot">Calibrate · Plan · Operate · 🔒</div>
   </a>
-  <a class="product-card" href="./operate/index.html">
-    <div class="product-kicker">Product 3 · Post-build</div>
-    <h2>SOLARA Operate</h2>
-    <div class="product-tag">Digital twin with live data and automated reporting.</div>
-    <div class="product-body">Once the facility is built, SOLARA ingests meter, weather, and yield data — benchmarks it against the design and the plan — and produces investor-ready reports on a schedule. The first reference deployment is Farm32.</div>
-    <div class="product-foot">Live dashboard · Automated PDF reports</div>
+  <a class="case-card" href="./chrysant/index.html">
+    <div class="case-kicker">Greenhouse · Existing</div>
+    <h2>Chrysanthemum — The Netherlands</h2>
+    <div class="case-body">Weekly planting for a cut-flower greenhouse with a four-year future outlook, validated with grower. Scenarios put a price on the risk landscape before the season starts: what the Women's-Day peak can swing, what fixed contracts cost, what flexibility is worth.</div>
+    <div class="case-foot">Calibrate · Plan · Operate · 🔒</div>
   </a>
+  <a class="case-card connecting" href="./hic/index.html">
+    <div class="case-kicker">Greenhouse · Connecting</div>
+    <h2>Skyberries — The Netherlands</h2>
+    <div class="case-body">Existing HIC greenhouse with strawberry trials, recording climate, substrate and yield in Let's Grow. The workspace maps each stream onto the feed schema; one export job activates Calibrate and Operate.</div>
+    <div class="case-foot">Connection pending · 🔒</div>
+  </a>
+  <a class="case-card" href="./flora/index.html">
+    <div class="case-kicker">Greenhouse · Planning study</div>
+    <h2>Crop mix — The Netherlands</h2>
+    <div class="case-body">Six crops, thirteen periods, 10,000 m² — a published planning study, validated against its results. The forward look for growers who gain flexibility over what they grow: planning expands from one crop's calendar to allocating space among six, under the same scenario logic.</div>
+    <div class="case-foot">Plan · 🔒</div>
+  </a>
+  <div class="case-card pending">
+    <div class="case-kicker">Pending</div>
+    <h2>Your crop — your country</h2>
+    <div class="case-body">TBD</div>
+    <div class="case-foot">—</div>
+  </div>
 </section>
 
 <section>
-  <div class="kicker">Module map</div>
-  <h2 style="margin-bottom:18px">One workflow — design, plan, operate</h2>
+  <div class="kicker">Reference</div>
   <div class="module-grid">
-    <a class="module-card" href="./design/site/index.html">
-      <div class="step">Step 1</div>
-      <h3>Site &amp; Climate</h3>
-      <p>Latitude, TMYx weather, solar resource, grid &amp; logistics. Map-first selection across candidate sites.</p>
-      <div class="status live">Live · demo data</div>
+    <a class="module-card" href="./platform/index.html">
+      <div class="step">Platform</div>
+      <h3>Methodology &amp; data layer</h3>
+      <p>Engines, data sources, and life-cycle scope behind the cases.</p>
+      <div class="status live">Reference</div>
     </a>
-    <a class="module-card" href="./design/energy/index.html">
-      <div class="step">Step 2</div>
-      <h3>Facility Energy</h3>
-      <p>3D geometry, envelope, lighting, HVAC. EnergyPlus 8760-hour load profile per production schedule.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
-    <a class="module-card" href="./design/solar/index.html">
-      <div class="step">Step 3</div>
-      <h3>Solar &amp; Storage</h3>
-      <p>PV sizing, battery dispatch, shortfall accounting. Design-space sweep finds the zero-shortfall point.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
-    <a class="module-card coming" href="./design/impact/index.html">
-      <div class="step">Step 4</div>
-      <h3>Environmental Impact</h3>
-      <p>PEF-aligned LCA across all life-cycle stages, plus CSRD/ESRS-ready disclosure exports.</p>
-      <div class="status soon">Coming · scoped</div>
-    </a>
-    <a class="module-card" href="./plan/index.html">
-      <div class="step">Plan</div>
-      <h3>Cultivation Planning</h3>
-      <p>Ledger-driven LP/MILP planting calendar with scenario stress-tests and shadow prices. Indoor or greenhouse — same engine.</p>
-      <div class="status live">Live · demo data</div>
-    </a>
-    <a class="module-card" href="./operate/index.html">
-      <div class="step">Operate</div>
-      <h3>Live Facility Twin</h3>
-      <p>Yield, energy, water, and emissions tracked against the design baseline. Automated quarterly report.</p>
-      <div class="status live">Live · demo data</div>
+    <a class="module-card" href="./roadmap/index.html">
+      <div class="step">Roadmap</div>
+      <h3>Build trajectory</h3>
+      <p>Which data connections go live next.</p>
+      <div class="status live">Updated for v2</div>
     </a>
   </div>
 </section>
+
+<div class="footnote">
+  Demo environment. Non-measured figures carry a label on each page: <strong>validated</strong> (reproduces an external source) · <strong>demo data</strong> (plausible, made for the demo) · <strong>illustrative</strong> (mechanism, not measurement) · <strong>pending</strong> (slot exists, data doesn't yet). Sources and model notes sit in each page's footnote.
+</div>
+<!-- /CONTENT -->
 
 </main>
 
 <footer class="site">
-  <div>SOLARA · Internal preview · May 2026</div>
-  <div class="right">Springtide Strategy</div>
+  <div>SOLARA demo — figures labeled validated · demo data · illustrative · pending</div>
+  <div class="right">Powered by Springtide Strategy · July 2026</div>
 </footer>
 
-<script src="./assets/nav.js"></script>
-<script data-pplx-inline-edit>
-(function () {
-  if (window === window.top) return;
-
-  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
-  const MAX_FONT_BYTES = 500 * 1024;
-  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
-  let scrollForwarding = false;
-  let scrollRaf = 0;
-  let trustedTopOrigin = null;
-
-  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
-  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
-  // across multiple labels.
-  function matchesAllowedOrigin(origin) {
-    if (!origin) return false;
-    for (const entry of allowedParentOrigins) {
-      if (!entry.includes("*")) {
-        if (entry === origin) return true;
-        continue;
-      }
-      const pattern = new RegExp(
-        "^" +
-          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
-          "$",
-      );
-      if (pattern.test(origin)) return true;
-    }
-    return false;
-  }
-
-  // Trust decision: when the sender is same-origin-visible (event.origin is a
-  // real origin like https://www.perplexity.ai) we trust event.origin directly.
-  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
-  // broker's stamped `parentOrigin` to identify the top window. The fallback
-  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
-  // on the response path (see postToTrustedTop) to ensure replies can't be
-  // delivered to anyone but the actual top window of that claimed origin.
-  function getTrustedParentOrigin(event) {
-    const forwardedParentOrigin =
-      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
-    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
-    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
-  }
-
-  // All responses go to window.top with targetOrigin = the allowlisted origin.
-  // An attacker that iframes us inside their own null-origin broker can claim
-  // any parentOrigin they like, but the browser will drop the reply whenever
-  // the real top's origin doesn't match — so the screenshot never leaves.
-  function postToTrustedTop(message) {
-    if (!trustedTopOrigin) return;
-    try {
-      window.top.postMessage(message, trustedTopOrigin);
-    } catch (_error) {}
-  }
-
-  function inlineAll(original, clone) {
-    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
-
-    try {
-      const computedStyle = getComputedStyle(original);
-      // cssText on a computed style is the serialized declaration in modern
-      // Chromium/Safari — a single read beats enumerating ~400 longhand
-      // properties. Firefox returns "" here, so we fall back on empty.
-      const serialized = computedStyle.cssText;
-      if (serialized) {
-        clone.style.cssText = serialized;
-      } else {
-        const parts = new Array(computedStyle.length);
-        for (let index = 0; index < computedStyle.length; index += 1) {
-          const property = computedStyle[index];
-          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
-        }
-        clone.style.cssText = parts.join("");
-      }
-    } catch (_error) {}
-
-    const originalChildren = original.children;
-    const clonedChildren = clone.children;
-    for (
-      let index = 0;
-      index < originalChildren.length && index < clonedChildren.length;
-      index += 1
-    ) {
-      inlineAll(originalChildren[index], clonedChildren[index]);
-    }
-  }
-
-  function extractFontUrl(srcValue) {
-    const matches = [
-      ...srcValue.matchAll(
-        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
-      ),
-    ];
-    if (matches.length === 0) return null;
-    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
-    if (woff2) return woff2[1];
-    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
-    if (woff) return woff[1];
-    return matches[0][1];
-  }
-
-  // Cache resolved font URL -> data URI across captures. Fonts on a page
-  // essentially never change, and a batch run emits multiple captures back to
-  // back — without this we'd refetch + re-base64 every time.
-  const fontDataUriCache = new Map();
-  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
-
-  async function fetchAsDataUri(url) {
-    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
-    let dataUri = null;
-    try {
-      const response = await fetch(url, { mode: "cors", credentials: "omit" });
-      if (response.ok) {
-        const blob = await response.blob();
-        if (blob.size <= MAX_FONT_BYTES) {
-          dataUri = await new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onloadend = () =>
-              resolve(typeof reader.result === "string" ? reader.result : null);
-            reader.onerror = () => resolve(null);
-            reader.readAsDataURL(blob);
-          });
-        }
-      }
-    } catch (_error) {
-      dataUri = null;
-    }
-    fontDataUriCache.set(url, dataUri);
-    return dataUri;
-  }
-
-  function collectFontFaceRuleTexts() {
-    const rules = [];
-    for (const sheet of document.styleSheets) {
-      let cssRules;
-      try {
-        cssRules = sheet.cssRules;
-      } catch (_error) {
-        continue;
-      }
-      if (!cssRules) continue;
-      for (const rule of cssRules) {
-        const cssText = rule.cssText || "";
-        if (cssText.startsWith("@font-face")) rules.push(cssText);
-      }
-    }
-    return rules;
-  }
-
-  async function buildInlinedFontCss() {
-    const ruleTexts = collectFontFaceRuleTexts();
-    if (ruleTexts.length === 0) return null;
-
-    const resolved = ruleTexts.map((cssText) => {
-      if (!SRC_DECLARATION_RE.test(cssText)) return null;
-      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
-      if (!srcMatch) return null;
-      const url = extractFontUrl(srcMatch[1]);
-      if (!url) return null;
-      try {
-        return { cssText, url: new URL(url, document.baseURI).href };
-      } catch (_error) {
-        return null;
-      }
-    });
-
-    const dataUris = await Promise.all(
-      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
-    );
-
-    const inlined = [];
-    let totalBytes = 0;
-    for (let index = 0; index < resolved.length; index += 1) {
-      const entry = resolved[index];
-      const dataUri = dataUris[index];
-      if (!entry || !dataUri) continue;
-      const approxBytes = dataUri.length * 0.75;
-      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
-      totalBytes += approxBytes;
-      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
-    }
-    return inlined.length > 0 ? inlined.join("\n") : null;
-  }
-
-  function stripExternal(clone) {
-    const images = clone.querySelectorAll("img");
-    for (let index = 0; index < images.length; index += 1) {
-      const src = images[index].getAttribute("src");
-      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
-    }
-
-    const elements = clone.querySelectorAll("*");
-    for (let index = 0; index < elements.length; index += 1) {
-      const style = elements[index].style.cssText;
-      if (style && style.includes("url(")) {
-        elements[index].style.cssText = style.replace(
-          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
-          "none",
-        );
-      }
-    }
-  }
-
-  function emitScroll() {
-    scrollRaf = 0;
-    if (!scrollForwarding) return;
-    postToTrustedTop({
-      type: "INLINE_EDIT_SCROLL",
-      scrollX: window.scrollX,
-      scrollY: window.scrollY,
-    });
-  }
-
-  window.addEventListener(
-    "scroll",
-    function () {
-      if (!scrollForwarding || scrollRaf) return;
-      scrollRaf = requestAnimationFrame(emitScroll);
-    },
-    { passive: true, capture: true },
-  );
-
-  async function handleCaptureRequest(event) {
-    const requestId = event.data.requestId;
-    const scrollX = window.scrollX;
-    const scrollY = window.scrollY;
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    function postResult(dataUrl) {
-      postToTrustedTop({
-        type: "INLINE_EDIT_SCREENSHOT_RESULT",
-        requestId,
-        dataUrl,
-        scrollX,
-        scrollY,
-      });
-    }
-
-    try {
-      // Wait for any pending web fonts to resolve so both inline metrics and
-      // the @font-face inlining below see the same loaded faces.
-      if (document.fonts && document.fonts.ready) {
-        try {
-          await document.fonts.ready;
-        } catch (_error) {}
-      }
-
-      const clone = document.documentElement.cloneNode(true);
-      inlineAll(document.documentElement, clone);
-
-      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
-      for (let index = 0; index < removedNodes.length; index += 1) {
-        removedNodes[index].remove();
-      }
-
-      stripExternal(clone);
-
-      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
-      // can resolve them — external font URLs aren't fetched during
-      // foreignObject rendering, which would otherwise force a fallback face
-      // and change text metrics.
-      const inlinedFontCss = await buildInlinedFontCss();
-      if (inlinedFontCss) {
-        const styleEl = document.createElement("style");
-        styleEl.textContent = inlinedFontCss;
-        const head = clone.querySelector("head");
-        if (head) head.appendChild(styleEl);
-        else clone.insertBefore(styleEl, clone.firstChild);
-      }
-
-      const html = new XMLSerializer().serializeToString(clone);
-      const svg =
-        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
-        '<foreignObject width="100%" height="100%">' +
-        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
-        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
-        html +
-        "</div></div></foreignObject></svg>";
-      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-      const image = new Image();
-      image.onload = function () {
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        canvas.getContext("2d").drawImage(image, 0, 0);
-        postResult(canvas.toDataURL("image/png"));
-      };
-      image.onerror = function () {
-        postResult(null);
-      };
-      image.src = svgUrl;
-    } catch (_error) {
-      postResult(null);
-    }
-  }
-
-  window.addEventListener("message", function (event) {
-    if (!event.data) return;
-    // Only accept messages from the direct parent frame. Blocks sibling /
-    // unrelated-window postMessage senders that could otherwise reach us.
-    if (event.source !== window.parent) return;
-
-    const trustedParentOrigin = getTrustedParentOrigin(event);
-    if (!trustedParentOrigin) return;
-    trustedTopOrigin = trustedParentOrigin;
-
-    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
-      scrollForwarding = true;
-      emitScroll();
-      return;
-    }
-
-    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
-      scrollForwarding = false;
-      if (scrollRaf) cancelAnimationFrame(scrollRaf);
-      scrollRaf = 0;
-      return;
-    }
-
-    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
-
-    handleCaptureRequest(event);
-  });
-})();
-
-
-</script></body>
+<script src="./assets/cases/registry.js?v=4"></script>
+<script src="./assets/nav.js?v=4"></script>
+</body>
 </html>

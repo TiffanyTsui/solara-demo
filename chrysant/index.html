@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- Chrysanthemum workspace overview (ANONYMIZED — no names).
+     Data: assets/cases/chrysant.js (5 sites, lifecycle).
+     Blocks rendered by assets/js/solara_case.js; style: assets/tokens.css only. -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Chrysanthemum — SOLARA workspace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css?v=4" />
+</head>
+<body data-root=".." data-case="chrysant" data-module="overview">
+<script src="../assets/cases/registry.js?v=4"></script>
+<script src="../assets/lock.js?v=4"></script>
+
+<header class="topbar">
+  <a class="brand" href="../index.html">
+    <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
+      <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="20" y1="3" x2="20" y2="9"/><line x1="20" y1="31" x2="20" y2="37"/>
+        <line x1="3" y1="20" x2="9" y2="20"/><line x1="31" y1="20" x2="37" y2="20"/>
+        <line x1="8" y1="8" x2="12" y2="12"/><line x1="28" y1="28" x2="32" y2="32"/>
+        <line x1="8" y1="32" x2="12" y2="28"/><line x1="28" y1="12" x2="32" y2="8"/>
+      </g>
+    </svg>
+    <div><div class="brand-title">SOLARA</div><div class="brand-sub">Sustainability Operations &amp; Lifecycle Analysis Report Automation</div></div>
+  </a>
+  <nav class="topnav"></nav>
+</header>
+
+<main class="container">
+
+<!-- CONTENT -->
+<div class="crumbs"><a href="../index.html">Workspaces</a><span class="sep">›</span>Chrysanthemum</div>
+
+<section class="page-hero">
+  <div class="kicker">Workspace · Greenhouse · existing · anonymized</div>
+  <h1>Chrysanthemum — 5 locations, 32+ ha</h1>
+  <p class="lede">Weekly planting optimization for a Dutch cut-flower operation, validated against the baseline planning model. Location M is live in <a href="plan/index.html">Plan</a>; the other four locations onboard by data intake.</p>
+</section>
+
+<div class="kicker">Locations</div>
+<div id="site-cards" class="site-grid"></div>
+
+<section class="methodology">
+  <div class="kicker">The multi-site thesis</div>
+  <h2>Five locations, one planning + benchmarking loop</h2>
+  <div class="meth-grid">
+    <div>
+      <div class="meth-label">Today · Location M</div>
+      <p>Weekly planting MILP validated against the baseline plan, then extended with the contract floor and tested on the Women's-Day price peak — see <a href="plan/index.html">Plan</a>.</p>
+    </div>
+    <div>
+      <div class="meth-label">Next · the other four</div>
+      <p>The locations already record realized prices per color, cycle durations per kap, and labor hours — <a href="calibrate/index.html">Calibrate</a> lists every stream and its status. Each intake fills a column in the <a href="operate/index.html">multi-site benchmark</a>.</p>
+    </div>
+  </div>
+</section>
+
+<div class="footnote">
+  Workspace anonymized — no grower, site, or cultivar names. <strong>Validation:</strong> the plan engine reproduces the baseline weekly plan (revenue 2025–2029, €22.24M) before optimizing; prices are estimates until realized price intake.
+</div>
+<!-- /CONTENT -->
+
+</main>
+
+<footer class="site">
+  <div>SOLARA demo — figures labeled validated · demo data · illustrative · pending</div>
+  <div class="right">Powered by Springtide Strategy · July 2026</div>
+</footer>
+
+<script src="../assets/cases/chrysant.js?v=4"></script>
+<script src="../assets/nav.js?v=4"></script>
+<script src="../assets/js/solara_case.js?v=4"></script>
+<script>SOLARA_UI.renderSiteCards("site-cards");</script>
+</body>
+</html>

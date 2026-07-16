@@ -1,0 +1,101 @@
+<!doctype html>
+<!-- Chrysanthemum · Calibrate — Location M twin parameters + the data-slots
+     table (streams confirmed to exist, 2026-07-13, pending intake).
+     Data: assets/cases/chrysant.js (data_slots). Style: assets/tokens.css only. -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Chrysanthemum · Calibrate — SOLARA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/tokens.css?v=4" />
+</head>
+<body data-root="../.." data-case="chrysant" data-module="calibrate">
+<script src="../../assets/cases/registry.js?v=4"></script>
+<script src="../../assets/lock.js?v=4"></script>
+
+<header class="topbar">
+  <a class="brand" href="../../index.html">
+    <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
+      <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="20" y1="3" x2="20" y2="9"/><line x1="20" y1="31" x2="20" y2="37"/>
+        <line x1="3" y1="20" x2="9" y2="20"/><line x1="31" y1="20" x2="37" y2="20"/>
+        <line x1="8" y1="8" x2="12" y2="12"/><line x1="28" y1="28" x2="32" y2="32"/>
+        <line x1="8" y1="32" x2="12" y2="28"/><line x1="28" y1="12" x2="32" y2="8"/>
+      </g>
+    </svg>
+    <div><div class="brand-title">SOLARA</div><div class="brand-sub">Sustainability Operations &amp; Lifecycle Analysis Report Automation</div></div>
+  </a>
+  <nav class="topnav"></nav>
+</header>
+
+<main class="container">
+
+<!-- CONTENT -->
+<div class="crumbs"><a href="../../index.html">Workspaces</a><span class="sep">›</span><a href="../index.html">Chrysanthemum</a><span class="sep">›</span>Calibrate</div>
+
+<div class="case-head" style="margin-top:0">
+  <div>
+    <div class="kicker">Calibrate · Location M (greenhouse · existing)</div>
+    <h1 style="font-size:1.7rem">The twin starts from the baseline numbers</h1>
+  </div>
+  <span class="tag-pill validated">parameters from the baseline model</span>
+</div>
+<p class="lede" style="font-size:0.98rem;margin-bottom:24px">The baseline planning model already encodes how the greenhouse behaves — cycle lengths, density, success rates, the expected price calendar. Calibrate captures those as the ledger and lists the recorded streams that will replace each estimate with measurement.</p>
+
+<div class="kpi-grid four" style="margin-bottom:22px">
+  <div class="kpi"><div class="kpi-label">Structure</div><div class="kpi-value">42</div><div class="kpi-unit">kappen × 780 m² ≈ 3.3 ha</div></div>
+  <div class="kpi"><div class="kpi-label">Cycle length</div><div class="kpi-value">67–75</div><div class="kpi-unit">days · summer → winter, lighted</div></div>
+  <div class="kpi"><div class="kpi-label">Density · success</div><div class="kpi-value">47–59.8</div><div class="kpi-unit">plants/m² · 85–90% by season</div></div>
+  <div class="kpi"><div class="kpi-label">Turnaround</div><div class="kpi-value">0 wk</div><div class="kpi-unit">clear + replant in the same week</div></div>
+</div>
+
+<div class="chart-block">
+  <div class="chart-head">
+    <h3>Seasonal cultivation table — the ledger behind the plan</h3>
+    <div class="chart-sub">From the baseline model (validated by replication). Registered per-kap durations will replace this fixed table at intake.</div>
+  </div>
+  <table class="data">
+    <thead><tr><th>Planting season</th><th class="num">Cycle (days)</th><th class="num">Density (pl/m²)</th><th class="num">Success</th><th>Price context at harvest</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Summer plantings</strong></td><td class="num">67</td><td class="num">59.8</td><td class="num">90%</td><td>harvest into autumn peaks (wk 41–44 grandmother's day window)</td></tr>
+      <tr><td><strong>Shoulder</strong></td><td class="num">70–72</td><td class="num">52–56</td><td class="num">87–90%</td><td>school-start bump (wk 33–34), steady clock prices</td></tr>
+      <tr><td><strong>Winter plantings</strong></td><td class="num">75</td><td class="num">47</td><td class="num">85%</td><td>harvest into the Women's Day window (wk 05–10, price peak)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="chart-block">
+  <div class="chart-head">
+    <h3>Data streams — recorded on site, pending intake</h3>
+    <div class="chart-sub">Confirmed available (2026-07-13). Each intake upgrades one model assumption to measurement — and extends planning to the other four locations and colors.</div>
+  </div>
+  <table class="data">
+    <thead><tr><th>Stream</th><th>Source system</th><th>Status</th></tr></thead>
+    <tbody id="slots-body"></tbody>
+  </table>
+</div>
+
+<div class="answer-card positive">
+  <div class="kicker positive">Why intake order matters</div>
+  <div class="answer-headline">Realized prices per color are the highest-value stream.</div>
+  <div class="answer-body">The plan currently optimizes against the estimated price curve. Three to five years of realized weekly prices per color turn the Women's-Day scenarios in <a href="../plan/index.html">Plan</a> from assumptions into fitted distributions — and unlock per-color planting decisions across all five locations. Cycle-duration registrations come second: they tighten the occupancy model the contracts depend on.</div>
+</div>
+<!-- /CONTENT -->
+
+</main>
+
+<footer class="site">
+  <div>SOLARA demo — figures labeled validated · demo data · illustrative · pending</div>
+  <div class="right">Powered by Springtide Strategy · July 2026</div>
+</footer>
+
+<script src="../../assets/cases/chrysant.js?v=4"></script>
+<script src="../../assets/nav.js?v=4"></script>
+<script src="../../assets/js/solara_case.js?v=4"></script>
+<script>SOLARA_UI.renderSlotTable("slots-body");</script>
+</body>
+</html>

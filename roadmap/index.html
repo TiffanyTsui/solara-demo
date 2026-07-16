@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/tokens.css" />
+<link rel="stylesheet" href="../assets/tokens.css?v=4" />
 </head>
-<body>
+<body data-root=".." data-page="roadmap">
 
 <header class="topbar">
   <a class="brand" href="../index.html">
@@ -24,36 +24,54 @@
     </svg>
     <div>
       <div class="brand-title">SOLARA</div>
-      <div class="brand-sub">Sustainability intelligence platform</div>
+      <div class="brand-sub">Sustainability Operations &amp; Lifecycle Analysis Report Automation</div>
     </div>
   </a>
-  <nav class="topnav">
-    <a data-nav="/design" href="../design/index.html">Design</a>
-    <a data-nav="/plan" href="../plan/index.html">Plan</a>
-    <a data-nav="/operate" href="../operate/index.html">Operate</a>
-    <a data-nav="/platform" href="../platform/index.html">Platform</a>
-    <a data-nav="/about" href="../about/index.html">About</a>
-  </nav>
+  <nav class="topnav"></nav>
 </header>
 
 <main class="container">
   <section class="page-hero">
     <div class="kicker">Roadmap</div>
     <h1>Build trajectory</h1>
-    <p class="lede">Reserved for internal review. Milestones and release schedule will be added before external release.</p>
+    <p class="lede">What turns from demo into data next. Each milestone is a data connection, not a rebuild — the pages that will display these feeds are already live in the workspaces.</p>
   </section>
 
-  <section class="coming-band">
-    <p>Internal demo — May 2026. Return to <a href="../index.html">overview</a> or browse <a href="../design/index.html">Design modules</a>.</p>
-  </section>
+  <div class="module-grid" style="margin-bottom:28px">
+    <div class="module-card">
+      <div class="step">Next</div>
+      <h3>Sardinia sensor feed</h3>
+      <p>Connect the site's climate + energy meters to <code>data/feeds/sardinia.json</code> on a schedule. Farm32's Operate page goes live; a season of readings calibrates the shared physics assumptions.</p>
+      <div class="status live">Feed schema shipped · v2</div>
+    </div>
+    <div class="module-card">
+      <div class="step">Next</div>
+      <h3>Chrysanthemum data intake</h3>
+      <p>Realized weekly prices per color (Floriday) and registered cycle durations for Location M — then the same ledgers for the other four locations, filling the multi-site benchmark.</p>
+      <div class="status live">Intake list on Calibrate · v2</div>
+    </div>
+    <div class="module-card">
+      <div class="step">v3</div>
+      <h3>HIC Let's Grow connection</h3>
+      <p>API access or scheduled export from Let's Grow to the SOLARA feed schema — Calibrate and Operate for the strawberry greenhouse light up with the first file.</p>
+      <div class="status soon">Mapping agreed · shell live</div>
+    </div>
+    <div class="module-card">
+      <div class="step">v3</div>
+      <h3>Second live facility (strawberry)</h3>
+      <p>Additional live data feeds from a second strawberry operation onboard as one new workspace under the same case schema.</p>
+      <div class="status soon">Scoping</div>
+    </div>
+  </div>
 </main>
 
 <footer class="site">
-  <div>SOLARA · Internal preview · May 2026</div>
-  <div class="right">Springtide Strategy</div>
+  <div>SOLARA demo — figures labeled validated · demo data · illustrative · pending</div>
+  <div class="right">Powered by Springtide Strategy · July 2026</div>
 </footer>
 
-<script src="../assets/nav.js"></script>
+<script src="../assets/cases/registry.js?v=4"></script>
+<script src="../assets/nav.js?v=4"></script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;

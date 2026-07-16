@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/tokens.css" />
+<link rel="stylesheet" href="../assets/tokens.css?v=4" />
 <style>
   .lc-svg{width:100%;height:auto;display:block}
   .lc-svg .stage rect{fill:#FFFFFD;stroke:#21808D;stroke-width:1.5}
@@ -26,7 +26,7 @@
   .chain-svg .arrow{stroke:#21808D;stroke-width:1.5;fill:none;marker-end:url(#carr)}
 </style>
 </head>
-<body>
+<body data-root=".." data-page="platform">
 
 <header class="topbar">
   <a class="brand" href="../index.html">
@@ -39,15 +39,9 @@
         <line x1="8" y1="32" x2="12" y2="28"/><line x1="28" y1="12" x2="32" y2="8"/>
       </g>
     </svg>
-    <div><div class="brand-title">SOLARA</div><div class="brand-sub">Sustainability intelligence platform</div></div>
+    <div><div class="brand-title">SOLARA</div><div class="brand-sub">Sustainability Operations &amp; Lifecycle Analysis Report Automation</div></div>
   </a>
-  <nav class="topnav">
-    <a data-nav="/design" href="../design/index.html">Design</a>
-    <a data-nav="/plan" href="../plan/index.html">Plan</a>
-    <a data-nav="/operate" href="../operate/index.html">Operate</a>
-    <a data-nav="/platform" href="../platform/index.html">Platform</a>
-    <a data-nav="/about" href="../about/index.html">About</a>
-  </nav>
+  <nav class="topnav"></nav>
 </header>
 
 <main class="container">
@@ -57,7 +51,7 @@
 <section class="page-hero">
   <div class="kicker">Platform · methodology</div>
   <h1>One data layer · three modelling chains · two regulatory frameworks.</h1>
-  <p class="lede">SOLARA's modules sit on a common inventory. Whatever a module computes — a kilowatt-hour, a kilogram of refrigerant, a litre of irrigation water — becomes a flow in the life-cycle ledger, and a row in the CSRD/ESRS disclosure tables. No re-keying. No duplicate spreadsheets.</p>
+  <p class="lede">SOLARA's modules sit on a common inventory: whatever a module computes becomes a flow in the life-cycle ledger and a row in the CSRD/ESRS disclosure tables.</p>
 </section>
 
 <section class="chart-block">
@@ -181,11 +175,12 @@
 </main>
 
 <footer class="site">
-  <div>SOLARA · Internal preview · May 2026</div>
-  <div class="right">Springtide Strategy</div>
+  <div>SOLARA demo — figures labeled validated · demo data · illustrative · pending</div>
+  <div class="right">Powered by Springtide Strategy · July 2026</div>
 </footer>
 
-<script src="../assets/nav.js"></script>
+<script src="../assets/cases/registry.js?v=4"></script>
+<script src="../assets/nav.js?v=4"></script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;

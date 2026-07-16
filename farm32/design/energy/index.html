@@ -3,16 +3,24 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>About — SOLARA</title>
+<title>Facility Energy · SOLARA Design</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/tokens.css?v=4" />
+<link rel="stylesheet" href="../../../assets/tokens.css?v=4" />
+<style>
+  #chart-facility-3d{height:420px}
+  #chart-monthly-load,#chart-daily-load{min-height:340px}
+  .energy-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:22px}
+  @media (max-width:1080px){.energy-grid{grid-template-columns:1fr}}
+</style>
 </head>
-<body data-root=".." data-page="about">
+<body data-root="../../.." data-case="farm32" data-module="design">
+<script src="../../../assets/cases/registry.js?v=4"></script>
+<script src="../../../assets/lock.js?v=4"></script>
 
 <header class="topbar">
-  <a class="brand" href="../index.html">
+  <a class="brand" href="../../../index.html">
     <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
       <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
       <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -22,24 +30,118 @@
         <line x1="8" y1="32" x2="12" y2="28"/><line x1="28" y1="12" x2="32" y2="8"/>
       </g>
     </svg>
-    <div>
-      <div class="brand-title">SOLARA</div>
-      <div class="brand-sub">Sustainability Operations &amp; Lifecycle Analysis Report Automation</div>
-    </div>
+    <div><div class="brand-title">SOLARA</div><div class="brand-sub">Sustainability Operations &amp; Lifecycle Analysis Report Automation</div></div>
   </a>
   <nav class="topnav"></nav>
 </header>
 
 <main class="container">
-  <section class="page-hero">
-    <div class="kicker">About</div>
-    <h1>Springtide Strategy · SOLARA</h1>
-    <p class="lede">Reserved for internal review. About copy, team, and contact details will be added before external release.</p>
-  </section>
 
-  <section class="coming-band">
-    <p>Internal demo — May 2026. Return to <a href="../index.html">overview</a> or browse <a href="../design/index.html">Design modules</a>.</p>
-  </section>
+<div class="crumbs">
+  <a href="../../../index.html">Home</a><span class="sep">›</span><a href="../../../design/index.html">Design</a><span class="sep">›</span>Facility Energy
+</div>
+
+<section class="page-hero">
+  <div class="kicker">Module 02 · Pre-build</div>
+  <h1>Facility Energy</h1>
+  <p class="lede">Define the building geometry, envelope, lighting, HVAC, and production schedule. EnergyPlus runs a full 8,760-hour simulation against TMYx weather to produce the load profile that Module 03 sizes solar &amp; storage against.</p>
+</section>
+
+<section class="kpi-grid">
+  <div class="kpi"><div class="kpi-label">Floor area</div><div class="kpi-value">650</div><div class="kpi-unit">m² · two zones</div></div>
+  <div class="kpi"><div class="kpi-label">Annual load</div><div class="kpi-value">695</div><div class="kpi-unit">MWh / yr</div></div>
+  <div class="kpi"><div class="kpi-label">Peak demand</div><div class="kpi-value">142</div><div class="kpi-unit">kW · staggered</div></div>
+  <div class="kpi"><div class="kpi-label">LED density</div><div class="kpi-value">114</div><div class="kpi-unit">W/m² · 3.5 µmol/J</div></div>
+  <div class="kpi"><div class="kpi-label">Envelope U</div><div class="kpi-value">0.05</div><div class="kpi-unit">W/m²K · PUR-core</div></div>
+  <div class="kpi"><div class="kpi-label">Specific energy</div><div class="kpi-value">16.5</div><div class="kpi-unit">kWh / kg-FW basil</div></div>
+</section>
+
+<section class="controls">
+  <div class="control-group">
+    <label>Production layout</label>
+    <div class="toggle">
+      <button class="toggle-btn active" data-variant="staggered">Staggered (Zone A 02–20, Zone B 08–02)</button>
+      <button class="toggle-btn" data-variant="synchronized">Synchronized (both zones 06–24)</button>
+    </div>
+  </div>
+  <div class="muted" style="font-size:0.84rem">The staggered layout overlaps photoperiods across zones, flattening the load. Synchronized layout doubles the midday peak but shifts more energy into solar hours.</div>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Facility geometry — 26 × 25 × 6 m</h2>
+    <div class="chart-sub">Two-zone Graamans-style indoor farm. 650 m² floor area, <strong>6 m ceiling</strong>, closed envelope at <strong>U = 0.05 W/m²K</strong> (PUR-core sandwich). Zone A and Zone B share an interior partition. Drag to rotate, scroll to zoom.</div>
+  </div>
+  <div id="chart-facility-3d"></div>
+  <div class="legend-row">
+    <span class="legend-item"><span class="swatch" style="background:#21808D"></span>Zone A · 325 m² · 02–20</span>
+    <span class="legend-item"><span class="swatch" style="background:#3FA9B5"></span>Zone B · 325 m² · 08–02</span>
+    <span class="legend-item"><span class="swatch envelope"></span>Insulated envelope</span>
+    <span class="legend-item"><span class="swatch" style="background:#E0A52A"></span>LED canopy fixtures</span>
+  </div>
+</section>
+
+<section class="energy-grid">
+  <div class="chart-block" style="margin:0">
+    <div class="chart-head">
+      <h2>Monthly electricity load</h2>
+      <div class="chart-sub">Aggregated kWh per month from the 8,760-hour simulation. Slight summer rise reflects higher dehumidification load.</div>
+    </div>
+    <div id="chart-monthly-load"></div>
+  </div>
+  <div class="chart-block" style="margin:0">
+    <div class="chart-head">
+      <h2>Mean daily load — decomposed</h2>
+      <div class="chart-sub">Average hour-by-hour breakdown across all 365 days. LED canopy dominates; HVAC adds a midday hump tracking ambient temperature.</div>
+    </div>
+    <div id="chart-daily-load"></div>
+  </div>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Model inputs</h2>
+    <div class="chart-sub">The IDF file is generated by SOLARA from the geometry editor and equipment selections. Every value is auditable.</div>
+  </div>
+  <table class="data">
+    <thead><tr><th>Category</th><th>Parameter</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Geometry</td><td>Floor area, height</td><td>650 m², 6 m ceiling</td><td>Geometry editor</td></tr>
+      <tr><td>Envelope</td><td>U-value (all surfaces)</td><td>0.05 W/m²K</td><td>PUR-core sandwich panel spec</td></tr>
+      <tr><td>Lighting</td><td>LED density · efficacy</td><td>114.3 W/m² · 3.5 µmol/J</td><td>Graamans 2018</td></tr>
+      <tr><td>Lighting</td><td>Sensible heat fraction</td><td>0.48</td><td>Graamans 2017</td></tr>
+      <tr><td>Plant model</td><td>Latent gain · transpiration</td><td>65 W/m², 6-hr ramp-down</td><td>Graamans plant factory model</td></tr>
+      <tr><td>HVAC</td><td>Chiller COP</td><td>3.7 (ideal-loads)</td><td>EnergyPlus default</td></tr>
+      <tr><td>HVAC</td><td>Setpoints (occ / unocc)</td><td>24 °C / 22 °C</td><td>Crop spec</td></tr>
+      <tr><td>Atmosphere</td><td>CO₂ concentration</td><td>1,000 ppm</td><td>Production target</td></tr>
+      <tr><td>Schedule (staggered)</td><td>Zone A · Zone B</td><td>02–20 · 08–02</td><td>Production planner</td></tr>
+      <tr><td>Weather</td><td>TMYx file</td><td>Agadir-Massira 602520</td><td>climate.onebuilding.org</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Validation</h2>
+  </div>
+  <p>SOLARA's energy model reproduces Graamans (2018) at ≈ 235 kWh per kg lettuce dry weight versus the published 247 kWh / kg DW — within 5%. For Farm32's basil schedule (42,250 kg fresh weight per year) the specific energy is 16.5 kWh / kg-FW, below the LCA-reported 26.4 kWh / kg-FW because dehumidification overhead and capital-goods stages sit outside the EnergyPlus boundary. Those gaps close in Module 04 (Environmental Impact).</p>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Outputs handed downstream</h2>
+  </div>
+  <table class="data">
+    <thead><tr><th>Output</th><th>Goes to</th><th>How it is used</th></tr></thead>
+    <tbody>
+      <tr><td>8,760-hour facility load (kW)</td><td><a href="../../../design/solar/index.html">Module 03 — Solar &amp; Storage</a></td><td>Demand curve dispatched against PV + battery</td></tr>
+      <tr><td>Annual electricity consumption (MWh)</td><td><a href="../../../design/impact/index.html">Module 04 — Environmental Impact</a></td><td>Operational energy stage (PEFCR §5.3)</td></tr>
+      <tr><td>HVAC, refrigerant, LED bill of materials</td><td><a href="../../../design/impact/index.html">Module 04 — Environmental Impact</a></td><td>Capital-goods stage</td></tr>
+      <tr><td>Design load profile</td><td>Operate</td><td>Real-time variance against measured kWh</td></tr>
+    </tbody>
+  </table>
+</section>
+
 </main>
 
 <footer class="site">
@@ -47,8 +149,22 @@
   <div class="right">Powered by Springtide Strategy · July 2026</div>
 </footer>
 
-<script src="../assets/cases/registry.js?v=4"></script>
-<script src="../assets/nav.js?v=4"></script>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script src="../../../assets/nav.js?v=4"></script>
+<script src="../../../assets/js/solara_charts.js?v=4"></script>
+<script>
+(async function(){
+  await SOLARA.loadData();
+  SOLARA.renderFacility3D('chart-facility-3d');
+  function refresh(v){
+    var d = SOLARA.getData()[v || SOLARA.getVariant()];
+    SOLARA.renderMonthlyLoad('chart-monthly-load', d);
+    SOLARA.renderDailyLoadBreakdown('chart-daily-load', d);
+  }
+  refresh();
+  SOLARA.bindVariantToggle(refresh);
+})();
+</script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;

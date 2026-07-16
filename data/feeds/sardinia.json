@@ -1,0 +1,61 @@
+{
+  "site": "sardinia",
+  "updated_iso": "2026-07-14T17:30:00+02:00",
+  "source": "static-snapshot",
+  "note": "Live-ready: when the Sardinia sensors connect, an export job overwrites this file on a schedule and the Operate page is live without any page changes.",
+  "metrics": [
+    {
+      "key": "t_air",
+      "label": "Air temperature",
+      "value": 25.1,
+      "unit": "°C",
+      "target": 26.0,
+      "status": "good",
+      "status_label": "within band"
+    },
+    {
+      "key": "rh",
+      "label": "Relative humidity",
+      "value": 61,
+      "unit": "%",
+      "target": 65,
+      "status": "good",
+      "status_label": "within band"
+    },
+    {
+      "key": "vent",
+      "label": "Vent opening",
+      "value": 80,
+      "unit": "%",
+      "status": "ok",
+      "status_label": "auto"
+    },
+    {
+      "key": "kwh_day",
+      "label": "Electricity today",
+      "value": 148,
+      "unit": "kWh",
+      "target": 165,
+      "status": "ok",
+      "status_label": "under baseline"
+    },
+    {
+      "key": "water_day",
+      "label": "Irrigation today",
+      "value": 3.6,
+      "unit": "m³",
+      "target": 3.8,
+      "status": "ok",
+      "status_label": "under baseline"
+    },
+    {
+      "key": "yield_wk",
+      "label": "Harvest this week",
+      "value": 262,
+      "unit": "kg",
+      "target": 280,
+      "status": "warn",
+      "status_label": "−6% vs plan"
+    }
+  ]
+}

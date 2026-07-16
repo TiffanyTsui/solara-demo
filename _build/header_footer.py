@@ -1,8 +1,27 @@
-"""Generates the shared header + footer HTML for a given active nav.
-Run helper: import and call HEADER(title), FOOTER().
+"""Generates the shared v2 header + footer HTML for a page.
+
+v2: the topnav is EMPTY in markup — assets/nav.js fills it at load time from
+assets/cases/registry.js and the <body> data attributes:
+  root    relative path to the site root ("." / ".." / "../..")
+  case    workspace id (farm32 | chrysant | hic) — omit on non-workspace pages
+  module  current module id (overview|design|calibrate|plan|operate)
+  page    non-workspace page id (workspaces|platform|about|roadmap)
+
+Usage: HEADER("Title", root="../..", case="farm32", module="plan"); FOOTER(root)
 """
 
-HEADER = lambda title, extra_head="": f"""<!doctype html>
+
+def _attrs(root, case=None, module=None, page=None):
+    a = f'data-root="{root}"'
+    if case:
+        a += f' data-case="{case}" data-module="{module or "overview"}"'
+    else:
+        a += f' data-page="{page or ""}"'
+    return a
+
+
+def HEADER(title, root=".", case=None, module=None, page=None, extra_head=""):
+    return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -11,13 +30,13 @@ HEADER = lambda title, extra_head="": f"""<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/tokens.css" />
+<link rel="stylesheet" href="{root}/assets/tokens.css" />
 {extra_head}
 </head>
-<body>
+<body {_attrs(root, case, module, page)}>
 
 <header class="topbar">
-  <a class="brand" href="/">
+  <a class="brand" href="{root}/index.html">
     <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
       <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
       <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -29,30 +48,27 @@ HEADER = lambda title, extra_head="": f"""<!doctype html>
     </svg>
     <div>
       <div class="brand-title">SOLARA</div>
-      <div class="brand-sub">Sustainability intelligence platform</div>
+      <div class="brand-sub">Sustainability Operations &amp; Lifecycle Analysis Report Automation</div>
     </div>
   </a>
-  <nav class="topnav">
-    <a data-nav="/design" href="/design/">Design</a>
-    <a data-nav="/plan" href="/plan/">Plan</a>
-    <a data-nav="/operate" href="/operate/">Operate</a>
-    <a data-nav="/platform" href="/platform/">Platform</a>
-    <a data-nav="/about" href="/about/">About</a>
-  </nav>
+  <nav class="topnav"></nav>
 </header>
 
 <main class="container">
 """
 
-FOOTER = """
+
+def FOOTER(root="."):
+    return f"""
 </main>
 
 <footer class="site">
-  <div>SOLARA · Internal preview · May 2026</div>
-  <div class="right">Springtide Strategy</div>
+  <div>SOLARA · Internal preview v2 · July 2026</div>
+  <div class="right">Powered by Springtide Strategy</div>
 </footer>
 
-<script src="/assets/nav.js"></script>
+<script src="{root}/assets/cases/registry.js"></script>
+<script src="{root}/assets/nav.js"></script>
 </body>
 </html>
 """

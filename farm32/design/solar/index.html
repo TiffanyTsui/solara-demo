@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Energy Management · SOLARA Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/tokens.css?v=4" />
+<style>
+  #chart-monthly,#chart-worst-week,#chart-daily,#chart-heatmap,#chart-sweep,#chart-scenarios{min-height:320px}
+  .scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:18px 0 6px}
+  .scenario-card{background:var(--paper,#FFFFFD);border:1px solid var(--rule,#D5D2C8);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+  .scenario-card .sc-name{font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;color:var(--ink,#13343B);line-height:1.3}
+  .scenario-card .sc-levers{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted,#626C71);letter-spacing:0.02em}
+  .scenario-card .sc-story{font-size:13px;color:var(--ink-soft,#3D4F50);line-height:1.45;margin-top:2px}
+  .scenario-card .sc-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;padding-top:10px;border-top:1px solid var(--rule,#D5D2C8)}
+  .scenario-card .sc-stat .sc-label{font-size:11px;color:var(--muted,#626C71);text-transform:uppercase;letter-spacing:0.04em}
+  .scenario-card .sc-stat .sc-value{font-family:'DM Sans',sans-serif;font-weight:500;font-size:18px;color:var(--ink,#13343B);line-height:1.1}
+  .scenario-card .sc-stat .sc-unit{font-size:11px;color:var(--muted,#626C71)}
+  .scenario-card.best{border-color:var(--teal,#21808D);background:linear-gradient(180deg,rgba(33,128,141,0.04) 0%,var(--paper,#FFFFFD) 60%)}
+  .scenario-card.best .sc-name{color:var(--teal-deep,#1B474D)}
+  .scenario-card.baseline{border-style:dashed}
+  .report-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;background:var(--soft,#F4F2EC);border:1px solid var(--rule,#D5D2C8);border-radius:10px;padding:18px 22px;margin:22px 0}
+  .report-cta-text{font-size:14px;color:var(--ink-soft,#3D4F50);line-height:1.45}
+  .report-cta-text strong{color:var(--ink,#13343B);font-weight:500}
+  .step-header{display:flex;align-items:baseline;gap:14px;margin:32px 0 4px}
+  .step-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal,#21808D);letter-spacing:0.08em;text-transform:uppercase;font-weight:500}
+  .step-header h2{margin:0;font-family:'DM Sans',sans-serif}
+</style>
+</head>
+<body data-root="../../.." data-case="farm32" data-module="design">
+<script src="../../../assets/cases/registry.js?v=4"></script>
+<script src="../../../assets/lock.js?v=4"></script>
+
+<header class="topbar">
+  <a class="brand" href="../../../index.html">
+    <svg class="brand-mark" viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
+      <circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="20" y1="3" x2="20" y2="9"/><line x1="20" y1="31" x2="20" y2="37"/>
+        <line x1="3" y1="20" x2="9" y2="20"/><line x1="31" y1="20" x2="37" y2="20"/>
+        <line x1="8" y1="8" x2="12" y2="12"/><line x1="28" y1="28" x2="32" y2="32"/>
+        <line x1="8" y1="32" x2="12" y2="28"/><line x1="28" y1="12" x2="32" y2="8"/>
+      </g>
+    </svg>
+    <div><div class="brand-title">SOLARA</div><div class="brand-sub">Sustainability Operations &amp; Lifecycle Analysis Report Automation</div></div>
+  </a>
+  <nav class="topnav"></nav>
+</header>
+
+<main class="container">
+
+<div class="crumbs">
+  <a href="../../../index.html">Home</a><span class="sep">›</span><a href="../../../design/index.html">Design</a><span class="sep">›</span>Energy Management
+</div>
+
+<section class="page-hero" style="max-width:880px">
+  <div class="kicker">Module 03 · Pre-build analysis</div>
+  <h1>Energy Management</h1>
+  <p class="lede">An 8,760-hour dispatch sizes PV and storage against the Farm32 demand curve, then tests how design and operating levers shift reliability. The reference design — 480 kWp PV with a 600 kWh LFP battery on a synchronized 18 h photoperiod — meets <strong>82 %</strong> of annual load on-site.</p>
+</section>
+
+<!-- STEP 1: BASELINE DIAGNOSTICS -->
+<div class="step-header">
+  <span class="step-num">Step 1 · Diagnostics</span>
+  <h2>How the current design performs</h2>
+</div>
+<p class="lede" style="font-size:15px;max-width:820px;margin-top:4px">Annual PV generation (830 MWh) exceeds annual load (695 MWh), but the shortfall is concentrated in winter when storage cannot bridge consecutive low-irradiance nights. Two questions matter for the business case: when does the deficit land, and how deep does it go?</p>
+
+<section class="kpi-grid" style="margin-top:14px">
+  <div class="kpi"><div class="kpi-label">Annual load</div><div class="kpi-value" id="kpi-load">—</div><div class="kpi-unit">MWh / yr</div></div>
+  <div class="kpi"><div class="kpi-label">PV generation</div><div class="kpi-value" id="kpi-pv">—</div><div class="kpi-unit">MWh / yr</div></div>
+  <div class="kpi"><div class="kpi-label">Self-sufficiency</div><div class="kpi-value" id="kpi-selfsuf">—</div><div class="kpi-unit">% of load met</div></div>
+  <div class="kpi warn"><div class="kpi-label">Shortfall hours</div><div class="kpi-value" id="kpi-shorth">—</div><div class="kpi-unit">hr / yr (<span id="kpi-shortpct">—</span>%)</div></div>
+  <div class="kpi warn"><div class="kpi-label">Deepest deficit</div><div class="kpi-value" id="kpi-deepest">—</div><div class="kpi-unit">kW (single hour)</div></div>
+  <div class="kpi warn"><div class="kpi-label">Longest dark streak</div><div class="kpi-value" id="kpi-streak">—</div><div class="kpi-unit">consecutive hours</div></div>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Monthly failure profile</h2>
+    <div class="chart-sub">When in the year does the system fall short? Winter (December–February) dominates.</div>
+  </div>
+  <div id="chart-monthly"></div>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Worst week — hourly energy flows</h2>
+    <div class="chart-sub">The 7-day window with the most unmet kWh. Battery state-of-charge (right axis, dotted) drains during long cloudy stretches and cannot recover.</div>
+  </div>
+  <div id="chart-worst-week"></div>
+</section>
+
+<section class="chart-block split">
+  <div>
+    <div class="chart-head">
+      <h2>Mean daily energy curve</h2>
+      <div class="chart-sub">Average kW across all 365 days. PV peak (midday) versus load peak (photoperiod) drives the storage requirement.</div>
+    </div>
+    <div id="chart-daily"></div>
+  </div>
+  <div>
+    <div class="chart-head">
+      <h2>Hourly shortfall heatmap</h2>
+      <div class="chart-sub">365 days × 24 hours. Dark red = the highest unmet kW.</div>
+    </div>
+    <div id="chart-heatmap"></div>
+  </div>
+</section>
+
+<section class="answer-card" style="margin-top:14px">
+  <strong>Where the deficit lives.</strong> 45 % of unmet energy lands in November–February — the four months with the deepest single-month deficits. December alone carries 16 MWh of unmet energy. Annual PV (830 MWh) exceeds annual load (695 MWh); the constraint is seasonal storage, not nameplate capacity.
+</section>
+
+<!-- STEP 2: DESIGN-SENSITIVITY SCENARIOS -->
+<div class="step-header">
+  <span class="step-num">Step 2 · Design sensitivity</span>
+  <h2>Which levers close the gap?</h2>
+</div>
+<p class="lede" style="font-size:15px;max-width:820px;margin-top:4px">Six configurations on the modelled Farm32 load curve. <strong>Capital levers</strong> change hardware (PV size, battery size); <strong>operational levers</strong> change how the facility is run (photoperiod, seasonal pauses).</p>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Scenario comparison</h2>
+    <div class="chart-sub">Shortfall hours per year (lower is better). Bars sorted by self-sufficiency. The current design is shown for reference.</div>
+  </div>
+  <div id="chart-scenarios"></div>
+</section>
+
+<div id="scenario-cards" class="scenario-grid"></div>
+
+<section class="chart-block" style="margin-top:18px">
+  <div class="chart-head">
+    <h2>Full scenario table</h2>
+    <div class="chart-sub">PV size, battery size, load modifier, and resulting reliability for each alternative.</div>
+  </div>
+  <table class="data" id="scenario-table">
+    <thead>
+      <tr><th>Scenario</th><th>PV (kWp)</th><th>Battery (kWh)</th><th>Load (MWh/yr)</th><th>Self-suf (%)</th><th>Shortfall (h/yr)</th><th>Deepest deficit (kW)</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section class="chart-block">
+  <div class="chart-head">
+    <h2>Design space — when does shortfall reach zero?</h2>
+    <div class="chart-sub">Each row is a battery size, each column a PV size. Annual shortfall hours decrease toward the upper-right. The current Farm32 design (480 kWp, 600 kWh) is marked. Use this to read off the capital lever required for any reliability target.</div>
+  </div>
+  <div id="chart-sweep"></div>
+</section>
+
+<!-- DOWNLOAD CTA -->
+<div class="report-cta">
+  <div class="report-cta-text">
+    <strong>Energy Management Brief</strong> — A business summary of the diagnostics, scenarios, and recommended next steps. Plain language, no methodology appendix.
+  </div>
+  <a class="btn" href="SOLARA_EnergyMgmt_Brief.pdf" download>Download brief (PDF)</a>
+</div>
+
+<!-- METHODOLOGY -->
+<section class="methodology">
+  <h2>Assumptions &amp; limitations</h2>
+  <div class="meth-grid">
+    <div>
+      <div class="meth-label">PV model</div>
+      <p>pvlib PVWatts at 30° south-facing tilt, 14% system losses, hourly POA irradiance &amp; cell temperature from the Module-01 TMYx file. No tracking; mono-Si modules at 200 W/m².</p>
+    </div>
+    <div>
+      <div class="meth-label">Battery model</div>
+      <p>LFP chemistry, 92% round-trip efficiency, 90% depth-of-discharge, 150 kW power cap (independent of energy). Self-discharge negligible at hourly resolution.</p>
+    </div>
+    <div>
+      <div class="meth-label">Dispatch logic</div>
+      <p>Greedy hourly priority: PV serves load first; surplus charges the battery; deficit draws from the battery; residual is recorded as shortfall. No grid export, no curtailment penalty.</p>
+    </div>
+    <div>
+      <div class="meth-label">Design sweep</div>
+      <p>240–2,000 kWp × 200–3,600 kWh battery — 72 combinations, full 8,760 h re-run each. The zero-shortfall contour line is overlaid on the heatmap.</p>
+    </div>
+    <div>
+      <div class="meth-label">Load source</div>
+      <p>EnergyPlus 8,760-h simulation on the Farm32 facility (16.46 kWh/kg-FW). Includes LED canopy (70 %), chiller via COP 3.7 (21 %), and aux loads (9 %). Dehumidification overhead, post-harvest, and standby loads sit outside the EnergyPlus envelope and are not included in this dispatch.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chart-block" style="margin-top:22px">
+  <div class="chart-head">
+    <h2>Outputs handed downstream</h2>
+  </div>
+  <table class="data">
+    <thead><tr><th>Output</th><th>Goes to</th><th>How it is used</th></tr></thead>
+    <tbody>
+      <tr><td>Sized PV (kWp) + battery (kWh)</td><td><a href="../../../design/impact/index.html">Module 04 — Environmental Impact</a></td><td>Capital-goods stage: PV module + inverter + battery bill of materials</td></tr>
+      <tr><td>Grid import / export (MWh/yr)</td><td><a href="../../../design/impact/index.html">Module 04 — Environmental Impact</a></td><td>Operational energy stage (PEFCR §5.3) — grid mix EF</td></tr>
+      <tr><td>Hourly dispatch baseline</td><td>Operate</td><td>Real-time deviation against measured PV + battery output</td></tr>
+      <tr><td>Selected scenario configuration</td><td>Operate · Module 04</td><td>Design freeze: PV size, battery size, photoperiod, and seasonal operating rule</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+
+<footer class="site">
+  <div>SOLARA demo — figures labeled validated · demo data · illustrative · pending</div>
+  <div class="right">Powered by Springtide Strategy · July 2026</div>
+</footer>
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script src="../../../assets/nav.js?v=4"></script>
+<script src="../../../assets/js/solara_charts.js?v=4"></script>
+<script>
+(async function(){
+  await SOLARA.loadData();
+  // Synchronized is the demo design. No toggle.
+  var VARIANT = 'synchronized';
+  function refresh(){
+    var d = SOLARA.getData()[VARIANT];
+    document.getElementById('kpi-load').textContent = SOLARA.fmt(d.annual_load_mwh, 0);
+    document.getElementById('kpi-pv').textContent = SOLARA.fmt(d.annual_pv_mwh, 0);
+    document.getElementById('kpi-selfsuf').textContent = SOLARA.fmt(d.self_sufficiency_pct, 1);
+    document.getElementById('kpi-shorth').textContent = SOLARA.fmt(d.shortfall_hours, 0);
+    document.getElementById('kpi-shortpct').textContent = SOLARA.fmt(d.shortfall_pct_year, 1);
+    document.getElementById('kpi-deepest').textContent = SOLARA.fmt(d.deepest_deficit_kw, 1);
+    document.getElementById('kpi-streak').textContent = SOLARA.fmt(d.longest_streak_h, 0);
+    SOLARA.renderMonthly('chart-monthly', d);
+    SOLARA.renderWorstWeek('chart-worst-week', d);
+    SOLARA.renderDaily('chart-daily', d);
+    SOLARA.renderHeatmap('chart-heatmap', d);
+    SOLARA.renderSweep('chart-sweep', d);
+  }
+  refresh();
+
+  // ----- scenario renderer -----
+  var scenUrl = new URL('../../../data/scenarios.json', window.location.href).toString();
+  try {
+    var resp = await fetch(scenUrl);
+    var sc = await resp.json();
+    renderScenarios(sc);
+  } catch(e) {
+    console.error('Scenario load failed:', e);
+    document.getElementById('scenario-cards').innerHTML = '<div style="color:#A33A2C;font-size:13px">Scenario data unavailable.</div>';
+  }
+
+  function fmt(n, d){ if(n===null||n===undefined) return '—'; var v=Number(n); if(!isFinite(v)) return '—'; return v.toFixed(d||0); }
+
+  function cardHtml(s, isBaseline, isBest){
+    var cls = 'scenario-card' + (isBaseline?' baseline':'') + (isBest?' best':'');
+    var card = document.createElement('div');
+    card.className = cls;
+    card.innerHTML =
+      '<div class="sc-name">'+s.label+'</div>'+
+      '<div class="sc-levers">PV '+s.levers.pv_kwp+' kWp · Battery '+s.levers.battery_kwh.toLocaleString()+' kWh</div>'+
+      '<div class="sc-story">'+s.story+'</div>'+
+      '<div class="sc-stats">'+
+        '<div class="sc-stat"><div class="sc-label">Self-suf</div><div class="sc-value">'+fmt(s.self_sufficiency_pct,1)+'<span class="sc-unit"> %</span></div></div>'+
+        '<div class="sc-stat"><div class="sc-label">Shortfall</div><div class="sc-value">'+fmt(s.shortfall_hours,0)+'<span class="sc-unit"> h/yr</span></div></div>'+
+      '</div>';
+    return card;
+  }
+
+  function renderScenarios(payload){
+    var scenarios = payload.scenarios || [];
+    var design = scenarios.filter(function(s){return s.track==='design' || !s.track;});
+
+    // ----- Design-track cards (baseline first, then by self-suf desc) -----
+    var baseline = design.find(function(s){return s.name==='baseline';});
+    var rest = design.filter(function(s){return s.name!=='baseline';});
+    rest.sort(function(a,b){return b.self_sufficiency_pct - a.self_sufficiency_pct;});
+    var order = baseline ? [baseline].concat(rest) : rest;
+
+    var cards = document.getElementById('scenario-cards');
+    cards.innerHTML = '';
+    order.forEach(function(s){
+      cards.appendChild(cardHtml(s, s.name==='baseline', s.self_sufficiency_pct >= 99.5));
+    });
+
+    // ----- Design-track bar chart -----
+    var chartData = order.slice().sort(function(a,b){return a.shortfall_hours - b.shortfall_hours;});
+    var labels = chartData.map(function(s){return s.label;});
+    var hours = chartData.map(function(s){return s.shortfall_hours;});
+    var colors = chartData.map(function(s){
+      if(s.shortfall_hours===0) return '#21808D';
+      if(s.name==='baseline') return '#A33A2C';
+      return '#3FA9B5';
+    });
+    Plotly.newPlot('chart-scenarios', [{
+      type:'bar', orientation:'h',
+      x:hours, y:labels,
+      marker:{color:colors},
+      text: hours.map(function(h){return h===0?'0 (always covered)':h+' h';}),
+      textposition:'outside',
+      hovertemplate:'%{y}<br>Shortfall: %{x} h/yr<extra></extra>'
+    }], {
+      paper_bgcolor:'#FFFFFD', plot_bgcolor:'#FFFFFD',
+      font:{family:'Inter, sans-serif', color:'#13343B', size:12},
+      margin:{l:220,r:60,t:10,b:40},
+      height: Math.max(280, 44*labels.length + 60),
+      xaxis:{title:'Shortfall hours per year', gridcolor:'#EFECE3', zerolinecolor:'#D5D2C8'},
+      yaxis:{automargin:true, autorange:'reversed'}
+    }, {displayModeBar:false, responsive:true});
+
+    // ----- Design-track table -----
+    var tbody = document.querySelector('#scenario-table tbody');
+    tbody.innerHTML = '';
+    order.forEach(function(s){
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td>'+s.label+(s.name==='baseline'?' <span class="tag-pill">current</span>':'')+'</td>'+
+        '<td>'+s.levers.pv_kwp+'</td>'+
+        '<td>'+s.levers.battery_kwh.toLocaleString()+'</td>'+
+        '<td>'+fmt(s.annual_load_mwh,0)+'</td>'+
+        '<td>'+fmt(s.self_sufficiency_pct,1)+'</td>'+
+        '<td>'+fmt(s.shortfall_hours,0)+'</td>'+
+        '<td>'+fmt(s.deepest_deficit_kw,1)+'</td>';
+      tbody.appendChild(tr);
+    });
+  }
+})();
+</script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>
