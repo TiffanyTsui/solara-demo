@@ -14,6 +14,11 @@
     const t = $("[data-theme-toggle]"), r = document.documentElement;
     let d = matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light";
     r.setAttribute("data-theme", d);
+    // The v2 page ships no toggle button (the shared design system has no
+    // per-page theme switch). Keep the initial theme, skip the wiring —
+    // without this guard the whole IIFE throws here and nothing below it
+    // ever runs, leaving the page rendered but empty of charts and KPIs.
+    if (!t) return;
     t.addEventListener("click", () => {
       d = d === "dark" ? "light" : "dark";
       r.setAttribute("data-theme", d);

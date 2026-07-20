@@ -5,6 +5,31 @@ history; `v1.1` = commit `d83907f` (2026-07-14).
 
 ---
 
+## v2.0.1 — 2026-07-20 — fix: Morocco LCA page rendered empty
+
+### Fixed
+
+- **`farm32/design/impact/` (Environmental Impact / LCA) showed static markup
+  with no charts, KPIs or tables.** When the page was rewritten for the
+  case-first restructure its theme-toggle button was dropped, but the legacy
+  `app.js` — moved across unchanged — still wired a click listener to
+  `[data-theme-toggle]`. That selector returned `null`, the `TypeError` aborted
+  the whole IIFE on line 17, and **every initializer below it never ran**:
+  both Chart.js canvases, the KPI strip, the results and comparison tables,
+  and the hero answer. Guarded the wiring (`if (!t) return`) — the v2 design
+  ships no per-page theme switch, so the initial theme is set and the listener
+  skipped.
+- Failure mode worth remembering: one unguarded `querySelector(...)`
+  `.addEventListener` at the *top* of an IIFE silently kills everything after
+  it. The page looked "styled but empty" rather than throwing visibly.
+
+### Changed
+
+- Asset pins `?v=5` → `?v=6`, since `app.js` changed. Without this, anyone who
+  already loaded the broken page keeps the broken cached copy.
+
+---
+
 ## v2.0 — 2026-07-20 — case-first demo · planning under uncertainty
 
 The site stopped being one linear Design→Plan→Operate walkthrough and became
