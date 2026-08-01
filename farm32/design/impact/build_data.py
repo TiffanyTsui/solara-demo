@@ -24,25 +24,30 @@ import json
 #    (per 1 functional unit, "at consumer"). Indoor = Farm32 Morocco
 #    sealed-box CEA; Open field = Kenya polytunnel reference.
 # ----------------------------------------------------------------------
+# The 16 EF 3.1 categories + the published golden record are NOT declared here.
+# They are read from the single source shared with the report build, so that the
+# site and the documents can never drift apart. See ~/dev/lca-report.
+#
+# Rule: if a second audience means retyping the numbers, you don't have a source
+# -- you have a copy. Failing loudly beats falling back to a stale local copy.
+import os as _os, yaml as _yaml
+_GOLDEN = _os.environ.get(
+    "GOLDEN_RECORD",
+    _os.path.expanduser("~/dev/lca-report/data/golden-record.yaml"),
+)
+try:
+    with open(_GOLDEN) as _f:
+        _g = _yaml.safe_load(_f)
+except FileNotFoundError:
+    raise SystemExit(
+        f"build_data.py: golden record not found at {_GOLDEN}.\n"
+        "Clone github.com/TiffanyTsui/lca-report beside this repo, or set GOLDEN_RECORD."
+    )
 CATS = [
-    # key, label, unit, indoor_total, openfield_total
-    ("climate",  "Climate change",                 "kg CO\u2082 eq",   2.3758167,    7.0311717),
-    ("fossils",  "Resource use, fossils",          "MJ",               27.653139,    90.105003),
-    ("water",    "Water use",                       "m\u00b3 depriv.",  1.1425808,    6.5789182),
-    ("land",     "Land use",                        "Pt",               126.30825,    13.045455),
-    ("acid",     "Acidification",                   "mol H\u207a eq",   0.012026403,  0.032717615),
-    ("eutroM",   "Eutrophication, marine",          "kg N eq",          0.0023717689, 0.011215369),
-    ("eutroF",   "Eutrophication, freshwater",      "kg P eq",          0.00072264779,0.00063618874),
-    ("eutroT",   "Eutrophication, terrestrial",     "mol N eq",         0.028222529,  0.12974266),
-    ("ecotox",   "Ecotoxicity, freshwater",         "CTUe",             13.229216,    20.55772),
-    ("pm",       "Particulate matter",              "disease inc.",     1.45426e-07,  1.37703e-07),
-    ("ozone",    "Ozone depletion",                 "kg CFC11 eq",      1.29812e-07,  1.92703e-07),
-    ("photo",    "Photochemical ozone formation",   "kg NMVOC eq",      0.0086261827, 0.039058672),
-    ("ion",      "Ionising radiation",              "kBq U-235 eq",     0.10224601,   0.047561603),
-    ("htc",      "Human toxicity, cancer",          "CTUh",             9.2342481e-10,1.0753847e-09),
-    ("htnc",     "Human toxicity, non-cancer",      "CTUh",             5.5699e-08,   7.4082e-08),
-    ("minmet",   "Resource use, minerals & metals", "kg Sb eq",         4.9067289e-05,1.8238733e-05),
+    (c["key"], c["label"], c["unit"], c["indoor"], c["openfield"])
+    for c in _g["categories"]
 ]
+
 
 # ----------------------------------------------------------------------
 # 2. Technosphere flows (the BOM the user can edit). Per FU quantities
