@@ -101,6 +101,48 @@
     }).join("");
   }
 
+  /* ---- Operate forecast strip (indoor-climate forecast + heat alert) --- */
+  /* renderForecastStrip("fc-banner", "fc-chart", "fc-days", url)
+     Reads a data/feeds/<site>.json forecast snapshot written by the site-model
+     pipeline: alert banner (level + reasons), a 48 h indoor/outdoor line
+     chart, and per-day mean/max chips. Actor-less by contract: temperatures
+     only. Needs Plotly for the chart. */
+  function renderForecastStrip(bannerId, chartId, daysId, url) {
+    fetch(url, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (f) {
+      var lvl = (f.alert && f.alert.level) || "none";
+      var col = { none: TEAL2, warning: PV, critical: SHORT }[lvl];
+      var label = { none: "no alert", warning: "warning", critical: "critical" }[lvl];
+      el(bannerId).innerHTML =
+        '<div style="border-left:4px solid ' + col + ';padding:10px 14px;background:' + col + '14">' +
+        '<strong style="color:' + col + ';text-transform:uppercase;letter-spacing:.03em">' +
+        "heat alert: " + label + "</strong>" +
+        ((f.alert && f.alert.reasons && f.alert.reasons.length)
+          ? "<div style=\"margin-top:4px\">" + f.alert.reasons.join(" · ") + "</div>" : "") +
+        '<div class="muted" style="font-size:.8rem;margin-top:4px">issued ' + f.updated_iso +
+        " UTC · " + f.note + "</div></div>";
+      if (window.Plotly && f.series) {
+        Plotly.newPlot(chartId, [
+          { x: f.series.t, y: f.series.indoor, name: "Indoor (simulated)",
+            line: { color: TEAL2, width: 2.4 } },
+          { x: f.series.t, y: f.series.outdoor, name: "Outdoor (forecast)",
+            line: { color: MUTED, width: 1.4, dash: "dash" } },
+        ], Object.assign({}, BASE, {
+          height: 300, yaxis: Object.assign({}, BASE.yaxis, { title: "°C" }),
+          shapes: [28, 31].map(function (y, i) {
+            return { type: "line", xref: "paper", x0: 0, x1: 1, y0: y, y1: y,
+                     line: { color: i ? SHORT : PV, width: 1, dash: "dot" } };
+          }),
+        }), CONFIG);
+      }
+      el(daysId).innerHTML = (f.days || []).map(function (d) {
+        return '<span class="tag-pill" style="margin-right:8px">' + d.date +
+          " · mean " + fmt(d.mean, 1) + " · max " + fmt(d.max, 1) + " °C</span>";
+      }).join("");
+    }).catch(function () {
+      el(bannerId).innerHTML = "<p class=\"muted\">Forecast feed not reachable (" + url + ").</p>";
+    });
+  }
+
   /* ---- Operate feed tiles (live-ready) -------------------------------- */
   /* renderFeed("feed-meta", "feed-tiles", url)
      Reads a data/feeds/<site>.json snapshot: shows source + updated timestamp,
@@ -467,6 +509,7 @@
     renderSlotTable: renderSlotTable,
     renderBenchmark: renderBenchmark, renderBenchmarkHead: renderBenchmarkHead,
     renderFeed: renderFeed,
+    renderForecastStrip: renderForecastStrip,
     renderBasilPlanChart: renderBasilPlanChart, renderBasilMarginChart: renderBasilMarginChart,
     renderKappenChart: renderKappenChart, renderSweepChart: renderSweepChart,
     renderStochasticTable: renderStochasticTable,

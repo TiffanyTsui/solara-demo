@@ -48,6 +48,17 @@
 </div>
 <p class="lede" style="font-size:0.98rem;margin-bottom:24px">Two mechanisms, both fed by data the locations already record: <strong>plan-vs-actual</strong> per week, and a <strong>multi-site benchmark</strong> on the same metrics across all five locations. Numbers below are illustrative until the registration streams connect.</p>
 
+<div class="chart-block">
+  <div class="chart-head">
+    <h3>Indoor climate forecast — Location M <span class="tag-pill validated">calibrated model</span></h3>
+    <div class="chart-sub">48 h ahead from the calibrated site model on forecast weather. Refreshed per forecast issue; reload for the latest.</div>
+  </div>
+  <div id="fc-banner" style="margin-bottom:12px"></div>
+  <div id="fc-chart"></div>
+  <div id="fc-days" style="margin-top:10px"></div>
+  <div class="footnote" style="margin-top:8px">Model: single-zone physics simulation built from open data (building registry footprint, KNMI weather), calibrated on measured indoor temperature — out-of-sample daily-mean error 0.83&nbsp;°C on a 63-day holdout. Alert thresholds exploratory. Forecast uncertainty ±1.5&nbsp;°C.</div>
+</div>
+
 <div class="op-grid">
   <div class="op-card">
     <h3>This week vs plan — Location M <span class="badge warn">illustrative</span></h3>
@@ -131,10 +142,12 @@
   <div class="right">Powered by Springtide Strategy · July 2026</div>
 </footer>
 
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
 <script src="../../assets/cases/chrysant.js?v=6"></script>
 <script src="../../assets/nav.js?v=6"></script>
 <script src="../../assets/js/solara_case.js?v=6"></script>
 <script>
+SOLARA_UI.renderForecastStrip("fc-banner", "fc-chart", "fc-days", "../../data/feeds/chrysant.json");
 SOLARA_UI.renderBenchmarkHead("bench-head");
 SOLARA_UI.renderBenchmark("bench-body");
 </script>
