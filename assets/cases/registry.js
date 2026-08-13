@@ -32,6 +32,16 @@ window.SOLARA_REGISTRY = [
     ],
   },
   {
+    id: "made",
+    label: "Made",
+    sub: "Kasvooruitzicht · 3 afdelingen",
+    status: "active",
+    lock: { hash: "e7ea6b96427bbd3dfed5ac0a089c6fb047abaf1f6c0b4d136da4d1f4f31e08a7" },
+    modules: [
+      { id: "overview", label: "Vooruitzicht", path: "index.html" },
+    ],
+  },
+  {
     id: "hic",
     label: "Skyberries",
     sub: "Strawberry greenhouse · connecting",

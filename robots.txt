@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /made/
+Disallow: /data/feeds/
