@@ -1,23 +1,23 @@
 {
- "site": "afd13",
- "label": "MidMad 1",
+ "site": "afd13-23",
+ "label": "MidMad 1 + 2",
  "afdelingen": [
-  13
+  13,
+  23
  ],
- "updated_iso": "2026-08-13T16:45+00:00",
+ "updated_iso": "2026-08-13T17:05+00:00",
  "source": "solara-calibrate frozen v3_best on forecast weather",
- "provenance": "calibrated on the 604-day afd13 series; CAVEAT: truth series is plausibly the MEAN of afd 13 and 23 (two units of one pand) \u2014 refit against the per-afdeling re-export when it arrives; pand assignment confirmed by Richard 13 Aug 18:33",
+ "provenance": "calibrated on the 604-day gem-kastemp series; truth series is plausibly the MEAN of afd 13 and 23 \u2014 which MATCHES this whole-building single-zone model (v3.1); the per-afdeling re-export (asked) measures the within-building spread the zone cannot resolve; building confirmed by Richard 13 Aug 18:33 ('one glashouse of 6 ha')",
  "note": "Actor-less: temperatures only. Thresholds exploratory; uncertainty \u00b11.5 \u00b0C on daily means.",
  "alert": {
   "level": "critical",
   "reasons": [
-   "\u2265 31 \u00b0C aanhoudend vanaf do 13-08 19:00",
+   "\u2265 31 \u00b0C aanhoudend vanaf do 13-08 20:00",
    "etmaalgemiddelde \u2265 26 \u00b0C op vr 14-08"
   ]
  },
  "series": {
   "t": [
-   "2026-08-13T18:00",
    "2026-08-13T19:00",
    "2026-08-13T20:00",
    "2026-08-13T21:00",
@@ -64,13 +64,13 @@
    "2026-08-15T14:00",
    "2026-08-15T15:00",
    "2026-08-15T16:00",
-   "2026-08-15T17:00"
+   "2026-08-15T17:00",
+   "2026-08-15T18:00"
   ],
   "indoor": [
-   38.2,
    36.7,
    35.6,
-   32.4,
+   32.3,
    29.2,
    27.3,
    26.0,
@@ -81,19 +81,19 @@
    20.4,
    19.9,
    20.9,
-   23.4,
-   27.7,
-   31.7,
-   34.7,
+   23.3,
+   27.6,
+   31.6,
+   34.6,
    37.1,
    39.1,
    40.3,
    40.6,
-   39.9,
+   39.8,
    39.3,
    38.5,
    35.5,
-   33.1,
+   33.0,
    30.2,
    28.1,
    26.6,
@@ -114,10 +114,10 @@
    22.0,
    22.5,
    24.4,
-   25.7
+   25.7,
+   25.8
   ],
   "outdoor": [
-   34.7,
    34.0,
    32.5,
    30.0,
@@ -164,14 +164,15 @@
    21.6,
    21.8,
    23.5,
-   24.9
+   24.9,
+   25.2
   ]
  },
  "days": [
   {
    "date": "2026-08-13",
-   "mean": 32.2,
-   "max": 38.2
+   "mean": 31.2,
+   "max": 36.7
   },
   {
    "date": "2026-08-14",
@@ -180,8 +181,8 @@
   },
   {
    "date": "2026-08-15",
-   "mean": 23.6,
-   "max": 25.7
+   "mean": 23.7,
+   "max": 25.8
   }
  ]
 }
