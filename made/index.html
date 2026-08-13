@@ -1,6 +1,7 @@
 <!doctype html>
 <!-- Made · kasvooruitzicht — the grower-facing forecast page (Richard).
-     Three strips, one per unit, afdeling-keyed feeds written daily by
+     Two strips, one per BUILDING (v3.1: MidMad 1+2 is one glasshouse),
+     afdeling-keyed feeds written daily by
      solara-calibrate run_daily.sh. Dutch by decision (13 Aug). Actor-less by
      contract: temperatures + alert level only — no commercial figures, no
      benchmark, no other locations. Own workspace + own access code so the
@@ -14,11 +15,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/tokens.css?v=8" />
+<link rel="stylesheet" href="../assets/tokens.css?v=9" />
 </head>
 <body data-root=".." data-case="made" data-module="overview">
-<script src="../assets/cases/registry.js?v=8"></script>
-<script src="../assets/lock.js?v=8"></script>
+<script src="../assets/cases/registry.js?v=9"></script>
+<script src="../assets/lock.js?v=9"></script>
 
 <header class="topbar">
   <a class="brand" href="index.html">
@@ -41,7 +42,7 @@
 <div class="case-head" style="margin-top:0">
   <div>
     <div class="kicker">Vooruitzicht kastemperatuur · 48 uur</div>
-    <h1 style="font-size:1.7rem">Made — drie afdelingen, elke ochtend opnieuw berekend</h1>
+    <h1 style="font-size:1.7rem">Made — twee gebouwen, elke ochtend opnieuw berekend</h1>
   </div>
 </div>
 <p class="lede" style="font-size:0.98rem;margin-bottom:8px">
@@ -55,8 +56,8 @@ dagelijks ± 06:30 ververst — herlaad voor de nieuwste uitgifte.</p>
 
 <div class="chart-block">
   <div class="chart-head">
-    <h3>MidMad 1 — afdeling 13 <span class="tag-pill validated">gekalibreerd model</span></h3>
-    <div class="chart-sub">gekalibreerd op 20 maanden meetdata (etmaalgemiddelde MAE ≈ 1 °C)</div>
+    <h3>MidMad 1 + 2 — afdeling 13/23 <span class="tag-pill validated">gekalibreerd model</span></h3>
+    <div class="chart-sub">één gebouw, één model — gekalibreerd op 20 maanden meetdata; verschil tussen afdelingen (0,4–0,9 °C) valt binnen de onzekerheid</div>
   </div>
   <div id="fc1-banner" style="margin-bottom:12px"></div>
   <div id="fc1-chart"></div>
@@ -65,22 +66,12 @@ dagelijks ± 06:30 ververst — herlaad voor de nieuwste uitgifte.</p>
 
 <div class="chart-block">
   <div class="chart-head">
-    <h3>MidMad 2 — afdeling 23 <span class="tag-pill illustrative">voorlopig</span></h3>
-    <div class="chart-sub">zelfde gebouw, overgedragen model — eigen meetreeks bouwt nog op</div>
+    <h3>MidMad 3 — nieuwbouw · afd 33/36 <span class="tag-pill illustrative">voorlopig</span></h3>
+    <div class="chart-sub">overgedragen model op de eigen geometrie — de test of één aanpak alle kassen aankan</div>
   </div>
   <div id="fc2-banner" style="margin-bottom:12px"></div>
   <div id="fc2-chart"></div>
   <div id="fc2-days" style="margin-top:10px"></div>
-</div>
-
-<div class="chart-block">
-  <div class="chart-head">
-    <h3>MidMad 3 — nieuwbouw · afd 33/36 <span class="tag-pill illustrative">voorlopig</span></h3>
-    <div class="chart-sub">overgedragen model op de eigen geometrie — de test of één formule alle kassen aankan</div>
-  </div>
-  <div id="fc3-banner" style="margin-bottom:12px"></div>
-  <div id="fc3-chart"></div>
-  <div id="fc3-days" style="margin-top:10px"></div>
 </div>
 
 <p class="muted" style="font-size:0.8rem;margin-top:24px">
@@ -90,12 +81,11 @@ Springtide Strategy · SOLARA — vragen of een gekke waarde gezien? App Tiffany
 </main>
 
 <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
-<script src="../assets/nav.js?v=8"></script>
-<script src="../assets/js/solara_case.js?v=8"></script>
+<script src="../assets/nav.js?v=9"></script>
+<script src="../assets/js/solara_case.js?v=9"></script>
 <script>
-SOLARA_UI.renderForecastStrip("fc1-banner", "fc1-chart", "fc1-days", "../data/feeds/made-afd13.json");
-SOLARA_UI.renderForecastStrip("fc2-banner", "fc2-chart", "fc2-days", "../data/feeds/made-afd23.json");
-SOLARA_UI.renderForecastStrip("fc3-banner", "fc3-chart", "fc3-days", "../data/feeds/made-afd33-36.json");
+SOLARA_UI.renderForecastStrip("fc1-banner", "fc1-chart", "fc1-days", "../data/feeds/made-afd13-23.json");
+SOLARA_UI.renderForecastStrip("fc2-banner", "fc2-chart", "fc2-days", "../data/feeds/made-afd33-36.json");
 </script>
 </body>
 </html>
