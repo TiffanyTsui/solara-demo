@@ -1,12 +1,12 @@
 {
- "site": "afd13",
- "label": "MidMad 1",
+ "site": "afd23",
+ "label": "MidMad 2",
  "afdelingen": [
-  13
+  23
  ],
  "updated_iso": "2026-08-13T16:45+00:00",
  "source": "solara-calibrate frozen v3_best on forecast weather",
- "provenance": "calibrated on the 604-day afd13 series; CAVEAT: truth series is plausibly the MEAN of afd 13 and 23 (two units of one pand) \u2014 refit against the per-afdeling re-export when it arrives; pand assignment confirmed by Richard 13 Aug 18:33",
+ "provenance": "TRANSFER from afd13 (same 1997 pand, right half) \u2014 voorlopig until own record accumulates",
  "note": "Actor-less: temperatures only. Thresholds exploratory; uncertainty \u00b11.5 \u00b0C on daily means.",
  "alert": {
   "level": "critical",
