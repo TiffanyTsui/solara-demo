@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- Made · kasvooruitzicht — the grower-facing forecast page (Richard).
-     Two strips, one per BUILDING (v3.1: MidMad 1+2 is one glasshouse),
+     One calibrated strip + scored table; MidMad 3 collapsed to one line (fix 3),
      afdeling-keyed feeds written daily by
      solara-calibrate run_daily.sh. Dutch by decision (13 Aug). Actor-less by
      contract: temperatures + alert level only — no commercial figures, no
@@ -66,12 +66,19 @@ dagelijks ± 06:30 ververst — herlaad voor de nieuwste uitgifte.</p>
 
 <div class="chart-block">
   <div class="chart-head">
-    <h3>MidMad 3 — nieuwbouw · afd 33/36 <span class="tag-pill illustrative">voorlopig</span></h3>
-    <div class="chart-sub">overgedragen model op de eigen geometrie — de test of één aanpak alle kassen aankan</div>
+    <h3>Voorspeld vs gemeten <span class="tag-pill validated">gescoord</span></h3>
+    <div class="chart-sub">elke voorspelling wordt achteraf gescoord tegen jullie gemeten kastemperatuur — ook als hij ernaast zat</div>
   </div>
-  <div id="fc2-banner" style="margin-bottom:12px"></div>
-  <div id="fc2-chart"></div>
-  <div id="fc2-days" style="margin-top:10px"></div>
+  <div id="sc-block"></div>
+</div>
+
+<div class="chart-block">
+  <div class="chart-head">
+    <h3>MidMad 3 — nieuwbouw · afd 33/36 <span class="tag-pill illustrative">voorlopig</span></h3>
+    <div class="chart-sub">overgedragen model, nog geen eigen kalibratie — de voorspelling valt vrijwel samen met de strip
+    hierboven (verschil ≈ 0,1 °C), dus tonen we één regel tot de eigen meetreeks (loopt sinds 13 aug) genoeg dagen heeft</div>
+  </div>
+  <div id="fc2-line"></div>
 </div>
 
 <p class="muted" style="font-size:0.8rem;margin-top:24px">
@@ -82,10 +89,11 @@ Springtide Strategy · SOLARA — vragen of een gekke waarde gezien? App Tiffany
 
 <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
 <script src="../assets/nav.js?v=10"></script>
-<script src="../assets/js/solara_case.js?v=10"></script>
+<script src="../assets/js/solara_case.js?v=11"></script>
 <script>
 SOLARA_UI.renderForecastStrip("fc1-banner", "fc1-chart", "fc1-days", "../data/feeds/made-afd13-23.json");
-SOLARA_UI.renderForecastStrip("fc2-banner", "fc2-chart", "fc2-days", "../data/feeds/made-afd33-36.json");
+SOLARA_UI.renderScoredTable("sc-block", "../data/feeds/made-afd13-23.json");
+SOLARA_UI.renderForecastLine("fc2-line", "../data/feeds/made-afd33-36.json");
 </script>
 </body>
 </html>

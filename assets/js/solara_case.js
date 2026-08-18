@@ -143,6 +143,69 @@
     });
   }
 
+  /* renderScoredTable("sc-block", url) — voorspeld vs gemeten (Made, fix 1).
+     Reads the feed's `scored` section (validate/scored_feed.py): one row per
+     fully-covered measured day, scored against the last issue frozen before
+     that day. Dutch by the Made page's decision. Empty state is honest: no
+     rows until measurements arrive. */
+  function renderScoredTable(blockId, url) {
+    fetch(url, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (f) {
+      var s = f.scored;
+      if (!s || !s.days || !s.days.length) {
+        el(blockId).innerHTML =
+          '<p class="muted" style="font-size:.85rem">Nog geen gescoorde dagen — ' +
+          "scoren gebeurt zodra de gemeten kastemperatuur binnenkomt.</p>";
+        return;
+      }
+      var rows = s.days.slice().reverse().map(function (d) {
+        var sgn = function (x) { return (x > 0 ? "+" : "") + fmt(x, 1); };
+        var hot = Math.abs(d.d_max) > 1.5 || Math.abs(d.d_mean) > 1.5;
+        return "<tr>" +
+          "<td>" + d.date + '</td>' +
+          '<td style="text-align:right">' + fmt(d.pred_mean, 1) + "</td>" +
+          '<td style="text-align:right">' + fmt(d.meas_mean, 1) + "</td>" +
+          '<td style="text-align:right;color:' + (hot ? SHORT : TEAL2) + '">' + sgn(d.d_mean) + "</td>" +
+          '<td style="text-align:right">' + fmt(d.pred_max, 1) + "</td>" +
+          '<td style="text-align:right">' + fmt(d.meas_max, 1) + "</td>" +
+          '<td style="text-align:right;color:' + (hot ? SHORT : TEAL2) + '">' + sgn(d.d_max) + "</td>" +
+          '<td class="muted" style="text-align:right;font-size:.8rem">' + d.issued + " (−" + d.lead_days + "d)</td>" +
+          "</tr>";
+      }).join("");
+      el(blockId).innerHTML =
+        '<table class="data" style="width:100%;font-size:.9rem">' +
+        "<thead><tr><th>Datum</th>" +
+        '<th style="text-align:right">voorspeld gem</th><th style="text-align:right">gemeten gem</th><th style="text-align:right">Δ</th>' +
+        '<th style="text-align:right">voorspeld max</th><th style="text-align:right">gemeten max</th><th style="text-align:right">Δ</th>' +
+        '<th style="text-align:right">uitgifte</th></tr></thead>' +
+        "<tbody>" + rows + "</tbody></table>" +
+        '<p class="muted" style="font-size:.78rem;margin-top:6px">' + (s.method || "") + "</p>";
+    }).catch(function () {
+      el(blockId).innerHTML = '<p class="muted">Scorefeed niet bereikbaar (' + url + ").</p>";
+    });
+  }
+
+  /* renderForecastLine("fc-line", url) — one-line summary of a feed (Made,
+     fix 3: MidMad 3 collapsed until it has its own history). Shows tomorrow's
+     predicted mean/max and ALWAYS the alert level — collapsing the strip must
+     never hide a warning. */
+  function renderForecastLine(lineId, url) {
+    fetch(url, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (f) {
+      var lvl = (f.alert && f.alert.level) || "none";
+      var col = { none: TEAL2, warning: PV, critical: SHORT }[lvl];
+      var label = { none: "geen alarm", warning: "WAARSCHUWING", critical: "KRITIEK" }[lvl];
+      var d = (f.days && f.days[1]) || (f.days && f.days[0]);
+      el(lineId).innerHTML =
+        '<div style="border-left:4px solid ' + col + ';padding:8px 14px;background:' + col + '14">' +
+        '<strong style="color:' + col + '">' + label + "</strong>" +
+        (d ? " · morgen (" + d.date + "): gem " + fmt(d.mean, 1) + " · max " + fmt(d.max, 1) + " °C" : "") +
+        ((lvl !== "none" && f.alert.reasons && f.alert.reasons.length)
+          ? '<div style="margin-top:4px">' + f.alert.reasons.join(" · ") + "</div>" : "") +
+        '<span class="muted" style="font-size:.8rem"> · uitgifte ' + f.updated_iso + " UTC</span></div>";
+    }).catch(function () {
+      el(lineId).innerHTML = '<p class="muted">Forecast feed niet bereikbaar (' + url + ").</p>";
+    });
+  }
+
   /* ---- Operate feed tiles (live-ready) -------------------------------- */
   /* renderFeed("feed-meta", "feed-tiles", url)
      Reads a data/feeds/<site>.json snapshot: shows source + updated timestamp,
@@ -510,6 +573,7 @@
     renderBenchmark: renderBenchmark, renderBenchmarkHead: renderBenchmarkHead,
     renderFeed: renderFeed,
     renderForecastStrip: renderForecastStrip,
+    renderScoredTable: renderScoredTable, renderForecastLine: renderForecastLine,
     renderBasilPlanChart: renderBasilPlanChart, renderBasilMarginChart: renderBasilMarginChart,
     renderKappenChart: renderKappenChart, renderSweepChart: renderSweepChart,
     renderStochasticTable: renderStochasticTable,
