@@ -36,7 +36,7 @@ window.SOLARA_REGISTRY = [
     label: "Made",
     sub: "Kasvooruitzicht · 2 gebouwen",
     status: "active",
-    lock: { hash: "e7ea6b96427bbd3dfed5ac0a089c6fb047abaf1f6c0b4d136da4d1f4f31e08a7" },
+    lock: { hash: "5bee769da6a839454f299b4bce465584490c9f951ff422c2eddaf1582133cccd" },
     modules: [
       { id: "overview", label: "Vooruitzicht", path: "index.html" },
     ],
