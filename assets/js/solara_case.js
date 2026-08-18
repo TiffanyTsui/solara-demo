@@ -119,7 +119,7 @@
         ((f.alert && f.alert.reasons && f.alert.reasons.length)
           ? "<div style=\"margin-top:4px\">" + f.alert.reasons.join(" · ") + "</div>" : "") +
         '<div class="muted" style="font-size:.8rem;margin-top:4px">issued ' + f.updated_iso +
-        " UTC · ±1.5 °C</div></div>";
+        " UTC · ±1,5 °C op etmaalgemiddelden · piek = zonder extra maatregelen</div></div>";
       if (window.Plotly && f.series) {
         Plotly.newPlot(chartId, [
           { x: f.series.t, y: f.series.indoor, name: "Indoor (simulated)",
