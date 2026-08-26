@@ -52,14 +52,13 @@ met lichtverhoging +7&nbsp;°C tussen 200 en 700&nbsp;W/m²). Elke voorspelling 
 achteraf gescoord tegen de gemeten kastemperatuur.</p>
 <p class="muted" style="font-size:0.85rem;margin-bottom:28px">
 Drempels verkennend · onzekerheid ±1,5&nbsp;°C op etmaalgemiddelden ·
-<strong>piekwaarden zijn verwachtingen zónder extra maatregelen</strong> (broezen e.d.) en
-liggen bij hitte hoger dan wat na ingrijpen gemeten wordt · pagina wordt
-dagelijks ± 06:30 ververst — herlaad voor de nieuwste uitgifte.</p>
+pagina wordt dagelijks ± 06:30 ververst — herlaad voor de nieuwste uitgifte.</p>
 
 <div class="chart-block">
   <div class="chart-head">
     <h3>MidMad 1 + 2 — afdeling 13/23 <span class="tag-pill validated">gekalibreerd model</span></h3>
-    <div class="chart-sub">één gebouw, één model — gekalibreerd op 20 maanden meetdata; verschil tussen afdelingen (0,4–0,9 °C) valt binnen de onzekerheid</div>
+    <div class="chart-sub">één gebouw, één model — gekalibreerd op 20 maanden meetdata; verschil tussen afdelingen (0,4–0,9 °C) valt binnen de onzekerheid ·
+    sinds 26 aug: <strong>de piek is de verwachte uitkomst</strong> — gebruikelijke ingrepen bij hitte (broezen e.d.) zitten in de meetreeks en dus in het model</div>
   </div>
   <div id="fc1-banner" style="margin-bottom:12px"></div>
   <div id="fc1-chart"></div>
@@ -77,8 +76,9 @@ dagelijks ± 06:30 ververst — herlaad voor de nieuwste uitgifte.</p>
 <div class="chart-block">
   <div class="chart-head">
     <h3>MidMad 3 — nieuwbouw · afd 33/36 <span class="tag-pill illustrative">voorlopig</span></h3>
-    <div class="chart-sub">overgedragen model, nog geen eigen kalibratie — de voorspelling valt vrijwel samen met de strip
-    hierboven (verschil ≈ 0,1 °C), dus tonen we één regel tot de eigen meetreeks (loopt sinds 13 aug) genoeg dagen heeft</div>
+    <div class="chart-sub">overgedragen model, nog geen eigen kalibratie — hier is de piek nog de verwachting
+    <strong>zónder extra maatregelen</strong> (broezen e.d.) en ligt bij hitte hoger dan wat na ingrijpen gemeten wordt;
+    één regel tot de eigen meetreeks (loopt sinds 13 aug) genoeg dagen heeft</div>
   </div>
   <div id="fc2-line"></div>
 </div>
@@ -91,7 +91,7 @@ Springtide Strategy · SOLARA — vragen of een gekke waarde gezien? App Tiffany
 
 <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
 <script src="../assets/nav.js?v=10"></script>
-<script src="../assets/js/solara_case.js?v=11"></script>
+<script src="../assets/js/solara_case.js?v=12"></script>
 <script>
 SOLARA_UI.renderForecastStrip("fc1-banner", "fc1-chart", "fc1-days", "../data/feeds/made-afd13-23.json");
 SOLARA_UI.renderScoredTable("sc-block", "../data/feeds/made-afd13-23.json");
