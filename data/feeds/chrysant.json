@@ -5,7 +5,7 @@
   13,
   23
  ],
- "updated_iso": "2026-08-28T09:57+00:00",
+ "updated_iso": "2026-08-28T09:59+00:00",
  "source": "solara-calibrate frozen v4_best on forecast weather",
  "provenance": "v4 (temperature-responsive transpiration) calibrated on the 604-day gem-kastemp series; truth series is plausibly the MEAN of afd 13 and 23 \u2014 which MATCHES this whole-building single-zone model; the per-afdeling re-export (asked) measures the within-building spread the zone cannot resolve; building confirmed by Richard 13 Aug 18:33 ('one glashouse of 6 ha')",
  "note": "Actor-less: temperatures only. Thresholds exploratory; uncertainty \u00b11.5 \u00b0C on daily means. The peak is the expected outcome, usual heat-day measures (misting etc.) included.",

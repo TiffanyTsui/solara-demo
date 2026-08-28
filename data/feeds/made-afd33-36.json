@@ -5,7 +5,7 @@
   33,
   36
  ],
- "updated_iso": "2026-08-28T09:57+00:00",
+ "updated_iso": "2026-08-28T09:59+00:00",
  "source": "solara-calibrate frozen v3_best on forecast weather",
  "provenance": "TRANSFER from afd13-23 envelope onto the 2025 nieuwbouw geometry \u2014 voorlopig; heights are priors, ask Richard",
  "note": "Actor-less: temperatures only. Thresholds exploratory; uncertainty \u00b11.5 \u00b0C on daily means. The peak is the expectation WITHOUT extra measures (misting etc.) and runs above what is measured once those measures act.",
