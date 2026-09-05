@@ -43,7 +43,7 @@
 
   function blocks(f) {
     el("kas-blocks").innerHTML = f.kassen.map(function (k, i) {
-      return '<div class="chart-block"><div class="chart-head"><h3>' + esc(k.label) + " — the model against the sensor in afdeling " + k.scored_afdeling + "</h3>" +
+      return '<div class="chart-block"><div class="chart-head"><h3>' + esc(k.label.replace('Maasdijk ', '')) + " — the model against the sensor in afdeling " + k.scored_afdeling + "</h3>" +
         '<div class="chart-sub">Daily means. Line: the model, every day of the run. Dots: what the sensor measured, on the days an export exists. Dashed: outside air.</div></div>' +
         '<div id="chart-' + i + '"></div>' +
         '<details class="daytable"><summary>Day by day — ' + k.score.all.days + " measured days</summary>" +
