@@ -42,6 +42,16 @@ window.SOLARA_REGISTRY = [
     ],
   },
   {
+    id: "maasdijk",
+    label: "Maasdijk",
+    sub: "Climate twin · 3 greenhouses · on record",
+    status: "active",
+    lock: { hash: "aa0030a489e2bd5f45843d601cd2f5fc0ac1ef4fe76f0a4f4d02efcb8258c27d" },
+    modules: [
+      { id: "overview", label: "Record", path: "index.html" },
+    ],
+  },
+  {
     id: "hic",
     label: "Skyberries",
     sub: "Strawberry greenhouse · connecting",

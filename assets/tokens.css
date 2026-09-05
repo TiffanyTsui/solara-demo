@@ -578,3 +578,17 @@ table.data td.num,table.data th.num{text-align:right}
   .planner-side{position:static;flex-direction:row;flex-wrap:wrap}
   .fp-group{flex:1;min-width:240px}
 }
+
+/* ----- record pages (Maasdijk, 2026-09-05): hero stats, day tables, how-to list ----- */
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:22px}
+.hero-stat{border-top:2px solid var(--teal);padding-top:10px}
+.hero-num{font-family:var(--font-display);font-size:1.6rem;font-weight:500;color:var(--teal-deep);letter-spacing:-0.01em;line-height:1.15}
+.hero-label{font-size:0.84rem;color:var(--muted);margin-top:4px;max-width:34ch}
+details.daytable{margin-top:14px}
+details.daytable summary{cursor:pointer;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+details.daytable table{margin-top:10px}
+table.data td.num{text-align:right;font-family:var(--font-mono);font-size:0.82rem}
+table.data td.num.bad{color:var(--short)}
+ul.howto{margin:0;padding-left:1.1em;font-size:0.92rem;color:var(--ink-soft)}
+ul.howto li{margin-bottom:8px;max-width:78ch}
+.footnote{font-size:0.78rem;margin-top:28px}
