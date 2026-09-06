@@ -41,7 +41,7 @@
     var s = f.score || {}, a = s.all, fc = f.forecast_score, sp = f.spread;
     var one = '<div class="hero-stat"><div class="hero-num">' + (a ? nl(a.mean_mae, 2) + " °C" : "—") + '</div><div class="hero-label">model op gemeten weer: gemiddelde afwijking van het etmaalgemiddelde over ' + (a ? a.days : 0) + " dagen" +
       (s.train && s.after ? " · trainingsdata " + nl(s.train.mean_mae, 2) + " · daarna " + nl(s.after.mean_mae, 2) : "") +
-      (a ? " · piek " + nl(a.max_mae, 2) + " °C, bias " + sgn(a.max_bias, 2) : "") + "</div></div>";
+      (a ? " · warmste uur " + nl(a.max_mae, 2) + " °C, bias " + sgn(a.max_bias, 2) : "") + "</div></div>";
     var two = '<div class="hero-stat"><div class="hero-num">' + (sp ? nl(sp.value, 2) + " °C" : "—") + '</div><div class="hero-label">gemeten verschil tussen afdeling ' + (sp ? sp.afdelingen.join(" en ") : afds(f)) + ", zelfde dagen — de ondergrens voor één model per gebouw</div></div>";
     var three = fc
       ? '<div class="hero-stat"><div class="hero-num">' + nl(fc.total_mae, 2) + ' °C</div><div class="hero-label">dagvooruitzicht: afwijking van het etmaalgemiddelde over ' + fc.days + " gescoorde dagen, bias " + sgn(fc.total_bias, 2) + " · waarvan weer " + nl(fc.weather_mae, 2) + " · model " + nl(fc.model_mae, 2) + "</div></div>"
