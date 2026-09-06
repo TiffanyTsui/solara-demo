@@ -1,10 +1,12 @@
 <!doctype html>
-<!-- Maasdijk · the climate twin on record (option B, 2026-09-05).
-     Three greenhouses, one model each, on the Made v6 envelope without refit; reconstructed
-     5 Jan – 3 Sep 2026 on observed weather and scored per compartment against the measured
-     weeks. No forecast and no pest layer on this page. Feed: data/feeds/maasdijk.json, written by
-     solara-calibrate validate/maasdijk_feed.py. Register: technical note, third person.
-     Style: assets/tokens.css only — no inline styles. -->
+<!-- Maasdijk · the climate twin on record, with the forecast (option B 2026-09-05, forecast 2026-09-06).
+     Three greenhouses, one model each, on the Made v6 envelope without refit; reconstructed from
+     5 Jan 2026 on observed weather, extended each morning, and scored per compartment against the
+     measured weeks. Since 6 Sep a daily forecast issue continues each timeline three days ahead;
+     scored days follow ADR 0006 (lead 1, split into weather share and model share). No pest layer:
+     that is the pest cohort model, PestRadar's grower view. Feed: data/feeds/maasdijk.json, written
+     by solara-calibrate validate/maasdijk_feed.py from run_daily.sh. Register: technical note,
+     third person. Style: assets/tokens.css only — no inline styles. -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -14,11 +16,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/tokens.css?v=11" />
+<link rel="stylesheet" href="../assets/tokens.css?v=12" />
 </head>
 <body data-root=".." data-case="maasdijk" data-module="overview">
-<script src="../assets/cases/registry.js?v=11"></script>
-<script src="../assets/lock.js?v=11"></script>
+<script src="../assets/cases/registry.js?v=12"></script>
+<script src="../assets/lock.js?v=12"></script>
 
 <header class="topbar">
   <a class="brand" href="index.html">
@@ -39,9 +41,9 @@
 <main class="container">
 
 <section class="page-hero">
-  <div class="kicker">Digital twin · climate · on record</div>
+  <div class="kicker">Digital twin · climate · on record, and three days ahead</div>
   <h1>Maasdijk</h1>
-  <p class="lede">Three greenhouses, one physical model each, built from the measured buildings and the settings the grower runs. The model was calibrated at Made and moved here without refitting. It reconstructed the indoor climate from 5 January to 3 September 2026 on observed weather. The measured weeks score it afterwards; they never feed it.</p>
+  <p class="lede">Three greenhouses, one physical model each, built from the measured buildings and the settings the grower runs. The model was calibrated at Made and moved here without refitting. It reconstructs the indoor climate from 5 January 2026 on observed weather, extended every morning, and continues each timeline three days ahead on the day's weather forecast. The measured weeks score it afterwards; they never feed it.</p>
   <div class="hero-stats" id="hero-stats"></div>
 </section>
 
@@ -56,13 +58,16 @@
   </div>
   <ul class="howto">
     <li><strong>One model per greenhouse.</strong> Inside a greenhouse the compartments differ from each other by about 0,6 °C in daily mean. The model cannot see that difference, so an error of that size is the floor for any model that sits outside the compartment.</li>
-    <li><strong>The line is the model, the dots are the sensor.</strong> The model runs every hour of the eight months. A dot appears only on days an export exists for that compartment.</li>
+    <li><strong>The solid line is the model on observed weather, the dots are the sensor.</strong> The model runs every hour from 5 January to the last day KNMI has published, about one day behind. A dot appears only on days an export exists for that compartment.</li>
+    <li><strong>The dotted line is the forecast.</strong> Every morning at 09:00 one issue per greenhouse runs the same model on the Open-Meteo weather forecast at the site (the KNMI Harmonie blend, not a KNMI product) from the last observed day through three days ahead. The seam is marked. An issue is frozen with its weather and never edited; the next morning's issue replaces it on the chart.</li>
+    <li><strong>Three errors, one per line.</strong> On a scored day the forecast is judged against the sensor (the total), and the same day's model on observed weather is judged against the sensor (the model share). The difference between the two lines is the weather share, the part of the miss the forecast weather caused. The three add up. Scoring uses the last issue made before the day, so a day-ahead forecast, and only full measured days, so rows appear when an export arrives.</li>
+    <li><strong>The weather share also holds a station difference.</strong> The observed line runs on KNMI Rotterdam, 17 km away, because Hoek van Holland publishes no cloud cover; the forecast runs at the site itself. Part of the weather share is that distance, not the forecast.</li>
+    <li><strong>Zoom in and the lines turn hourly.</strong> The buttons above each chart and the slider below it set the window; under 14 days the daily means give way to the hourly model, forecast and sensor, which is where the afternoon peak shows.</li>
     <li><strong>The daily maximum runs 2–3 °C cold.</strong> The model reaches the afternoon peak late. The same shortfall exists at Made and is where the next calibration round goes. Daily means carry the score; the maxima are in the day tables under each chart, so the shortfall stays visible.</li>
     <li><strong>Heating and venting are one setting all year.</strong> The grower raises both for some weeks after a planting. Those weeks read cold in the model, in whichever compartment was just planted.</li>
-    <li><strong>Weather is KNMI Rotterdam, 17 km away.</strong> Hoek van Holland is nearer but publishes no cloud cover, which the model needs.</li>
     <li><strong>Kas 2 and Kas 3 are the two halves of one building</strong>, split along the central path. Which half holds afdeling 5–7 is not recorded; the model does not depend on it.</li>
-    <li><strong>No forecast on this page.</strong> The Made page forecasts 48 hours ahead every morning. The same run can be switched on for Maasdijk.</li>
-    <li><strong>Where the numbers live.</strong> Every figure here is written from the model repository by one script. Corrections go there first; this page follows.</li>
+    <li><strong>A forecast number in the header needs seven scored days.</strong> Until then the header says the forecast is running. One or two days say more about the weather than about the model.</li>
+    <li><strong>Where the numbers live.</strong> Every figure here is written from the model repository by one script, once a day. Corrections go there first; this page follows.</li>
   </ul>
 </div>
 
@@ -71,7 +76,7 @@
 </main>
 
 <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
-<script src="../assets/nav.js?v=11"></script>
-<script src="../assets/js/maasdijk.js?v=11"></script>
+<script src="../assets/nav.js?v=12"></script>
+<script src="../assets/js/maasdijk.js?v=12"></script>
 </body>
 </html>

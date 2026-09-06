@@ -592,3 +592,6 @@ table.data td.num.bad{color:var(--short)}
 ul.howto{margin:0;padding-left:1.1em;font-size:0.92rem;color:var(--ink-soft)}
 ul.howto li{margin-bottom:8px;max-width:78ch}
 .footnote{font-size:0.78rem;margin-top:28px}
+/* record pages (2026-09-06): the wide day table scrolls inside its block, never the page */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table-scroll table.data{min-width:880px}
