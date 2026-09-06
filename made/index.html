@@ -1,10 +1,13 @@
 <!doctype html>
-<!-- Made · kasvooruitzicht — the grower-facing forecast page (Richard).
-     One calibrated strip + scored table; MidMad 3 collapsed to one line (fix 3),
-     afdeling-keyed feeds written daily by
-     solara-calibrate run_daily.sh. Dutch by decision (13 Aug). Actor-less by
-     contract: temperatures + alert level only — no commercial figures, no
-     benchmark, no other locations. Own workspace + own access code so the
+<!-- Made · kasvooruitzicht — the grower-facing page (Richard). Two buildings, same treatment
+     (6 Sep, ADR 0006): per building the heat-alert banner and day chips (forecast snapshot), the
+     record timeline (assets/js/timeline.js — the model on observed KNMI weather from 1 Dec 2025,
+     the latest issue three days ahead, measured, scored days) and the scored table with the
+     weather/model split. MidMad 1+2 is the trained model; MidMad 3 runs the same v6 envelope
+     transferred (since 6 Sep). Feeds data/feeds/made-<site>.json, written daily by
+     solara-calibrate run_daily.sh (forecast.py snapshot + validate/record_feed.py record).
+     Dutch by decision (13 Aug). Actor-less by contract: temperatures + alert level only — no
+     commercial figures, no benchmark, no other locations. Own workspace + own access code so the
      chrysant workspace's illustrative numbers stay internal. -->
 <html lang="nl">
 <head>
@@ -41,60 +44,71 @@
 
 <div class="case-head" style="margin-top:0">
   <div>
-    <div class="kicker">Vooruitzicht kastemperatuur · 48 uur</div>
+    <div class="kicker">Kastemperatuur op record · en drie dagen vooruit</div>
     <h1 style="font-size:1.7rem">Made — twee gebouwen, elke ochtend opnieuw berekend</h1>
   </div>
 </div>
 <p class="lede" style="font-size:0.98rem;margin-bottom:8px">
-Fysisch model per kas (EnergyPlus), gevoed met de KNMI-verwachting en
-<strong>jullie eigen klimaatinstellingen</strong> (stook 18&nbsp;°C, luchting +0,5&nbsp;°C
-met lichtverhoging +7&nbsp;°C tussen 200 en 700&nbsp;W/m²). Elke voorspelling wordt
-achteraf gescoord tegen de gemeten kastemperatuur.</p>
+Fysisch model per gebouw (EnergyPlus), gevoed met <strong>jullie eigen klimaatinstellingen</strong>
+(stook 18&nbsp;°C, luchting +0,5&nbsp;°C met lichtverhoging +7&nbsp;°C tussen 200 en 700&nbsp;W/m²).
+De doorgetrokken lijn is het model op het gemeten KNMI-weer sinds 1 december; de stippellijn is de
+verwachting van vanochtend, drie dagen vooruit. Elke verwachting wordt achteraf gescoord tegen de
+gemeten kastemperatuur, gesplitst in wat het weerbericht ernaast zat en wat het model ernaast zat.</p>
 <p class="muted" style="font-size:0.85rem;margin-bottom:28px">
 Drempels verkennend · onzekerheid ±1,5&nbsp;°C op etmaalgemiddelden ·
 pagina wordt dagelijks ± 09:00 ververst — herlaad voor de nieuwste uitgifte.</p>
 
 <div class="chart-block">
   <div class="chart-head">
-    <h3>MidMad 1 + 2 — afdeling 13/23 <span class="tag-pill validated">gekalibreerd model</span></h3>
-    <div class="chart-sub">één gebouw, één model — gekalibreerd op 20 maanden meetdata; verschil tussen afdelingen (0,4–0,9 °C) valt binnen de onzekerheid ·
-    de piek is de <strong>verwachte uitkomst</strong>, incl. gebruikelijke ingrepen bij hitte (broezen e.d.)</div>
+    <h3>MidMad 1 + 2 — afdeling 13/23 <span class="tag-pill validated">getraind model</span></h3>
+    <div class="chart-sub">één gebouw, één model, getraind op 20 maanden meetdata tot 1 juni 2026; de modelstructuur is vastgezet op data tot 3 augustus.
+    Doorgetrokken: het model op het gemeten weer, tot de laatste waarnemingsdag. Stippellijn: de laatste uitgifte vanaf die dag, drie dagen vooruit.
+    Donker: gemeten, gemiddelde van afdeling 13 en 23. Open rondjes: wat het dagvooruitzicht zei, op gescoorde dagen. Onder 14 dagen per uur. Gestreept: buitenlucht.</div>
   </div>
-  <div id="fc1-banner" style="margin-bottom:12px"></div>
-  <div id="fc1-chart"></div>
-  <div id="fc1-days" style="margin-top:10px"></div>
+  <div id="afd13-23-banner"></div>
+  <div id="afd13-23-stats"></div>
+  <div id="afd13-23-chart"></div>
+  <div id="afd13-23-days" class="chips"></div>
+  <div id="afd13-23-table"></div>
 </div>
 
 <div class="chart-block">
   <div class="chart-head">
-    <h3>Voorspeld vs gemeten <span class="tag-pill validated">gescoord</span></h3>
-    <div class="chart-sub">elke voorspelling wordt achteraf gescoord tegen jullie gemeten kastemperatuur — ook als hij ernaast zat</div>
+    <h3>MidMad 3 — nieuwbouw · afd 33/36 <span class="tag-pill design">overgedragen model</span></h3>
+    <div class="chart-sub">hetzelfde model als MidMad 1 + 2, overgedragen zonder eigen training (v6-envelop sinds 6 september; eerdere uitgiften op de v3-overdracht staan in de tabel met hun modelnaam).
+    Made 3 broest bij hitte; dat zit niet in het model en er zijn nog geen gegevens over het effect — de piek kan daardoor boven de meting uitkomen.
+    Lijnen en rondjes lezen als hierboven; gemeten is het gemiddelde van afdeling 33 en 36.</div>
   </div>
-  <div id="sc-block"></div>
+  <div id="afd33-36-banner"></div>
+  <div id="afd33-36-stats"></div>
+  <div id="afd33-36-chart"></div>
+  <div id="afd33-36-days" class="chips"></div>
+  <div id="afd33-36-table"></div>
 </div>
 
 <div class="chart-block">
   <div class="chart-head">
-    <h3>MidMad 3 — nieuwbouw · afd 33/36 <span class="tag-pill illustrative">voorlopig</span></h3>
-    <div class="chart-sub">overgedragen model, nog geen eigen kalibratie — piek hier <strong>zónder extra maatregelen</strong> (broezen e.d.);
-    één regel tot de eigen meetreeks (loopt sinds 13 aug) genoeg dagen heeft</div>
+    <h3>Zo lees je dit</h3>
   </div>
-  <div id="fc2-line"></div>
+  <ul class="howto">
+    <li><strong>Doorgetrokken lijn en stippellijn.</strong> De doorgetrokken lijn is het model op het weer dat het KNMI gemeten heeft, tot de laatste dag die het KNMI heeft gepubliceerd (ongeveer een dag achter). De stippellijn is dezelfde berekening op de weersverwachting van vanochtend 09:00, vanaf die dag drie dagen vooruit. De naad is gemarkeerd.</li>
+    <li><strong>Donkere lijn en punten zijn gemeten.</strong> Het gemiddelde van de twee afdelingen van het gebouw, per kwartier, alleen op dagen met een volledige meetreeks. Ingezoomd (onder 14 dagen) zie je de uren, uitgezoomd de etmaalgemiddelden.</li>
+    <li><strong>Open rondjes zijn gescoorde dagen.</strong> Wat de uitgifte van de ochtend ervoor voor die dag zei. Een uitgifte wordt bevroren met haar weersverwachting en nooit meer aangepast.</li>
+    <li><strong>Weer of model.</strong> Het verschil tussen verwachting en meting valt uiteen in twee delen: wat het weerbericht ernaast zat (verwachting min het model op het gemeten weer) en wat het model ernaast zat (model op het gemeten weer min de meting). Samen zijn ze het totaal. Beide staan in de tabel.</li>
+    <li><strong>De streep bij 1 juni.</strong> Links ervan heeft het model van MidMad 1 + 2 deze dagen gezien tijdens het trainen; rechts ervan niet. MidMad 3 heeft geen streep: daar is niets getraind.</li>
+    <li><strong>Het weerstation staat niet op het bedrijf.</strong> Het gemeten weer komt van KNMI Gilze-Rijen, twintig kilometer verderop; de verwachting is op de locatie zelf. Een deel van het verschil tussen de lijnen is dus afstand, niet fout. Dat wordt benoemd, niet weggerekend.</li>
+  </ul>
 </div>
 
 <p class="muted" style="font-size:0.8rem;margin-top:24px">
-Springtide Strategy · SOLARA — vragen of een gekke waarde gezien? App Tiffany.
+Springtide Strategy · SOLARA — vragen of een gekke waarde gezien? App Tiffany.<br><span id="footnote-data"></span>
 </p>
 
 </main>
 
 <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
 <script src="../assets/nav.js?v=10"></script>
-<script src="../assets/js/solara_case.js?v=12"></script>
-<script>
-SOLARA_UI.renderForecastStrip("fc1-banner", "fc1-chart", "fc1-days", "../data/feeds/made-afd13-23.json");
-SOLARA_UI.renderScoredTable("sc-block", "../data/feeds/made-afd13-23.json");
-SOLARA_UI.renderForecastLine("fc2-line", "../data/feeds/made-afd33-36.json");
-</script>
+<script src="../assets/js/timeline.js?v=13"></script>
+<script src="../assets/js/made.js?v=13"></script>
 </body>
 </html>

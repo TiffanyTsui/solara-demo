@@ -595,3 +595,12 @@ ul.howto li{margin-bottom:8px;max-width:78ch}
 /* record pages (2026-09-06): the wide day table scrolls inside its block, never the page */
 .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .table-scroll table.data{min-width:880px}
+/* Made record page (6 Sep): per-building banner, chips, stats */
+.alert-banner{border-left:4px solid var(--teal);padding:10px 14px;margin-bottom:12px}
+.alert-banner strong{text-transform:uppercase;letter-spacing:.03em}
+.alert-reasons{margin-top:4px}
+.alert-meta{font-size:.8rem;margin-top:4px}
+.chips{margin-top:10px}
+.chips .chip{margin-right:8px;margin-bottom:6px;display:inline-block}
+.stats-block{margin:4px 0 14px}
+.small{font-size:.8rem}
