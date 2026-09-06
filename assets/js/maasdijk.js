@@ -85,6 +85,6 @@
 
   fetch("../data/feeds/maasdijk.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (f) {
     hero(f); cards(f); blocks(f);
-    el("footnote").textContent = "Springtide Strategy · SOLARA · " + f.weather + " · forecast: " + f.forecast_weather + " · model " + f.source.split(":")[1].trim() + " · written " + f.updated_iso.slice(0, 16).replace("T", " ") + " UTC";
+    el("footnote").textContent = "Springtide Strategy · SOLARA · " + f.weather + " · forecast: " + f.forecast_weather + " · model " + f.source.split(":")[1].trim() + (f.build ? " · build " + f.build + " (" + f.build_date + ")" : "") + " · written " + f.updated_iso.slice(0, 16).replace("T", " ") + " UTC";
   }).catch(function (e) { el("hero-stats").innerHTML = '<p class="muted">The Maasdijk feed is not reachable.</p>'; });
 })();
