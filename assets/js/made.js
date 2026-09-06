@@ -28,7 +28,7 @@
     var label = { none: "geen alarm", warning: "WAARSCHUWING", critical: "KRITIEK" }[lvl];
     return '<div class="alert-banner" style="border-left-color:' + col + ';background:' + col + '14"><strong style="color:' + col + '">hittealarm: ' + label + "</strong>" +
       ((f.alert && f.alert.reasons && f.alert.reasons.length) ? '<div class="alert-reasons">' + f.alert.reasons.map(esc).join(" · ") + "</div>" : "") +
-      '<div class="muted alert-meta">uitgifte ' + esc(f.updated_iso.slice(0, 16).replace("T", " ")) + " UTC · ±1,5 °C op etmaalgemiddelden · model " + esc(f.frozen_model || "") + "</div></div>";
+      '<div class="muted alert-meta">uitgifte ' + esc(f.updated_iso.slice(0, 16).replace("T", " ")) + " UTC · ±1,5 °C op etmaalgemiddelden</div></div>";
   }
 
   function chips(f) {
@@ -45,23 +45,23 @@
     var two = '<div class="hero-stat"><div class="hero-num">' + (sp ? nl(sp.value, 2) + " °C" : "—") + '</div><div class="hero-label">gemeten verschil tussen afdeling ' + (sp ? sp.afdelingen.join(" en ") : afds(f)) + ", zelfde dagen — de ondergrens voor één model per gebouw</div></div>";
     var three = fc
       ? '<div class="hero-stat"><div class="hero-num">' + nl(fc.total_mae, 2) + ' °C</div><div class="hero-label">dagvooruitzicht: afwijking van het etmaalgemiddelde over ' + fc.days + " gescoorde dagen, bias " + sgn(fc.total_bias, 2) + " · waarvan weer " + nl(fc.weather_mae, 2) + " · model " + nl(fc.model_mae, 2) + "</div></div>"
-      : '<div class="hero-stat"><div class="hero-num">' + (f.scored || []).length + " van " + (f.headline_min_days || 7) + '</div><div class="hero-label">gescoorde dagen — het dagvooruitzicht krijgt een cijfer vanaf ' + (f.headline_min_days || 7) + " dagen</div></div>";
+      : '<div class="hero-stat"><div class="hero-num">' + (f.scored || []).length + " van " + (f.headline_min_days || 7) + '</div><div class="hero-label">dagen gescoord — het dagvooruitzicht krijgt een cijfer vanaf ' + (f.headline_min_days || 7) + " dagen</div></div>";
     return '<div class="hero-stats stats-block">' + one + two + three + "</div>";
   }
 
   function table(f) {
     var rows = (f.scored || []).slice(-TABLE_DAYS).reverse();
-    if (!rows.length) return '<p class="muted small">Nog geen gescoorde dagen — scoren gebeurt zodra de gemeten kastemperatuur binnenkomt.</p>';
+    if (!rows.length) return '<p class="muted small">Nog geen gescoorde dagen — de eerste volgt zodra een dag met een verwachting ook gemeten is.</p>';
     var cell = function (v, d, bad) { return '<td class="num' + (bad ? " bad" : "") + '">' + (v === null || v === undefined ? "—" : (d < 0 ? sgn(v, -d) : nl(v, d))) + "</td>"; };
     var body = rows.map(function (r) {
       return "<tr><td>" + r.date + "</td>" + cell(r.pred_mean, 1) + cell(r.meas_mean, 1) + cell(r.total_mean, -1, Math.abs(r.total_mean) > 1.5) +
         cell(r.weather_mean, -1, Math.abs(r.weather_mean || 0) > 1.5) + cell(r.model_mean, -1, Math.abs(r.model_mean || 0) > 1.5) +
         cell(r.pred_max, 1) + cell(r.meas_max, 1) + cell(r.total_max, -1, Math.abs(r.total_max) > 1.5) +
-        '<td class="muted small">' + esc(r.issued) + " (−" + r.lead_days + "d) · " + esc(r.frozen_model || "") + "</td></tr>";
+        '<td class="muted small">' + esc(r.issued) + " UTC</td></tr>";
     }).join("");
     return '<div class="table-scroll"><table class="data"><thead><tr><th>datum</th><th class="num">voorspeld gem</th><th class="num">gemeten gem</th><th class="num">Δ</th><th class="num">waarvan weer</th><th class="num">waarvan model</th>' +
-      '<th class="num">voorspeld max</th><th class="num">gemeten max</th><th class="num">Δ</th><th>uitgifte · model</th></tr></thead><tbody>' + body + "</tbody></table></div>" +
-      '<p class="muted small">gemeten = kwartiergemiddelde over afdeling ' + afds(f) + ", alleen volledig gedekte dagen; voorspeld = de laatste uitgifte vóór die dag (uitgiften worden nooit gemengd); Δ = voorspeld − gemeten = weer + model, het modelaandeel tegen het model op het gemeten weer (ADR 0006). Nieuwste " + TABLE_DAYS + " dagen.</p>";
+      '<th class="num">voorspeld max</th><th class="num">gemeten max</th><th class="num">Δ</th><th>uitgifte</th></tr></thead><tbody>' + body + "</tbody></table></div>" +
+      '<p class="muted small">gemeten = gemiddelde van afdeling ' + afds(f) + ", alleen volledige dagen · voorspeld = de uitgifte van de ochtend ervoor · Δ = voorspeld − gemeten = weer + model · nieuwste " + TABLE_DAYS + " dagen</p>";
   }
 
   function block(site, url) {

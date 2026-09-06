@@ -44,26 +44,22 @@
 
 <div class="case-head" style="margin-top:0">
   <div>
-    <div class="kicker">Kastemperatuur op record · en drie dagen vooruit</div>
+    <div class="kicker">Kastemperatuur · op record en drie dagen vooruit</div>
     <h1 style="font-size:1.7rem">Made — twee gebouwen, elke ochtend opnieuw berekend</h1>
   </div>
 </div>
 <p class="lede" style="font-size:0.98rem;margin-bottom:8px">
-Fysisch model per gebouw (EnergyPlus), gevoed met <strong>jullie eigen klimaatinstellingen</strong>
-(stook 18&nbsp;°C, luchting +0,5&nbsp;°C met lichtverhoging +7&nbsp;°C tussen 200 en 700&nbsp;W/m²).
-De doorgetrokken lijn is het model op het gemeten KNMI-weer sinds 1 december; de stippellijn is de
-verwachting van vanochtend, drie dagen vooruit. Elke verwachting wordt achteraf gescoord tegen de
-gemeten kastemperatuur, gesplitst in wat het weerbericht ernaast zat en wat het model ernaast zat.</p>
+Eén fysisch model per gebouw (EnergyPlus) op jullie eigen instellingen: stook 18&nbsp;°C 's nachts en 20&nbsp;°C overdag,
+luchting vanaf 18,5&nbsp;°C met +7&nbsp;°C lichtverhoging tussen 200 en 700&nbsp;W/m², doek en kier zoals opgegeven.
+De doorgetrokken lijn is het model op het gemeten weer sinds 1 december; de stippellijn is de verwachting van vanochtend.
+Elke verwachting wordt achteraf gescoord tegen de meting.</p>
 <p class="muted" style="font-size:0.85rem;margin-bottom:28px">
-Drempels verkennend · onzekerheid ±1,5&nbsp;°C op etmaalgemiddelden ·
-pagina wordt dagelijks ± 09:00 ververst — herlaad voor de nieuwste uitgifte.</p>
+Onzekerheid ±1,5&nbsp;°C op etmaalgemiddelden · dagelijks ± 09:00 ververst — herlaad voor de nieuwste uitgifte.</p>
 
 <div class="chart-block">
   <div class="chart-head">
     <h3>MidMad 1 + 2 — afdeling 13/23 <span class="tag-pill validated">getraind model</span></h3>
-    <div class="chart-sub">één gebouw, één model, getraind op 20 maanden meetdata tot 1 juni 2026; de modelstructuur is vastgezet op data tot 3 augustus.
-    Doorgetrokken: het model op het gemeten weer, tot de laatste waarnemingsdag. Stippellijn: de laatste uitgifte vanaf die dag, drie dagen vooruit.
-    Donker: gemeten, gemiddelde van afdeling 13 en 23. Open rondjes: wat het dagvooruitzicht zei, op gescoorde dagen. Onder 14 dagen per uur. Gestreept: buitenlucht.</div>
+    <div class="chart-sub">getraind op twintig maanden meetdata tot 1 juni 2026; rechts van de streep heeft het model de dagen niet gezien.</div>
   </div>
   <div id="afd13-23-banner"></div>
   <div id="afd13-23-stats"></div>
@@ -74,10 +70,8 @@ pagina wordt dagelijks ± 09:00 ververst — herlaad voor de nieuwste uitgifte.<
 
 <div class="chart-block">
   <div class="chart-head">
-    <h3>MidMad 3 — nieuwbouw · afd 33/36 <span class="tag-pill design">overgedragen model</span></h3>
-    <div class="chart-sub">hetzelfde model als MidMad 1 + 2, overgedragen zonder eigen training (v6-envelop sinds 6 september; eerdere uitgiften op de v3-overdracht staan in de tabel met hun modelnaam).
-    Made 3 broest bij hitte; dat zit niet in het model en er zijn nog geen gegevens over het effect — de piek kan daardoor boven de meting uitkomen.
-    Lijnen en rondjes lezen als hierboven; gemeten is het gemiddelde van afdeling 33 en 36.</div>
+    <h3>MidMad 3 — nieuwbouw · afdeling 33/36 <span class="tag-pill design">overgedragen model</span></h3>
+    <div class="chart-sub">hetzelfde model, overgedragen zonder eigen training. Made 3 broest bij hitte; dat zit niet in het model, dus de piek kan boven de meting uitkomen.</div>
   </div>
   <div id="afd33-36-banner"></div>
   <div id="afd33-36-stats"></div>
@@ -91,12 +85,11 @@ pagina wordt dagelijks ± 09:00 ververst — herlaad voor de nieuwste uitgifte.<
     <h3>Zo lees je dit</h3>
   </div>
   <ul class="howto">
-    <li><strong>Doorgetrokken lijn en stippellijn.</strong> De doorgetrokken lijn is het model op het weer dat het KNMI gemeten heeft, tot de laatste dag die het KNMI heeft gepubliceerd (ongeveer een dag achter). De stippellijn is dezelfde berekening op de weersverwachting van vanochtend 09:00, vanaf die dag drie dagen vooruit. De naad is gemarkeerd.</li>
-    <li><strong>Donkere lijn en punten zijn gemeten.</strong> Het gemiddelde van de twee afdelingen van het gebouw, per kwartier, alleen op dagen met een volledige meetreeks. Ingezoomd (onder 14 dagen) zie je de uren, uitgezoomd de etmaalgemiddelden.</li>
-    <li><strong>Open rondjes zijn gescoorde dagen.</strong> Wat de uitgifte van de ochtend ervoor voor die dag zei. Een uitgifte wordt bevroren met haar weersverwachting en nooit meer aangepast.</li>
-    <li><strong>Weer of model.</strong> Het verschil tussen verwachting en meting valt uiteen in twee delen: wat het weerbericht ernaast zat (verwachting min het model op het gemeten weer) en wat het model ernaast zat (model op het gemeten weer min de meting). Samen zijn ze het totaal. Beide staan in de tabel.</li>
-    <li><strong>De streep bij 1 juni.</strong> Links ervan heeft het model van MidMad 1 + 2 deze dagen gezien tijdens het trainen; rechts ervan niet. MidMad 3 heeft geen streep: daar is niets getraind.</li>
-    <li><strong>Het weerstation staat niet op het bedrijf.</strong> Het gemeten weer komt van KNMI Gilze-Rijen, twintig kilometer verderop; de verwachting is op de locatie zelf. Een deel van het verschil tussen de lijnen is dus afstand, niet fout. Dat wordt benoemd, niet weggerekend.</li>
+    <li><strong>Doorgetrokken</strong> is het model op het weer dat het KNMI heeft gemeten, tot de laatste gepubliceerde dag. <strong>Gestippeld</strong> is dezelfde berekening op de weersverwachting van vanochtend, drie dagen vooruit.</li>
+    <li><strong>Donker</strong> is gemeten: het gemiddelde van de twee afdelingen. Ingezoomd zie je uren, uitgezoomd etmaalgemiddelden.</li>
+    <li><strong>Open rondjes</strong> zijn gescoorde dagen: wat de uitgifte van de ochtend ervoor voor die dag zei. Een uitgifte wordt nooit achteraf aangepast.</li>
+    <li><strong>Weer of model.</strong> Verwachting min meting valt uiteen in wat het weerbericht ernaast zat en wat het model ernaast zat. Beide staan in de tabel.</li>
+    <li><strong>Het weerstation</strong> is KNMI Gilze-Rijen, twintig kilometer verderop; de verwachting is op de locatie zelf. Een deel van het verschil is afstand, geen fout.</li>
   </ul>
 </div>
 
